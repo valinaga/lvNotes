@@ -1,0 +1,3 @@
+class RecipientsController < ApplicationController
+
+end
