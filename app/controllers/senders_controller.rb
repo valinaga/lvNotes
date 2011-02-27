@@ -1,12 +1,15 @@
 class SendersController < ApplicationController
-  def index
+	active_scaffold :sender do |conf|
+	end
+  
+  def home
     @sender = Sender.new
     @recipient = @sender.recipients.build
   end
   
-  def create
+  def save
     @sender = Sender.new(params[:sender])
-    @sender.save ? redirect_to(sign_path(@sender), :notice => 'Sender was successfully created.') : render('index')
+    @sender.save ? redirect_to(sign_path(@sender), :notice => 'Sender was successfully created.') : render('home')
   end
 
 end

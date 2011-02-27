@@ -1,6 +1,9 @@
 Lovecards::Application.routes.draw do
-  # resources :recipients
-  # resources :senders
+  resources :messages do as_routes end
+  
+  resources :senders do as_routes end
+  
+  resources :recipients do as_routes end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,8 +55,8 @@ Lovecards::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   
-  match "/" => "senders#index", :as => :home, :via => 'get'
-  match "/" => "senders#create", :as => :sign, :via => 'post'
+  match "/" => "senders#home", :as => :home, :via => 'get'
+  match "/" => "senders#save", :as => :sign, :via => 'post'
 
   # root :to => "senders#index"
   
