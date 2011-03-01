@@ -22,6 +22,20 @@ Lovecards::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'www.experiment.ro',
+    :user_name            => 'no-reply@experiment.ro',
+    :password             => 'pleaseno',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  
+  }
+
 end
 
 APP_URL = "http://localhost:3000"
+
+

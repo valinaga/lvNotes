@@ -42,3 +42,4 @@ module Lovecards
     config.filter_parameters += [:password]
   end
 end
+

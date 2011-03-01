@@ -1,71 +1,18 @@
-# encoding: utf-8
-<% content_for :head do %>
-	Inregistreaza-te
-<% end %>
-<div>
-	<h1>Formular</h1>
-
-<%= form_for @sender, :url => sign_path do |f| %>
-  <% if @sender.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sender.errors.count, "eroare", "erori") %> împiedică finalizarea înregistrării:</h2>
-
-      <ul>
-      <% @sender.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <% if @recipient && @recipient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipient.errors.count, "eroare", "erori") %> împiedică finalizarea înregistrării:</h2>
-
-      <ul>
-      <% @recipient.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :first_name, "Prenume" %><br />
-    <%= f.text_field :first_name %>
+<div class="home">
+  <%=home_path(:sender => @sender)%>
+  <div id="recipients">
+    <h3>Recipients:</h3>
+    <%= render(:partial => "recipient", :collection => @recipients) %>
   </div>
-  <div class="field">
-    <%= f.label :last_name, "Nume" %><br />
-    <%= f.text_field :last_name %>
+  <%#if(@letters.empty?)%>
+  <div id="messages">
+    <h3>Mesaje:</h3>
+    <%= render(:partial => "message", :collection => @messages) %>
   </div>
-  <div class="field">
-    <%= f.label :email, "E-Mail"%><br />
-    <%= f.text_field :email %>
+  <%#else%>
+  <div id="letters">
+    <h3>Letters:</h3>
+  <%= render(:partial => "letter", :collection => @letters) %>
   </div>
-
-	<%= f.fields_for :recipients do |fr| %>
-		<div class="field">
-			<%= fr.label :first_name %><br />
-			<%= fr.text_field :first_name %>
-		</div>
-		<div class="field">
-			<%= fr.label :last_name %><br />
-			<%= fr.text_field :last_name %>
-		</div>
-		<div class="field">
-			<%= fr.label :email %><br />
-			<%= fr.text_field :email %>
-		</div>
-		<div class="field">
-		    <%= fr.label :relation %><br />
-		    <%= fr.text_field :relation %>
-		</div>
-
-	<% end %>
-
-	<div class="actions">
-		<%= f.submit %>
-	</div>
-<% end %>
-
-	
+  <%#end%>
 </div>

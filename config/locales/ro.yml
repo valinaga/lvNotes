@@ -139,6 +139,14 @@ ro:
       odd: "trebuie să fie par"
       even: "trebuie să fie impar"
       record_invalid: "Validare nereuşită %{errors}"
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " şi "
+      last_word_connector: " şi "
+    select:
+      # default value for :prompt => true in FormOptionsHelper
+      prompt: "Alegeţi"
   helpers:
     submit:
       create: "Creaza %{model}"

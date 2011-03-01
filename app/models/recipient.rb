@@ -1,7 +1,12 @@
 class Recipient < ActiveRecord::Base
 	belongs_to :sender
+	has_many :letters
 
-	validates_format_of :first_name, :with => /^(?:\b\w+\b[\s\r\n]*){2,3}$/
-	validates_format_of :last_name, :with => /^(?:\b\w+\b[\s\r\n]*){2,3}$/
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
 	validates_format_of :email, :with => /^\S+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,4})(\]?)$/ix
+	
+	def name
+	  "#{first_name} #{last_name}"
+	end
 end
