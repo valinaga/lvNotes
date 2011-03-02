@@ -57,7 +57,8 @@ Lovecards::Application.routes.draw do
   # just remember to delete public/index.html.
   
   match "home" => "senders#home", :as => :home, :via => 'get'
-  match "trimite" => "senders#deliver", :as => :deliver, :via => 'get'
+  match "subscrie" => "senders#subscribe", :as => :subscribe, :via => 'get'
+  match "activeaza" => "senders#activate", :as => :activate, :via => 'get'
   match "/" => "senders#signin", :as => :signin, :via => 'get'
   match "/" => "senders#save", :as => :sign, :via => 'post'
 

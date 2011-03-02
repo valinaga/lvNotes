@@ -7,7 +7,7 @@
   <%#if(@letters.empty?)%>
   <div id="messages">
     <h3>Mesaje:</h3>
-    <%= render(:partial => "message", :collection => @messages) %>
+    <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender}) %>
   </div>
   <%#else%>
   <div id="letters">

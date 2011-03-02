@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110228081622) do
+ActiveRecord::Schema.define(:version => 20110302132314) do
 
 # Could not dump table "letters" because of following Mysql2::Error
 #   Invalid date: BTREE

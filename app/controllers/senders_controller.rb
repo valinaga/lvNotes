@@ -25,16 +25,40 @@ class SendersController < ApplicationController
     @messages = @sender.three_messages
   end
   
+  def subscribe
+    begin
+      @message = Message.find(params[:m])
+      @sender = session[:sender]
+      @letter = @sender.letters.new(:recipient => @sender.recipients.first, :message => @message )
+      @letter.save
+      UserMailer.welcome_email(@letter).deliver
+      redirect_to home_path(:sender => @sender)
+      #TODO de redirectat catre pagina de thankyou
+    rescue
+      render home_path(:sender => @sender)
+    end
+  end
+  
+  def activate
+#    begin
+      @letter = Letter.where(:hashed => params[:h]).first
+      @letter.sender.activate
+      @letter.ready
+      redirect_to home_path(:sender => @letter.sender)
+#    rescue
+#      render home_path(:sender => @sender)
+#    end
+  end
+  
   def deliver
-    @message = Message.find(params[:message])
-    @sender = session[:sender]
-    @let = @sender.letters.new(:recipient => @sender.recipients.first, :message => @message )
-    @let.sent = Time.now()
-    if @let.save
+    begin
+      @sender = Sender.activate_by_hashed(params[:s])
+      @let = @sender.letters.new(:recipient => @sender.recipients.first, :message => @message )
       UserMailer.welcome_email(@let).deliver
-      redirect_to home_path
-    else 
-      render home_path
+      @let.deliver
+      redirect_to home_path(:sender => @sender)
+    rescue
+      redirect_to home_path(:sender => @sender)
     end
   end
 end
