@@ -16,7 +16,7 @@ class Sender < ActiveRecord::Base
     if letters(true).empty?
       Message.ro.limit(3).order('RAND()')
     else
-      Message.except(letters.collect(&:message_id)).ro.limit(3).order('RAND()')
+      Message.exclude(letters.collect(&:message_id)).ro.limit(3).order('RAND()')
     end
   end
   

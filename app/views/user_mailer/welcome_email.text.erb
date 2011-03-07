@@ -3,8 +3,9 @@ Welcome to LoveCards, <%= @sender.name %>
 ===============================================
  
 You have successfully signed up to LoveCards,
-your username is: <%= @sender.email %> and you
-password is: <%= @sender.password%>.
+your your account information is:
+  username: <%= @sender.email %>
+  password: <%= @sender.password%>.
 
 You chose to send a lovecard to <%=@recipient.name%>
 at the e-mail addres <%=@recipient.email%> with the
@@ -13,6 +14,6 @@ following text:
 " <%=@msg.content%> "
  
 To confirm your subscription and deliver the message
-please follow this link: <%= @url %>.
+please click: <%= link_to "Activate", @url %>.
  
 Thanks for joining and have a great day!

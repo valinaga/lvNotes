@@ -1,0 +1,9 @@
+<div class="home">
+  <div id="messages">
+    <p>Please choose one of the three messages displayed below, you believe it feels better for you and 
+       <%=@sender.recipients.first.name%>. The message will be sent to <%=@sender.recipients.first.first_name%> 
+       as comming from you and signed by you.</p>
+    <h3>Mesaje:</h3>
+    <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender}) %>
+  </div>
+</div>

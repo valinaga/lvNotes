@@ -4,5 +4,5 @@ class Message < ActiveRecord::Base
 	scope :ro, where(:lang => 'ro')
   scope :en, where(:lang => 'en')
 
-  scope :except, lambda {|exception_list| where("id not in (?)", exception_list) }
+  scope :exclude, lambda {|exclude_list| where("id not in (?)", exclude_list) }
 end

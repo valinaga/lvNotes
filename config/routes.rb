@@ -56,12 +56,14 @@ Lovecards::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   
-  match "home" => "senders#home", :as => :home, :via => 'get'
-  match "subscrie" => "senders#subscribe", :as => :subscribe, :via => 'get'
-  match "activeaza" => "senders#activate", :as => :activate, :via => 'get'
   match "/" => "senders#signin", :as => :signin, :via => 'get'
   match "/" => "senders#save", :as => :sign, :via => 'post'
-
+  match "subscrie" => "senders#subscribe", :as => :subscribe
+  match "subscris" => "senders#pending", :as => :pending
+  match "activeaza" => "senders#activate", :as => :activate
+  match "activat" => "senders#activation_done", :as => :activated
+  match "home" => "senderus#home", :as => :home
+  
   # root :to => "senders#index"
   
   # See how all your routes lay out with "rake routes"

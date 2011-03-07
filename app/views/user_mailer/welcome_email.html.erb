@@ -8,8 +8,9 @@
     <h1>Welcome to LoveCards, <%= @sender.name %></h1>
     <p> 
       You have successfully signed up to LoveCards,
-      your username is: <%= @sender.email %> and you
-      password is: <%= @sender.password%>.
+      your account information is:<br />
+      &nbsp; &nbsp; username: <%= @sender.email %> <br />
+      &nbsp; &nbsp; password: <%= @sender.password%>.
     </p>
     <p>
       You chose to send a lovecard to <%=@recipient.name%>
@@ -21,7 +22,7 @@
     </p>
     <p>
       To confirm your subscription and deliver the message
-      please follow this link: <%= @url %>.
+      please click: <%= link_to "activate", @url %>.
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>
