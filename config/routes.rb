@@ -57,12 +57,17 @@ Lovecards::Application.routes.draw do
   # just remember to delete public/index.html.
   
   match "/" => "senders#signin", :as => :signin, :via => 'get'
-  match "/" => "senders#save", :as => :sign, :via => 'post'
-  match "subscrie" => "senders#subscribe", :as => :subscribe
-  match "subscris" => "senders#pending", :as => :pending
-  match "activeaza" => "senders#activate", :as => :activate
-  match "activat" => "senders#activation_done", :as => :activated
-  match "home" => "senderus#home", :as => :home
+  match "/" => "senders#register", :as => :sign, :via => 'post'
+  match "subscribe" => "senders#subscribe", :as => :subscribe
+  match "pending" => "senders#pending", :as => :pending
+  match "activate" => "senders#activate", :as => :activate
+  match "activated" => "senders#activated", :as => :activated
+  match "deliver" => "senders#deliver", :as => :deliver
+  match "delivered" => "senders#delivered", :as => :delivered
+  
+  match "home" => "senders#home", :as => :home
+  
+  match "notify" => "senders#notify", :as => :notify
   
   # root :to => "senders#index"
   
@@ -70,5 +75,5 @@ Lovecards::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  match ':controller/:action/:id(.:format)'
 end

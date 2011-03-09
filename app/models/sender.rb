@@ -14,9 +14,9 @@ class Sender < ActiveRecord::Base
   def three_messages
     # TODO get the lang from sender or recipient
     if letters(true).empty?
-      Message.ro.limit(3).order('RAND()')
+      Message.en.limit(3).order('RAND()')
     else
-      Message.exclude(letters.collect(&:message_id)).ro.limit(3).order('RAND()')
+      Message.exclude(letters.collect(&:message_id).compact).en.limit(3).order('RAND()')
     end
   end
   
