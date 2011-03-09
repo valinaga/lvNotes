@@ -1,9 +1,9 @@
 # encoding: utf-8
 <% content_for :head do %>
-	Inregistreaza-te
+	Please sign in! 
 <% end %>
 <div>
-	<h1>Formular</h1>
+	<h1>Signin Form</h1>
 
 <%= form_for @sender, :url => sign_path do |f| %>
   <% if @sender.errors.any? %>

@@ -1,18 +1,12 @@
 <div class="home">
-  <%=home_path(:sender => @sender)%>
   <div id="recipients">
     <h3>Recipients:</h3>
     <%= render(:partial => "recipient", :collection => @recipients) %>
   </div>
-  <%#if(@letters.empty?)%>
-  <div id="messages">
-    <h3>Mesaje:</h3>
-    <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender}) %>
-  </div>
-  <%#else%>
+  <%unless(@letters.empty?)%>
   <div id="letters">
     <h3>Letters:</h3>
   <%= render(:partial => "letter", :collection => @letters) %>
   </div>
-  <%#end%>
+  <%end%>
 </div>

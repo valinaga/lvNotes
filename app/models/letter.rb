@@ -34,7 +34,7 @@ class Letter < ActiveRecord::Base
     end
     
     def gen_hashed
-      self.hashed = Base64.urlsafe_encode64(self.hash.to_s)
+      self.hashed = Base64.urlsafe_encode64(Time.now.hash.to_s+sender.hash.to_s)
     end    
     
     def gen_next_date

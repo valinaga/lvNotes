@@ -51,7 +51,7 @@ class SendersController < ApplicationController
   
   # called from notification letter from daemon
   def deliver
-#    begin
+    begin
       @letter = Letter.where(:hashed => params[:h]).pending.first
       @message = Message.find(params[:m])
       @letter.message = @message
@@ -59,30 +59,53 @@ class SendersController < ApplicationController
       @letter.delivered
       session[:letter] = @letter
       redirect_to delivered_path
-#    rescue
-#      redirect_to home_path 
-#    end
+    rescue
+      redirect_to home_path 
+    end
   end
   
   def delivered
     @letter = session[:letter]
-    redirect_to signin_path if @letter.nil?
+    if @letter.nil?
+      redirect_to signin_path 
+    end
   end
   
+  def home
+    @sender = session[:sender]
+    if @sender
+      @recipients = @sender.recipients
+      @letters = @sender.letters
+    else
+      redirect_to signin_path
+    end
+  end
+  
+  def login
+    if request.post?
+      if @sender = Sender.authenticate(params[:name], params[:password])
+        session[:sender] = @sender
+        redirect_to home_url
+      else
+        redirect_to login_url, :alert => "Invalid user/password combination"
+      end      
+    end
+  end
+
+  def logout
+    # save_admin = session[:admin_id]
+    reset_session
+    # session[:admin_id] = save_admin 
+    redirect_to signin_path
+  end
+
+  
+
   def notify
     @letter = Letter.next_for_delivery
     UserMailer.send_notification(@letter).deliver
     session[:sender] = @letter.sender
     redirect_to home_path
-  end
-  
-
-  def home
-    @sender = session[:sender] || Sender.find(14)
-    session[:sender]=@sender
-    @recipients = @sender.recipients(true)
-    @letters = @sender.letters
-    @messages = @sender.three_messages
   end
 
 end

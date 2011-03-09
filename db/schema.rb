@@ -10,24 +10,62 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110302132314) do
+ActiveRecord::Schema.define(:version => 20110307153649) do
 
-# Could not dump table "letters" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "admins", :force => true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.string   "email"
+    t.string   "status",       :default => "ACTIVE"
+    t.string   "session_hash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "messages" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "letters", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.integer  "message_id"
+    t.datetime "sent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "next_date"
+    t.string   "status",       :default => "NEW"
+    t.string   "hashed"
+  end
 
-# Could not dump table "recipients" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "messages", :force => true do |t|
+    t.text     "content"
+    t.string   "lang",       :default => "ro"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "senders" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "recipients", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "relation"
+    t.integer  "sender_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "sessions" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "senders", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status",     :default => "NEW"
+  end
 
-# Could not dump table "teams" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

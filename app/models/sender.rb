@@ -38,6 +38,10 @@ class Sender < ActiveRecord::Base
     "#{email.gsub(/[@.]/,'_')}@experiment.ro"
   end
   
+  def self.authenticate(username, password)
+    where(:email => username, :password => password).first
+  end
+  
   private
     
     def gen_password

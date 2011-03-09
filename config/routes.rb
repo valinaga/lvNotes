@@ -1,8 +1,8 @@
 Lovecards::Application.routes.draw do
+
+  resources :admins do as_routes end
   resources :messages do as_routes end
-  resources :senders do 
-    as_routes 
-  end
+  resources :senders do as_routes end
   resources :recipients do as_routes end
   resources :letters do as_routes end
 
@@ -64,6 +64,8 @@ Lovecards::Application.routes.draw do
   match "activated" => "senders#activated", :as => :activated
   match "deliver" => "senders#deliver", :as => :deliver
   match "delivered" => "senders#delivered", :as => :delivered
+  
+  match "login" => "senders#login", :as => :login
   
   match "home" => "senders#home", :as => :home
   

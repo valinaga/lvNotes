@@ -1,4 +1,3 @@
 <p>
   <%=letter.id%> - <%= letter.message ? letter.message.content : '-'%>  
-  <%=link_to_if letter.sender.inactive?, "Activeaza", activate_url(:h => letter.hashed)%>
 </p>
