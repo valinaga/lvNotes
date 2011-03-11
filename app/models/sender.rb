@@ -1,15 +1,18 @@
 class Sender < ActiveRecord::Base
-	has_many :recipients
+	has_many :recipients, :dependent => :destroy, :validate => true
 	has_many :letters
+	attr_accessor :current_recipient
+
 	after_initialize :gen_status
 	before_create :gen_password
 	
 	accepts_nested_attributes_for :recipients, :allow_destroy => true
- 	accepts_nested_attributes_for :recipients, :reject_if => :all_blank
+	
+	validates_associated :recipients
 	
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
-	validates_format_of :email, :with => /^\S+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,4})(\]?)$/ix
+	validates :email, :presence => true, :uniqueness => true, :email_format => true
 
   def three_messages
     # TODO get the lang from sender or recipient
@@ -54,10 +57,5 @@ class Sender < ActiveRecord::Base
       return unless status.nil?
       self.status = 'NEW'
     end
-
-#    def gen_hashed
-#      return unless hashed.nil?
-#      self.hashed = Base64.urlsafe_encode64(self.hash.to_s)
-#    end
 
 end

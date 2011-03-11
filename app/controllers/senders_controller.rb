@@ -11,8 +11,10 @@ class SendersController < ApplicationController
   def register
     begin
       @sender = Sender.new(params[:sender])
+      @sender.save!
+      redirect_to(recipient_path) if @sender.recipients.nil? 
       @messages = @sender.three_messages
-      @sender.save
+      @sender.current_recipient = @sender.recipients.last
       session[:sender] = @sender
       render('messages')
     rescue
@@ -39,7 +41,7 @@ class SendersController < ApplicationController
     begin
       @letter = Letter.where(:hashed => params[:h]).first
       @letter.sender.activate
-      @letter.ready
+      @letter.wait
       UserMailer.send_email(@letter).deliver
       @letter.delivered
       session[:letter] = @letter
@@ -52,7 +54,7 @@ class SendersController < ApplicationController
   # called from notification letter from daemon
   def deliver
     begin
-      @letter = Letter.where(:hashed => params[:h]).pending.first
+      @letter = Letter.where(:hashed => params[:h]).first
       @message = Message.find(params[:m])
       @letter.message = @message
       UserMailer.send_email(@letter).deliver
@@ -102,9 +104,10 @@ class SendersController < ApplicationController
   
 
   def notify
-    @letter = Letter.next_for_delivery
-    UserMailer.send_notification(@letter).deliver
-    session[:sender] = @letter.sender
+    call_rake :send_mailing
+    #@letter = Letter.next_for_delivery
+    #UserMailer.send_notification(@letter).deliver
+    #session[:sender] = @letter.sender
     redirect_to home_path
   end
 

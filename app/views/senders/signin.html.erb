@@ -6,59 +6,42 @@
 	<h1>Signin Form</h1>
 
 <%= form_for @sender, :url => sign_path do |f| %>
-  <% if @sender.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sender.errors.count, "eroare", "erori") %> împiedică finalizarea înregistrării:</h2>
-
-      <ul>
-      <% @sender.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <% if @recipient && @recipient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipient.errors.count, "eroare", "erori") %> împiedică finalizarea înregistrării:</h2>
-
-      <ul>
-      <% @recipient.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render "shared/error_messages", :target => @sender %>
+  <fieldset>
+  <legend>You</legend>
   <div class="field">
-    <%= f.label :first_name, "Prenume" %><br />
+    <%= f.label :first_name %> *<br />
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name, "Nume" %><br />
+    <%= f.label :last_name %> *<br />
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :email, "E-Mail"%><br />
+    <%= f.label :email%> *<br />
     <%= f.text_field :email %>
   </div>
-
+  </fieldset>
 	<%= f.fields_for :recipients do |fr| %>
+    <fieldset>
+    <legend>Your Love</legend>
 		<div class="field">
-			<%= fr.label :first_name %><br />
+			<%= fr.label :first_name %> *<br />
 			<%= fr.text_field :first_name %>
 		</div>
 		<div class="field">
-			<%= fr.label :last_name %><br />
+			<%= fr.label :last_name %> *<br />
 			<%= fr.text_field :last_name %>
 		</div>
 		<div class="field">
-			<%= fr.label :email %><br />
+			<%= fr.label :email %> *<br />
 			<%= fr.text_field :email %>
 		</div>
-		<div class="field">
-		    <%= fr.label :relation %><br />
-		    <%= fr.text_field :relation %>
+		<div class="field" style="display:none">
+	    <%= fr.label :relation %><br />
+	    <%= fr.hidden_field :relation %>
 		</div>
+    </fieldset>
 
 	<% end %>
 
@@ -66,6 +49,4 @@
 		<%= f.submit %>
 	</div>
 <% end %>
-
-	
 </div>

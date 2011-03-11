@@ -2,4 +2,25 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      invalid: "data is invalid"
+  activerecord:
+    #models:
+    #  sender: "You"
+    #  recipient: "Your Love"
+    attributes:
+      sender:
+#        recipients: "Your Love"
+    errors:
+      models:
+        sender:
+          attributes:
+            first_name:
+              invalid: "is invalid"
+  helpers:
+    submit:
+      create: "Creaza %{model}"
+      update: "Actualizeaza %{model}"
+              

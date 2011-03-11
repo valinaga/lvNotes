@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
 
   ActiveScaffold.set_defaults do |config| 
     config.ignore_columns.add [:created_at, :updated_at, :lock_version]
-    config.search.link.label = 'Cauta'
-    config.create.link.label = 'Adauga'
-
-    config.show.link.label = 'Detalii'
-    config.update.link.label = 'Modifica'
-    config.delete.link.label = 'Sterge'
   end
+  
+  def call_rake(task, options = {})
+    options[:rails_env] ||= Rails.env
+    args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }
+    system "start rake #{task} #{args.join(' ')} --trace 2>&1 >> #{Rails.root}/log/rake.log"
+  end  
 end

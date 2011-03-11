@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# run with
+#
+# RAILS_ENV=development lib/daemons/mailer_ctl start
+#
 # You might want to change this
 # ENV["RAILS_ENV"] ||= "production"
 ENV["RAILS_ENV"] ||= "development"

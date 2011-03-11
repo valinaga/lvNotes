@@ -7,6 +7,7 @@ gem 'rails', '3.0.4'
 
 gem 'mysql2'
 gem 'daemons'
+gem "nifty-generators", :group => :development
 
 # Cucumber + Rspec
 

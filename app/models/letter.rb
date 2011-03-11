@@ -5,12 +5,12 @@ class Letter < ActiveRecord::Base
 
   before_create :gen_hashed
   
-  scope :pending, lambda { where(:status => 'READY') }
+  scope :waiting, lambda { where(:status => 'READY') }
   scope :since, lambda {|time| where("sent < ?", time) }
   
   def ready
     return unless status == 'NEW'
-    self.status = 'READY'
+    self.status = 'WAIT'
     self.sent = Time.now()
     self.save
   end
@@ -24,10 +24,15 @@ class Letter < ActiveRecord::Base
   end
   
   def self.next_for_delivery
-    Letter.pending.since(20.days.from_now).first
+    l = Letter.waiting.since(20.days.from_now).first
+    if l
+      l.status='PEND'
+      l.save
+    end
+    l
   end
   
-#  private
+  private
   
     def gen_status
       self.status = 'NEW'
