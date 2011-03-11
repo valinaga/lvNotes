@@ -1,0 +1,44 @@
+<%= form_for @sender, :url => sign_path do |f| %>
+  <%= render "shared/error_messages", :target => @sender %>
+  <fieldset>
+  <legend>You</legend>
+  <div class="field">
+    <%= f.label :first_name %> *<br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %> *<br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :email%> *<br />
+    <%= f.text_field :email %>
+  </div>
+  </fieldset>
+  <%= f.fields_for :recipients do |fr| %>
+    <fieldset>
+    <legend>Your Love</legend>
+    <div class="field">
+      <%= fr.label :first_name %> *<br />
+      <%= fr.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= fr.label :last_name %> *<br />
+      <%= fr.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= fr.label :email %> *<br />
+      <%= fr.text_field :email %>
+    </div>
+    <div class="field" style="display:none">
+      <%= fr.label :relation %><br />
+      <%= fr.hidden_field :relation %>
+    </div>
+    </fieldset>
+
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

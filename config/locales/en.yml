@@ -7,7 +7,7 @@ en:
     messages:
       invalid: "data is invalid"
   activerecord:
-    #models:
+    models:
     #  sender: "You"
     #  recipient: "Your Love"
     attributes:
