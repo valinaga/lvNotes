@@ -21,6 +21,6 @@ while($running) do
   if letter
     UserMailer.send_notification(letter).deliver
   else
-    sleep 10
+    sleep 30
   end
 end

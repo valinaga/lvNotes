@@ -23,30 +23,30 @@ class SendersController < ApplicationController
   end
 
   def subscribe
-    begin
-      @message = Message.find(params[:m])
-      @sender = session[:sender]
-      @letter = @sender.letters.new(:recipient => @sender.recipients.first, :message => @message )
-      @letter.save
+    @message = Message.find(params[:m])
+    @sender = session[:sender]
+    if @sender && @message
+      @letter = @sender.letters.new(:recipient => @sender.recipients.last, :message => @message )
+      @letter.save!
       UserMailer.welcome_email(@letter).deliver
       session[:letter] = @letter
       redirect_to pending_path
-    rescue
+    else
       redirect_to signin_path        
     end
   end
   
   # called from welcome letter
   def activate
-    begin
-      @letter = Letter.where(:hashed => params[:h]).first
+    @letter = Letter.where(:hashed => params[:h]).first
+    if @letter 
       @letter.sender.activate
-      @letter.wait
+      @letter.ready
       UserMailer.send_email(@letter).deliver
       @letter.delivered
       session[:letter] = @letter
       redirect_to activated_path
-    rescue
+    else
       redirect_to signin_path        
     end
   end
