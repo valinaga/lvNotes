@@ -1,6 +1,5 @@
 class UserMailer < ActionMailer::Base
-#  default :from => "from@example.com"
-  default_url_options[:host] = "localhost:3000"
+  default_url_options[:host] = ENV["RAILS_HOST"]
   
   def welcome_email(letter)
     @sender = letter.sender

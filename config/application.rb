@@ -41,6 +41,18 @@ module Lovecards
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.autoload_paths += %W(#{Rails.root}/lib)
+    
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => 'www.experiment.ro',
+      :user_name            => 'no-reply@experiment.ro',
+      :password             => 'pleaseno',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true  
+    }
+
   end
 end
 
