@@ -32,6 +32,10 @@ class Letter < ActiveRecord::Base
     l
   end
   
+  def self.pending
+    where(:status => 'PEND').first
+  end
+  
   private
   
     def gen_status

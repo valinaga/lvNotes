@@ -1,18 +1,19 @@
-<div id="form_login">
-  <%= form_tag do %>
-    <fieldset>
-      <legend>Please Log In</legend>
-      <div>
-        <label for="name" >Name:</label>
-        <%= text_field_tag :name, params[:name] %>
-      </div>
-      <div>
-        <label for="password" >Password:</label>
-        <%= password_field_tag :password, params[:password] %>
-      </div>
-      <div>
-        <%= submit_tag "Login" %>
-      </div>  
-    </fieldset>
-  <% end %>
+# encoding: utf-8
+<div>
+<%= form_tag do %>
+  <fieldset>
+    <legend>Please Log In</legend>
+    <div class="field">
+      <label for="name" >Name:</label><br />
+      <%= text_field_tag :name, params[:name], :size => 30 %>
+    </div>
+    <div class="field">
+      <label for="password" >Password:</label><br />
+      <%= password_field_tag :password, params[:password], :size => 30 %>
+    </div>
+    <div class="actions">
+      <%= submit_tag "Login" %>
+    </div>  
+  </fieldset>
+<% end %>
 </div>

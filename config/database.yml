@@ -32,11 +32,11 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: lovecards
+  database: lvnotes
   pool: 5
-  username: lovecards.ro
+  username: lvnotes
   password:
-  host: lovecards.ro
+  host: localhost
 
 cucumber:
   <<: *test

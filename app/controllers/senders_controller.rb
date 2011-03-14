@@ -100,6 +100,21 @@ class SendersController < ApplicationController
     # session[:admin_id] = save_admin 
     redirect_to signin_path
   end
+  
+  def resend
+    @sender = session[:sender]
+    if @sender 
+      @letter = @sender.letters.pending
+      if @letter
+        UserMailer.send_notification(@letter).deliver
+        redirect_to home_path, :notice => "Resend succesfully!"
+      else
+        redirect_to home_path, :notice => "Nothing to resend"
+      end
+    else
+      redirect_to signin_url 
+    end    
+  end
 
   
 

@@ -67,6 +67,7 @@ Lovecards::Application.routes.draw do
   
   match "login" => "senders#login", :as => :login
   match "home" => "senders#home", :as => :home
+  match "resend" => "senders#resend", :as => :resend 
   
   match "notify" => "senders#notify", :as => :notify
   
