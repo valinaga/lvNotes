@@ -1,13 +1,14 @@
 class Sender < ActiveRecord::Base
 	has_many :letters, :order => 'sent DESC'
   has_many :recipients, :dependent => :destroy, :validate => true
-  has_one :mapping
+  has_one :mapping, :dependent => :destroy
 
 	attr_accessor :current_recipient
   accepts_nested_attributes_for :recipients, :allow_destroy => true
   
 	after_initialize :gen_status
 	before_create :gen_password
+	before_create :gen_mapping
 	
 	validates_associated :recipients
 	
@@ -62,6 +63,10 @@ private
     return unless password.nil?
     nam = "#{first_name}#{last_name}"
     self.password = nam[1,2]+nam[-3,3]
+  end
+  
+  def gen_mapping
+    self.create_mapping(:email => email, :fake_mail => fake_email)
   end
   
   def gen_status
