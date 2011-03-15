@@ -1,4 +1,6 @@
 class SendersController < ApplicationController
+  before_filter :auth, :only => 'home'
+
 	active_scaffold :sender do |conf|
 	end
   
@@ -9,15 +11,13 @@ class SendersController < ApplicationController
   end
   
   def register
-    begin
-      @sender = Sender.new(params[:sender])
-      @sender.save!
-      redirect_to(recipient_path) if @sender.recipients.nil? 
+    @sender = Sender.new(params[:sender])
+    if @sender.save
       @messages = @sender.three_messages
       @sender.current_recipient = @sender.recipients.last
       session[:sender] = @sender
       render('messages')
-    rescue
+    else
       render('signup')
     end
   end
@@ -30,9 +30,9 @@ class SendersController < ApplicationController
       @letter.save!
       UserMailer.welcome_email(@letter).deliver
       session[:letter] = @letter
-      redirect_to pending_path
+      redirect_to pending_path, :notice => "You're almost done!"
     else
-      redirect_to signup_path        
+      redirect_to signup_path, :alert => "Something went wrong!"
     end
   end
   
@@ -45,49 +45,44 @@ class SendersController < ApplicationController
       UserMailer.send_email(@letter).deliver
       @letter.delivered
       session[:letter] = @letter
-      redirect_to activated_path
+      redirect_to activated_path, :notice=> "Your account was sucessfully activated!"
     else
-      redirect_to signup_path        
+      redirect_to signup_path, :alert => "Something went wrong!"
     end
   end
   
   # called from notification letter from daemon
   def deliver
-    begin
-      @letter = Letter.where(:hashed => params[:h]).first
-      @message = Message.find(params[:m])
+    @letter = Letter.where(:hashed => params[:h]).first
+    @message = Message.find(params[:m])
+    if @letter && @message
       @letter.message = @message
       UserMailer.send_email(@letter).deliver
       @letter.delivered
       session[:letter] = @letter
       redirect_to delivered_path
-    rescue
-      redirect_to home_path 
+    else
+      redirect_to home_path, :alert => "Something went wrong!"
     end
   end
   
   def delivered
     @letter = session[:letter]
     if @letter.nil?
-      redirect_to signup_path 
+      redirect_to signup_path, :alert => "Something went wrong!" 
     end
   end
   
   def home
     @sender = session[:sender]
-    if @sender
-      @recipients = @sender.recipients
-      @letters = @sender.letters
-    else
-      redirect_to signup_path
-    end
+    redirect_to signup_path, :alert => "Something went wrong!" unless @sender
   end
   
   def login
     if request.post?
       if @sender = Sender.authenticate(params[:name], params[:password])
         session[:sender] = @sender
-        redirect_to home_url
+        redirect_to home_url, :notice => "Welcome back #{@sender.name}!"
       else
         redirect_to login_url, :alert => "Invalid user/password combination"
       end      
@@ -98,7 +93,7 @@ class SendersController < ApplicationController
     # save_admin = session[:admin_id]
     reset_session
     # session[:admin_id] = save_admin 
-    redirect_to signup_path
+    redirect_to signup_path, :notice => "You're logged out!"
   end
   
   def resend
@@ -112,7 +107,7 @@ class SendersController < ApplicationController
         redirect_to home_path, :notice => "Nothing to resend"
       end
     else
-      redirect_to signup_url 
+      redirect_to signup_url, :alert => "Something went wrong!" 
     end    
   end
 
@@ -120,10 +115,12 @@ class SendersController < ApplicationController
 
   def notify
     call_rake :send_mailing
-    #@letter = Letter.next_for_delivery
-    #UserMailer.send_notification(@letter).deliver
-    #session[:sender] = @letter.sender
     redirect_to home_path
   end
 
+private
+  def auth
+    @sender = session[:sender]
+    redirect_to signup_path, :alert => "Please login or SignUp!" unless @sender && @sender.active?
+  end
 end

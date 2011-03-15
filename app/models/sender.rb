@@ -1,12 +1,13 @@
 class Sender < ActiveRecord::Base
-	has_many :recipients, :dependent => :destroy, :validate => true
-	has_many :letters
-	attr_accessor :current_recipient
+	has_many :letters, :order => 'sent DESC'
+  has_many :recipients, :dependent => :destroy, :validate => true
+  has_one :mapping
 
+	attr_accessor :current_recipient
+  accepts_nested_attributes_for :recipients, :allow_destroy => true
+  
 	after_initialize :gen_status
 	before_create :gen_password
-	
-	accepts_nested_attributes_for :recipients, :allow_destroy => true
 	
 	validates_associated :recipients
 	
@@ -29,6 +30,10 @@ class Sender < ActiveRecord::Base
     self.save
   end
   
+  def active?
+    return status=='ACTIVE'
+  end
+
   def inactive?
     return status!='ACTIVE'
   end
@@ -38,24 +43,29 @@ class Sender < ActiveRecord::Base
   end
   
   def fake_email
-    "#{email.gsub(/[@.]/,'_')}@experiment.ro"
+    "#{email.gsub(/[@.]/,'_')}@patrudouazeci.ro"
   end
   
+  def is_current(recipient)
+    current_recipient == recipient
+  end
+    
   def self.authenticate(username, password)
-    where(:email => username, :password => password).first
+    sender = where(:email => username, :password => password).first
+    sender.current_recipient = sender.recipients.last
+    return sender
   end
   
-  private
-    
-    def gen_password
-      return unless password.nil?
-      nam = "#{first_name}#{last_name}"
-      self.password = nam[1,2]+nam[-3,3]
-    end
-    
-    def gen_status
-      return unless status.nil?
-      self.status = 'NEW'
-    end
-
+private
+  
+  def gen_password
+    return unless password.nil?
+    nam = "#{first_name}#{last_name}"
+    self.password = nam[1,2]+nam[-3,3]
+  end
+  
+  def gen_status
+    return unless status.nil?
+    self.status = 'NEW'
+  end
 end

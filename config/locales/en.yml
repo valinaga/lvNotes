@@ -23,4 +23,8 @@ en:
     submit:
       sender:
         create: "Sign Up"
-              
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"

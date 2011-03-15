@@ -1,3 +1,6 @@
-<p>
-  <%=letter.id%> - <%= letter.message ? letter.message.content : '-'%>  
-</p>
+      <tr class="row-<%= letter.status.downcase%>">
+        <td><%= l letter.sent, :format => :short %></td>
+        <td><%= letter.status %></td>
+        <td><%= letter.recipient.name %></td>
+        <td><%= letter.message ? letter.message.content : ''%> <%= link_to("Resend me another 3 choices", resend_url) if letter.pending?%></td>
+      </tr>

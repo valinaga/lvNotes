@@ -23,6 +23,10 @@ class Letter < ActiveRecord::Base
     create_next_letter
   end
   
+  def pending?
+    status == 'PEND'
+  end
+  
   def self.next_for_delivery
     l = Letter.waiting.since(20.days.from_now).first
     if l
