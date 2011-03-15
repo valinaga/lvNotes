@@ -3,10 +3,10 @@ class Admin < ActiveRecord::Base
   validates :password, :confirmation => true
   attr_accessor :password_confirmation
   attr_reader :password
-  validates_format_of :email, :with => /^\S+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,4})(\]?)$/ix
+  validates :email, :email_format => true
   
-  #before_create Admin.generate_password
-
+  #before_create generate_password
+  
   private
   def generate_password
     nil

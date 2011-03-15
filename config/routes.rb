@@ -56,7 +56,7 @@ Lovecards::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   
-  match "/" => "senders#signin", :as => :signin, :via => 'get'
+  match "/" => "senders#signup", :as => :signup, :via => 'get'
   match "/" => "senders#register", :as => :sign, :via => 'post'
   match "subscribe" => "senders#subscribe", :as => :subscribe
   match "pending" => "senders#pending", :as => :pending
@@ -70,6 +70,8 @@ Lovecards::Application.routes.draw do
   match "resend" => "senders#resend", :as => :resend 
   
   match "notify" => "senders#notify", :as => :notify
+  
+  match "admin" => "admins#dashboard", :as => :admin_dashboard
   
   # root :to => "senders#index"
   

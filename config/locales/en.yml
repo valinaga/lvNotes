@@ -21,6 +21,6 @@ en:
               invalid: "is invalid"
   helpers:
     submit:
-      create: "Creaza %{model}"
-      update: "Actualizeaza %{model}"
+      sender:
+        create: "Sign Up"
               

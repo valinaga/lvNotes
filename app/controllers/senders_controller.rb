@@ -2,7 +2,7 @@ class SendersController < ApplicationController
 	active_scaffold :sender do |conf|
 	end
   
-  def signin
+  def signup
     session[:sender] = nil
     @sender = Sender.new
     @recipient = @sender.recipients.build
@@ -18,7 +18,7 @@ class SendersController < ApplicationController
       session[:sender] = @sender
       render('messages')
     rescue
-      render('signin')
+      render('signup')
     end
   end
 
@@ -32,7 +32,7 @@ class SendersController < ApplicationController
       session[:letter] = @letter
       redirect_to pending_path
     else
-      redirect_to signin_path        
+      redirect_to signup_path        
     end
   end
   
@@ -47,7 +47,7 @@ class SendersController < ApplicationController
       session[:letter] = @letter
       redirect_to activated_path
     else
-      redirect_to signin_path        
+      redirect_to signup_path        
     end
   end
   
@@ -69,7 +69,7 @@ class SendersController < ApplicationController
   def delivered
     @letter = session[:letter]
     if @letter.nil?
-      redirect_to signin_path 
+      redirect_to signup_path 
     end
   end
   
@@ -79,7 +79,7 @@ class SendersController < ApplicationController
       @recipients = @sender.recipients
       @letters = @sender.letters
     else
-      redirect_to signin_path
+      redirect_to signup_path
     end
   end
   
@@ -98,7 +98,7 @@ class SendersController < ApplicationController
     # save_admin = session[:admin_id]
     reset_session
     # session[:admin_id] = save_admin 
-    redirect_to signin_path
+    redirect_to signup_path
   end
   
   def resend
@@ -112,7 +112,7 @@ class SendersController < ApplicationController
         redirect_to home_path, :notice => "Nothing to resend"
       end
     else
-      redirect_to signin_url 
+      redirect_to signup_url 
     end    
   end
 
