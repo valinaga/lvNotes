@@ -2,3 +2,5 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run Lovecards::Application
+
+#ssh -L25:localhost:25 root@m.patrudouazeci.ro

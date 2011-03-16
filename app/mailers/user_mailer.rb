@@ -6,9 +6,9 @@ class UserMailer < ActionMailer::Base
     @recipient = letter.recipient
     @msg = letter.message
     @url = activate_url(:h => letter.hashed)
-    mail( :from => "LoveCards <no-reply@experiment.ro>",
+    mail( :from => "urLove.ly Service <no-reply@patrudouazeci.ro>",
           :to => "#{@sender.name} <#{@sender.email}>",
-          :subject => "Welcome to LoveCards")
+          :subject => "Welcome to urLove.ly")
   end
   
   def send_notification(letter)
@@ -16,9 +16,9 @@ class UserMailer < ActionMailer::Base
     @recipient = letter.recipient
     @messages = @sender.three_messages
     @url = deliver_url(:h => letter.hashed)
-    mail( :from => "LoveCards <no-reply@experiment.ro>",
+    mail( :from => "LoveCards <no-reply@patrudouazeci.ro>",
           :to => "#{@sender.name} <#{@sender.email}>",
-          :subject => "LoveCards Reminder")
+          :subject => "urLove.ly Reminder")
   end
   
   def send_email(letter)
