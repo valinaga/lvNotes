@@ -7,6 +7,7 @@ gem 'rails', '3.0.5'
 
 gem 'mysql2'
 gem 'daemons'
+gem "bcrypt-ruby", :require => "bcrypt"
 gem "nifty-generators", :group => :development
 
 # Cucumber + Rspec

@@ -47,8 +47,8 @@ module Lovecards
     config.action_mailer.smtp_settings = {
       :address              => '127.0.0.1',
       :port                 => 25,
-      :domain               => 'patrudouazeci.ro',
-      :enable_starttls_auto => false
+      :domain               => 'patrudouazeci.ro'
+      #:enable_starttls_auto => false
     }
     config.action_mailer.perform_deliveries = true
   end

@@ -76,6 +76,7 @@ class SendersController < ApplicationController
   def home
     @sender = session[:sender]
     redirect_to signup_path, :alert => "Something went wrong!" unless @sender
+    @sender.letters(true)
   end
   
   def login

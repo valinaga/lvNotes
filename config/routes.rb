@@ -73,6 +73,7 @@ Lovecards::Application.routes.draw do
   match "notify" => "senders#notify", :as => :notify
   
   match "admin" => "admins#dashboard", :as => :admin_dashboard
+  match "admin/login" => "admins#login", :as => :admin_login
   
   # root :to => "senders#index"
   
