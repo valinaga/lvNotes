@@ -11,13 +11,12 @@
     <div class="current">
       <%- if show_title? -%>
       <div class="toolbar">
-        <%= link_to "Back", nil, :class => "back" unless current_page? home_path %>
+        <%= link_to "Back", nil, :class => "back" unless current_page? signup_path %>
         <h1><%=h yield(:title) %></h1>
         <%= link_to "Full Site", home_url(:mobile => 0), :class => "button", :rel => "external" %>
         <%= yield(:toolbar) %>
       </div>
-      <%- end -%>
-      
+      <%- end -%>      
       <% unless flash.empty? %>
         <div class="info">
         <%- flash.each do |name, msg| -%>
@@ -25,8 +24,7 @@
         <%- end -%>
         </div>
       <% end %>
-    
-      <%= yield %>
+      <%= yield%>
     </div>
   </body>
 </html>

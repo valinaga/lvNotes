@@ -1,0 +1,16 @@
+<% title "Almost Done" %>
+<% @letter = session[:letter]%>
+<%unless @letter.nil?%>
+<h1>Thank You!</h1>
+<p>You just subscribed to urLove.ly service!</p>
+<p>An e-mail was sent to your e-mail address <%=@letter.sender.email%> which
+  contains an activation link for this service.</p>
+<p>Once the activation is completed, the selected love message will be sent to
+  <%=@letter.recipient.name%> as comming from you, and signed by you.</p>
+<p>This will generate a remarcable reaction which will last for at least 2-3 weeks.
+   Then, we'll send you an email with other love messages you can choose from, and 
+   so on, forever!</p>
+<p>The life can't be better than this, that's promissed!</p>
+<p>Enjoy the LoveCard service, but most important, the happy life with 
+   <%=@letter.recipient.first_name%>!</p>
+<%end%>

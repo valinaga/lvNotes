@@ -6,7 +6,6 @@ class Sender < ActiveRecord::Base
 	attr_accessor :current_recipient
   accepts_nested_attributes_for :recipients, :allow_destroy => true
   
-	after_initialize :gen_status
 	before_create :gen_password
 	before_create :gen_mapping
 	
@@ -67,10 +66,5 @@ private
   
   def gen_mapping
     self.create_mapping(:email => email, :fake_mail => fake_email)
-  end
-  
-  def gen_status
-    return unless status.nil?
-    self.status = 'NEW'
   end
 end

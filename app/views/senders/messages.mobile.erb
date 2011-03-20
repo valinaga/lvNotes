@@ -1,0 +1,12 @@
+<% title "Love Messages" %>
+<div class="home">
+  <div id="messages">
+    <h1>Mesaje:</h1>
+    <ul class="rounded">
+      <li>Please choose one of the three messages displayed below, you believe it feels better for you and 
+       <%=@sender.recipients.first.name%>. The message will be sent to <%=@sender.recipients.first.first_name%> 
+       as comming from you and signed by you.</li>
+      <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender}) %>    
+    </ul>
+  </div>
+</div>
