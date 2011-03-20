@@ -85,7 +85,7 @@ class SendersController < ApplicationController
         session[:sender] = @sender
         redirect_to home_url, :notice => "Welcome back #{@sender.name}!"
       else
-        redirect_to login_url, :alert => "Invalid user/password combination"
+        redirect_to login_url, :notice => "Invalid user/password combination"
       end      
     end
   end

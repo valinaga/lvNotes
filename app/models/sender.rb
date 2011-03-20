@@ -52,7 +52,7 @@ class Sender < ActiveRecord::Base
     
   def self.authenticate(username, password)
     sender = where(:email => username, :password => password).first
-    sender.current_recipient = sender.recipients.last
+    sender.current_recipient = sender.recipients.last unless sender.nil?
     return sender
   end
   

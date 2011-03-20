@@ -318,20 +318,6 @@ ul li input[type="checkbox"]:after, ul li input[type="radio"]:after {
     margin: -12px 0 0 17px;
 }
 
-ul li input[type="text"].left {
-  float:left;
-  width: 49%;
-  margin-bottom:10px;
-} 
-
-ul li input[type="text"].right {
-  float:right;
-  width: 49%;
-  margin-bottom:10px;
-} 
-
-ul.rounded li { clear: both; }
-
 /* @end */
 
 /* @group Edge to edge */

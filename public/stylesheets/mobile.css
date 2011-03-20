@@ -1,0 +1,20 @@
+h3, h4, p {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+ul li input[type="text"].left {
+  float:left;
+  width: 39%;
+  margin-bottom:10px;
+} 
+
+ul li input[type="text"].right {
+  float:right;
+  width: 59%;
+  margin-bottom:10px;
+} 
+
+ul.rounded li { clear: both; }
+
+ul li .field_with_errors input[type="text"] { border-bottom: 1px solid #666; }

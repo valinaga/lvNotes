@@ -1,9 +1,9 @@
 <% if target.errors.any? %>
 <div id="errorExplanation">
   <h2>Some error prevent this record from being saved.</h2>
-  <p>Check the content of the fields marked in red and correct the information.</p>
+  <h4>Check the content of the highlighted fields and correct the information.</h4>
 <!--
-  <ul>
+  <ul class="rounded">
   <% target.errors.full_messages.each do |msg| %>
     <%
       #message = msg.gsub(/Recipients /, "Love's ").capitalize

@@ -1,4 +1,5 @@
 <%= form_for @sender, :url => sign_path do |f| %>
+  <%= render "shared/error_messages", :target => @sender %>
   <ul class="rounded">
     <li><%= f.text_field :first_name, :placeholder => "First Name", :class => 'left' %>
         <%= f.text_field :last_name, :placeholder => "Last Name", :class => 'right' %></li>
