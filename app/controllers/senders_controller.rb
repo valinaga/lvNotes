@@ -59,7 +59,11 @@ class SendersController < ApplicationController
     @message = Message.find(params[:m])
     if @letter && @message
       @letter.message = @message
-      UserMailer.send_email(@letter).deliver
+      if params[:d] && params[:d] == 'yes'
+        session[:d] = true
+      else
+        UserMailer.send_email(@letter).deliver 
+      end
       @letter.delivered
       session[:letter] = @letter
       redirect_to delivered_path

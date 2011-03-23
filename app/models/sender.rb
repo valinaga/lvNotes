@@ -49,6 +49,14 @@ class Sender < ActiveRecord::Base
   def is_current(recipient)
     current_recipient == recipient
   end
+  
+  def appelation
+    "My dear "  
+  end
+  
+  def signature
+    "\nFrom all my heart,\n\n#{first_name}"
+  end
     
   def self.authenticate(username, password)
     sender = where(:email => username, :password => password).first

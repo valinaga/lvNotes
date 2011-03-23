@@ -1,4 +1,4 @@
 Messages
 ========
 
-<%= render(:partial => "message", :collection => @messages) %>
+<%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender, :recipient => @recipient}) %>

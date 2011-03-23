@@ -4,3 +4,14 @@
   love words you can peak from to send to <%=@letter.recipient.first_name%>. Thus, the miracle 
   will continue indefinitely.</p> 
 <p>Until then enjoy your happy life!</p>
+<p>
+  <%= mail_to "#{@letter.recipient.email}", "Direct Mail", 
+          :subject => "... you're lovely",
+          :body => "#{@letter.sender.appelation}#{@letter.recipient.first_name},\n\n#{@letter.message.content}#{@letter.sender.signature}",
+          :class => "mailto"%>
+</p>
+<%if session[:d]%>
+<script>
+  //document.location.href = $('.mailto').href
+</script>
+<%end%>

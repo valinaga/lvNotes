@@ -1,3 +1,10 @@
-<h3>Messages</h3>
-
-<%= render(:partial => "message", :collection => @messages) %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+  <h3>Messages</h3>
+  <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender, :recipient => @recipient}) %>
+  </body>
+</html>

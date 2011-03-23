@@ -1,1 +1,5 @@
-<%= link_to message.content, "#{@url}&m=#{message.id}" %> 
+<%= link_to message.content, "#{@url}&m=#{message.id}" %> - 
+<%= mail_to "#{recipient.email}", "Direct Mail", 
+        :subject => "... you're lovely",
+        :body => "#{sender.appelation}#{recipient.first_name},\n\n#{message.content}#{sender.signature}"%>
+ 

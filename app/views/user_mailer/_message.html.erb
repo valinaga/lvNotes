@@ -1,3 +1,4 @@
 <p>
-  <%= link_to message.content, "#{@url}&m=#{message.id}" %> 
+  <%= link_to message.content, "#{@url}&m=#{message.id}" %> -  
+  <%= link_to "Direct Mail", "#{@url}&m=#{message.id}&d=yes" %>  
 </p>
