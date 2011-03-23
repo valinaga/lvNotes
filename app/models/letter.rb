@@ -40,6 +40,10 @@ class Letter < ActiveRecord::Base
     where(:status => 'PEND').first
   end
   
+  def label
+    'Letter ID: ' + id.to_s
+  end
+  
   private
   
     def gen_status

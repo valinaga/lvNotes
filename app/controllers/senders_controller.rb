@@ -1,8 +1,10 @@
 class SendersController < ApplicationController
+  
   before_filter :auth, :only => 'home'
-
-	active_scaffold :sender do |conf|
-	end
+	
+  active_scaffold :sender do |conf|
+    conf.label = 'Senders'
+  end
   
   def signup
     session[:sender] = nil
@@ -85,7 +87,7 @@ class SendersController < ApplicationController
         session[:sender] = @sender
         redirect_to home_url, :notice => "Welcome back #{@sender.name}!"
       else
-        redirect_to login_url, :notice => "Invalid user/password combination"
+        redirect_to login_url, :alert => "Invalid user/password combination"
       end      
     end
   end
