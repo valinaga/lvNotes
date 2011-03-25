@@ -64,6 +64,7 @@ Lovecards::Application.routes.draw do
   match "activated" => "senders#activated", :as => :activated
   match "deliver" => "senders#deliver", :as => :deliver
   match "delivered" => "senders#delivered", :as => :delivered
+  match "unsubscribe" => "senders#unsubscribe", :as => :unsubscribe
   
   match "login" => "senders#login", :as => :login
   match "home" => "senders#home", :as => :home

@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-  </head>
-  <body>
-    <h1>Welcome to LoveCards, <%= @sender.name %></h1>
-    <p> 
-      You have successfully signed up to LoveCards,
-      your account information is:<br />
-      &nbsp; &nbsp; username: <%= @sender.email %> <br />
-      &nbsp; &nbsp; password: <%= @sender.password%>.
-    </p>
-    <p>
-      You chose to send a lovecard to <%=@recipient.name%>
-      at the e-mail addres <%=@recipient.email%> with the
-      following text:
-    </p>
-    <p>
-      &#8220; <%=@msg.content%> &#8221;
-    </p>
-    <p>
-      To confirm your subscription and deliver the message
-      please click: <%= link_to "activate", @url %>.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
-  </body>
-</html>
+<h1>Welcome to LoveCards, <%= @sender.name %></h1>
+
+<p> 
+  You have successfully signed up to LoveCards,
+  your account information is:<br />
+  &nbsp; &nbsp; username: <%= @sender.email %> <br />
+  &nbsp; &nbsp; password: <%= @sender.password%>.
+</p>
+<p>
+  You chose to send a lovecard to <%=@recipient.name%>
+  at the e-mail addres <%=@recipient.email%> with the
+  following text:
+</p>
+<blockquote>
+  &#8220; <%=@msg.content%> &#8221;
+</blockquote>
+<p>
+  To confirm your subscription and deliver the message
+  please click: <%= link_to "activate", @url %>.
+</p>
+<p>Thanks for joining and have a great day!</p>

@@ -117,11 +117,15 @@ class SendersController < ApplicationController
       redirect_to signup_url, :alert => "Something went wrong!" 
     end    
   end
-
   
+  def unsubscribe
+    redirect_to signup_path, :notice => "You have been unsubscribed"
+  end
 
   def notify
-    call_rake :send_mailing
+    #call_rake :send_mailing
+    @letter = session[:letter]
+    UserMailer.welcome_email(@letter).deliver
     redirect_to home_path
   end
 
