@@ -10,9 +10,9 @@ class UserMailer < ActionMailer::Base
 
     @uns = unsubscribe_url(:h => letter.hashed)
     @email = @sender.email
-    mail( :from => "urLove.ly Service <no-reply@patrudouazeci.ro>",
+    mail( :from => "urlove.ly service <no-reply@patrudouazeci.ro>",
           :to => "#{@sender.name} <#{@sender.email}>",
-          :subject => "Welcome to urLove.ly")
+          :subject => "Welcome to urlove.ly")
   end
   
   def send_notification(letter)
@@ -23,9 +23,9 @@ class UserMailer < ActionMailer::Base
 
     @uns = unsubscribe_url(:h => letter.hashed)
     @email = @sender.email
-    mail( :from => "LoveCards <no-reply@patrudouazeci.ro>",
+    mail( :from => "urlove.ly service <no-reply@patrudouazeci.ro>",
           :to => "#{@sender.name} <#{@sender.email}>",
-          :subject => "urLove.ly Reminder")
+          :subject => "urlove.ly gentle reminder")
   end
   
   def send_email(letter)

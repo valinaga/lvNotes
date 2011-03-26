@@ -108,3 +108,47 @@ a {
   border-left: solid 1px #C5DBF7;
 }
 
+.input {
+  margin: 5px 0;
+  background: white;
+  float: left;
+  clear: both;
+}
+.input span {
+  position: absolute;
+  padding: 5px;
+  margin-left: 3px;
+  color: #999;
+}
+.input input, .input textarea, .input select {
+  position: relative;
+  margin: 0;
+  border-width: 1px;
+  padding: 6px;
+  background: transparent;
+  font: inherit;
+  width: 240px;
+}
+/* Hack to remove Safari's extra padding. Remove if you don't care about pixel-perfection. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .input input, .input textarea, .input select { padding: 4px; }
+}
+.first {width:auto;}
+
+.first input {
+  width:90px;
+}
+
+.last {
+  width: auto;
+  clear: none;
+  margin-left: 10px;
+}
+
+.last input {
+  width: 130px;
+}
+
+hr {clear:both; margin:10px 0;}
+
+.signup { width: 250px;}

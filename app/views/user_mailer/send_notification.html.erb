@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-  </head>
-  <body>
-  <h3>Messages</h3>
-  <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender, :recipient => @recipient}) %>
-  </body>
-</html>
+<h1>Hey <%=@sender.first_name%>, it's time again!</h1>
+<p>Yes, it's time again to tell your lovely how much she means to you!</p>
+<p>So please pick one of the three suggestions we have for you and just wait for the miracle to happens!</p>
+<%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender, :recipient => @recipient}) %>
+<p>Can't wait to hear from you how lovely it was this time! </p>

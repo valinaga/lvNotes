@@ -1,4 +1,4 @@
-<p>
-  <%= link_to message.content, "#{@url}&m=#{message.id}" %> -  
-  <%= link_to "Direct Mail", "#{@url}&m=#{message.id}&d=yes" %>  
-</p>
+<blockquote>
+  <%= link_to " * ", "#{@url}&m=#{message.id}&d=yes" %>  
+  <%= link_to "\"#{message.content}\"", "#{@url}&m=#{message.id}" %>  
+</blockquote>

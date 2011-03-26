@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  before_filter :admin?, :except => :login
+  before_filter :admin?, :except => [:login, :password_reset]
   
   active_scaffold :admin do |conf|
     conf.label = 'Admin Users'
@@ -29,17 +29,29 @@ class AdminsController < ApplicationController
         session[:admin_last_date] = user.last_login_date
         user.save_login_date
         user.save_ip(request.remote_ip)
-        redirect_to admin_dashboard_url, :notice => "Loged in"
+        redirect_to admin_dashboard_url, :notice => 'Loged in'
       else
-        flash[:notice] = "wrong username or pass"
+        flash[:notice] = 'wrong username or pass'
       end
     elsif request.get? && session[:admin_user_id] != nil
       redirect_to admin_dashboard_url
     end
   end
   
+  def password_reset
+    if request.post?
+      user = Admin.find_by_username(params[:username])
+      if user
+        user.reset_password
+        redirect_to signup_url, :notice => 'Check your e-mail address for further instructions'
+      else
+        redirect_to signup_url, :notice => 'Wrong user'
+      end
+    end
+  end
+  
   def logout
     reset_session
-    redirect_to admin_dashboard_url, :notice => "Loged out"
+    redirect_to admin_dashboard_url, :notice => 'Loged out'
   end
 end 

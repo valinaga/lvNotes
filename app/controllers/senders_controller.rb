@@ -55,6 +55,7 @@ class SendersController < ApplicationController
   
   # called from notification letter from daemon
   def deliver
+    session[:d] = nil
     @letter = Letter.where(:hashed => params[:h]).first
     @message = Message.find(params[:m])
     if @letter && @message

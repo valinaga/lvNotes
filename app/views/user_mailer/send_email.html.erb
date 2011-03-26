@@ -1,7 +1,5 @@
-Dear <%= @recipient.first_name %>
-
+<%=@sender.appelation%> <%= @recipient.first_name %>,
+<br />
+<br />
 <%=@msg.content%>
- 
-Love,
-
-<%= @sender.first_name %>
+<%=@sender.signature.gsub(/\n/,"<br/>\n").html_safe%>

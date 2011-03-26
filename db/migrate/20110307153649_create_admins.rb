@@ -6,7 +6,7 @@ class CreateAdmins < ActiveRecord::Migration
       t.string :password_hash
       t.string :salt_hash
       t.string :status, :default => 'ACTIVE'
-      t.string :session_hash
+      t.string :password_reset_hash
       t.datetime :last_login_date
       t.string :last_login_ip
       t.timestamps

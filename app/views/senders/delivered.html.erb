@@ -1,16 +1,17 @@
 <h3>Hi <%=@letter.sender.first_name%>,</h3>
 <%if session[:d]%>
-<p>You must have sent the love message to <%=@letter.recipient.first_name%>. If not click 
+<p>You chose to manualy send the message by yourself to <%=@letter.recipient.first_name%>. 
+  To do this, just click   
 <%= mail_to "#{@letter.recipient.email}", "here", 
           :subject => "... you're lovely",
           :body => "#{@letter.sender.appelation}#{@letter.recipient.first_name},\n\n#{@letter.message.content}#{@letter.sender.signature}",
           :class => "mailto"%>.
-And expect miracles! </p>
-<script>window.open($('a.mailto').attr("href"));</script>
+You sent i? Then start expecting miracles! </p>
 <%else%>
 <p>Your message to <%=@letter.recipient.first_name%> was just delivered. Expect miracles! </p>
 <%end%>
-<p>The miracle will last 2-3 weeks, and then we will send you again a reminder with some more 
+<p>The miracle will last 1-2 weeks, and then we will send you again a reminder with some more 
   love words you can peak from to send to <%=@letter.recipient.first_name%>. Thus, the miracle 
   will continue indefinitely.</p> 
 <p>Until then enjoy your happy life!</p>
+<p>Or go to <%=link_to "home", home_path%> page. </p>

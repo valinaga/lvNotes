@@ -1,7 +1,4 @@
-Dear <%= @recipient.first_name %>
+<%=@sender.appelation%> <%= @recipient.first_name %>,
 
 <%=@msg.content%>
- 
-Love,
-
-<%= @sender.first_name %>
+<%=@sender.signature%>

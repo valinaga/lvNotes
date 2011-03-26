@@ -30,10 +30,6 @@
 				Loged in as: <%= current_admin_user.username %>
 				<%= link_to "Log out", :admin_logout %>
 			</div>
-		<% else %>
-			<div>
-				<%= link_to "Log in", :admin_login %>
-			</div>
 		<% end %>
 		<% if current_admin_user %>
 			<div>

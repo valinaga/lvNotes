@@ -3,14 +3,15 @@ class Admin < ActiveRecord::Base
   validates :username, :email, :presence => true, :uniqueness => true
   validates :email, :email_format => true
   
-  attr_accessible :username, :email, :password, :password_confirmation
-  attr_accessor :password, :password_confirmation
+  attr_accessible :username, :email, :password
+  attr_accessor :password
   
   before_save :generate_password
   
   def self.authenticate(username, password)
     user = find_by_username(username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.salt_hash)
+      user.password_reset_hash = nil unless user.password_reset_hash.nil
       user
     else
       nil
@@ -27,16 +28,13 @@ class Admin < ActiveRecord::Base
     self.save
   end
   
-  def password_form_column(record, password)
-    password_field_tag password, record.password_hash
-  end
-  
-  def password_confirmation_form_column(record, password_hash)
-    password_field_tag field_name, record.password_confirmation
-  end
-  
   def to_label
     username
+  end
+  
+  def reset_password
+    pass = (1..5).map{97.+(rand(25)).chr}.join
+    self.password_reset_hash = BCrypt::Engine.hash_secret(pass, self.salt_hash)
   end
   
   private
