@@ -20,7 +20,7 @@ class SendersController < ApplicationController
       session[:sender] = @sender
       render('messages')
     else
-      render('signup')
+      render('signup', :anchor => "fail")
     end
   end
 
@@ -90,7 +90,7 @@ class SendersController < ApplicationController
     if request.post?
       if @sender = Sender.authenticate(params[:name], params[:password])
         session[:sender] = @sender
-        redirect_to home_url, :notice => "Welcome back #{@sender.name}!"
+        redirect_to home_url, :alert => "Welcome back #{@sender.name}!"
       else
         redirect_to login_url, :alert => "Invalid user/password combination"
       end      

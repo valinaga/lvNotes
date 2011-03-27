@@ -2,7 +2,7 @@
 <div class="home">
   <div id="recipients">
     <h3>Your Lovely</h3>
-    <ul class="rounded">
+    <ul>
       <%= render(:partial => "recipient", :collection => @sender.recipients, :locals => {:sender => @sender}) %>
     </ul>
   </div>

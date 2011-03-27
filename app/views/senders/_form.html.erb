@@ -1,5 +1,4 @@
 <%= form_for @sender, :url => sign_path do |f| %>
-  <%= render "shared/error_messages", :target => @sender %>
   <legend>Your</legend>
   <label class="input first">
     <span>First Name</span>
@@ -33,3 +32,4 @@
   <div style="clear:both;"></div>
   <%= f.submit%>
 <% end %>
+<%= render "shared/error_messages", :target => @sender %>
