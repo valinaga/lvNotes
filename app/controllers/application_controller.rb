@@ -26,6 +26,7 @@ private
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device?
+    logger.info " ====== #{flash} ======="
   end
   
   def current_admin_user

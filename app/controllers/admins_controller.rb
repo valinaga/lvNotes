@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  before_filter :admin?, :except => [:login, :password_reset]
+  before_filter :admin?, :except => [:login, :password_reset, :password_reset_do]
   
   active_scaffold :admin do |conf|
     conf.label = 'Admin Users'
@@ -40,12 +40,25 @@ class AdminsController < ApplicationController
   
   def password_reset
     if request.post?
-      user = Admin.find_by_username(params[:username])
+      user = Admin.find_by_email(params[:email])
       if user
-        user.reset_password
+        pass = user.reset_password
+        UserMailer.admin_reset_password(user, pass).deliver
         redirect_to signup_url, :notice => 'Check your e-mail address for further instructions'
       else
-        redirect_to signup_url, :notice => 'Wrong user'
+        redirect_to signup_url, :notice => 'Wrong args'
+      end
+    end
+  end
+  
+  def password_reset_do
+    if request.get?
+      user = Admin.find_by_email_and_password_reset_hash(params[:m], params[:h])
+      if user
+        user.reset_password_do
+        redirect_to admin_login_url, :notice => 'Your password has been reset. It is advised to change it after login'
+      else
+        redirect_to signup_url, :notice => 'Wrong params'
       end
     end
   end

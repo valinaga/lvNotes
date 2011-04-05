@@ -43,7 +43,7 @@ class Sender < ActiveRecord::Base
   end
   
   def fake_email
-    "#{email.gsub(/[@.]/,'_')}@patrudouazeci.ro"
+    "#{name.gsub(/[\s]+/,'.')}@patrudouazeci.ro"
   end
   
   def is_current(recipient)

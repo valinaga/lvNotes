@@ -11,7 +11,7 @@ class Admin < ActiveRecord::Base
   def self.authenticate(username, password)
     user = find_by_username(username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.salt_hash)
-      user.password_reset_hash = nil unless user.password_reset_hash.nil
+      user.password_reset_hash = nil unless user.password_reset_hash.nil?
       user
     else
       nil
@@ -35,6 +35,13 @@ class Admin < ActiveRecord::Base
   def reset_password
     pass = (1..5).map{97.+(rand(25)).chr}.join
     self.password_reset_hash = BCrypt::Engine.hash_secret(pass, self.salt_hash)
+    self.save
+    pass
+  end
+  
+  def reset_password_do
+    self.password_hash = self.password_reset_hash
+    self.save
   end
   
   private

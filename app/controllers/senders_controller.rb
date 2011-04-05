@@ -87,20 +87,18 @@ class SendersController < ApplicationController
   end
   
   def login
-    if request.post?
-      if @sender = Sender.authenticate(params[:name], params[:password])
-        session[:sender] = @sender
-        redirect_to home_url, :alert => "Welcome back #{@sender.name}!"
-      else
-        redirect_to login_url, :alert => "Invalid user/password combination"
-      end      
-    end
+    session[:sender] = nil
+    if @sender = Sender.authenticate(params[:name], params[:password])
+      session[:sender] = @sender
+      flash[:notice] = "Welcome back!"
+      render('home')
+    else
+      flash[:alert] = "Invalid user/password combination"
+    end      
   end
 
   def logout
-    # save_admin = session[:admin_id]
-    reset_session
-    # session[:admin_id] = save_admin 
+    session[:sender] = session[:letter] = nil
     redirect_to signup_path, :notice => "You're logged out!"
   end
   

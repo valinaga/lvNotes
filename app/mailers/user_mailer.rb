@@ -36,4 +36,16 @@ class UserMailer < ActionMailer::Base
           :to => "#{@recipient.name} <#{@recipient.email}>",
           :subject => "... your lovely")
   end
+  
+  def admin_reset_password(user, pass)
+    @username = user.username
+    @pass = pass
+    @url = "#{admin_reset_do_url}?m=#{user.email}&h=#{user.password_reset_hash}"
+    #@url = admin_reset_do_url(:m => user.email, :h => user.password_reset_hash)
+    mail( :from => "urlove.ly service <no-reply@patrudouazeci.ro>",
+          :to => "#{@username} <#{user.email}>",
+          :subject => "password reset")
+    
+  end
+  
 end

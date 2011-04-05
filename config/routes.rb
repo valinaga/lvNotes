@@ -65,8 +65,9 @@ Lovecards::Application.routes.draw do
   match "deliver" => "senders#deliver", :as => :deliver
   match "delivered" => "senders#delivered", :as => :delivered
   match "unsubscribe" => "senders#unsubscribe", :as => :unsubscribe
-  
-  match "login" => "senders#login", :as => :login
+
+  match "login" => "senders#login_form", :as => :login, :via => 'get'
+  match "login" => "senders#login", :via => 'post'
   match "home" => "senders#home", :as => :home
   match "logout" => "senders#logout", :as => :logout
   match "resend" => "senders#resend", :as => :resend 
@@ -77,6 +78,7 @@ Lovecards::Application.routes.draw do
   match "admin/login" => "admins#login", :as => :admin_login
   match "admin/logout" => "admins#logout", :as => :admin_logout
   match "admin/resetpass" => "admins#password_reset", :as => :admin_reset
+  match "admin/resetpassdo" => "admins#password_reset_do", :as => :admin_reset_do
   
   # root :to => "senders#index"
   

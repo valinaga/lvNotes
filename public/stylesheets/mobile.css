@@ -18,3 +18,10 @@ ul li input[type="text"].right {
 ul.rounded li { clear: both; }
 
 ul li .field_with_errors input[type="text"] { border-bottom: 1px solid #666; }
+
+li a.short { padding-bottom:0px;}
+
+li .small {
+  font-size: 0.7em;
+  color: #0066CC;
+}

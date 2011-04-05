@@ -2,22 +2,19 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title><%= h(yield(:title) || "Untitled") %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <%= stylesheet_link_tag "/jqtouch/jqtouch.min.css", "/jqtouch/themes/apple/theme.css"%>
     <%= javascript_include_tag "/jqtouch/jquery.1.3.2.min.js", "/jqtouch/jqtouch.min.js", "mobile" %>
-    <%= yield(:head) %>
     <%= stylesheet_link_tag "mobile.css" %>
+    <%= csrf_meta_tag %>
   </head>
   <body>
     <div class="current">
-      <%- if show_title? -%>
       <div class="toolbar">
         <%= link_to "Back", nil, :class => "back" unless current_page? signup_path %>
         <h1><%=h yield(:title) %></h1>
         <%= link_to "Full Site", home_url(:mobile => 0), :class => "button", :rel => "external" %>
-        <%= yield(:toolbar) %>
       </div>
-      <%- end -%>      
       <% flash.each do |name, msg| %>
         <div class="info">
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
