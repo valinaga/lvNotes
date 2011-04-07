@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'daemons'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "nifty-generators", :group => :development
+gem "ruby-debug19", :group => :development
 
 # Cucumber + Rspec
 

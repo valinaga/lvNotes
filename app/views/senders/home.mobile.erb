@@ -1,7 +1,7 @@
 <% title "urlove.ly" %>
 <div class="home">
   <div id="recipients">
-    <h3>Your Lovely</h3>
+    <h2>Your Lovely</h2>
     <ul>
       <%= render(:partial => "recipient", :collection => @sender.recipients, :locals => {:sender => @sender}) %>
     </ul>

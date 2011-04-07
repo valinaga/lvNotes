@@ -90,10 +90,14 @@ class SendersController < ApplicationController
     session[:sender] = nil
     if @sender = Sender.authenticate(params[:name], params[:password])
       session[:sender] = @sender
-      flash[:notice] = "Welcome back!"
-      render('home')
+#      respond_to do |format|
+#        format.html { redirect_to home_path, :notice => "Welcome back!" }
+#        format.mobile { redirect_to home_path }
+#      end
+      redirect_to home_path
     else
       flash[:alert] = "Invalid user/password combination"
+      render 'login_form'
     end      
   end
 
