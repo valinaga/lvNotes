@@ -25,5 +25,4 @@ Lovecards::Application.configure do
 
 end
 
-ENV["RAILS_HOST"]="localhost"
-ENV["RAILS_PORT"]=":3000"
+ENV["RAILS_HOST"]="localhost:3000"

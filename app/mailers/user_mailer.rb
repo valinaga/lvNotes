@@ -1,6 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default_url_options[:host] = ENV["RAILS_HOST"]+ENV["RAILS_PORT"]
-  default_domain = ENV["RAILS_HOST"]
+  default_url_options[:host] = ENV["RAILS_HOST"]
   layout 'welcome', :except => 'send_email'
   
   def welcome_email(letter)
@@ -11,9 +10,9 @@ class UserMailer < ActionMailer::Base
 
     @uns = unsubscribe_url(:h => letter.hashed)
     @email = @sender.email
-    mail( :from => "#{default_domain} service <no-reply@#{default_domain}>",
+    mail( :from => "yourlove.ly service <no-reply@yourlove.ly>",
           :to => "#{@sender.name} <#{@sender.email}>",
-          :subject => "Welcome to #{default_domain}")
+          :subject => "Welcome to yourlove.ly")
   end
   
   def send_notification(letter)
@@ -24,9 +23,9 @@ class UserMailer < ActionMailer::Base
 
     @uns = unsubscribe_url(:h => letter.hashed)
     @email = @sender.email
-    mail( :from => "#{default_domain} service <no-reply@#{default_domain}>",
+    mail( :from => "yourlove.ly service <no-reply@yourlove.ly>",
           :to => "#{@sender.name} <#{@sender.email}>",
-          :subject => "#{default_domain} gentle reminder")
+          :subject => "yourlove.ly gentle reminder")
   end
   
   def send_email(letter)
@@ -43,7 +42,7 @@ class UserMailer < ActionMailer::Base
     @pass = pass
     @url = "#{admin_reset_do_url}?m=#{user.email}&h=#{user.password_reset_hash}"
     #@url = admin_reset_do_url(:m => user.email, :h => user.password_reset_hash)
-    mail( :from => "#{default_domain} service <no-reply@#{default_domain}>",
+    mail( :from => "yourlove.ly service <no-reply@yourlove.ly>",
           :to => "#{@username} <#{user.email}>",
           :subject => "password reset")
     
