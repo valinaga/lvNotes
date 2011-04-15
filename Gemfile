@@ -6,7 +6,7 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'daemons'
+gem "daemons", "1.1.0" 
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "nifty-generators", :group => :development
 gem "ruby-debug19", :group => :development

@@ -80,6 +80,12 @@ Lovecards::Application.routes.draw do
   match "admin/resetpass" => "admins#password_reset", :as => :admin_reset
   match "admin/resetpassdo" => "admins#password_reset_do", :as => :admin_reset_do
   
+  match "howitworks" => 'senders#works', :as => :works
+  match "faq" => 'senders#faq', :as => :faq
+  match "tellafriend" => 'senders#taf', :as => :taf
+  match "contact" => 'senders#contact', :as => :contact
+  match "about" => 'senders#about', :as => :about
+  
   # root :to => "senders#index"
   
   # See how all your routes lay out with "rake routes"
