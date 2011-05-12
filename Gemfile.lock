@@ -47,6 +47,9 @@ GEM
     mime-types (1.16)
     mysql2 (0.2.6-x86-mingw32)
     nifty-generators (0.4.5)
+    oauth (0.4.4)
+    oauth-plugin (0.3.14)
+      oauth (>= 0.3.5)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.13)
@@ -90,5 +93,7 @@ DEPENDENCIES
   daemons (= 1.1.0)
   mysql2
   nifty-generators
+  oauth
+  oauth-plugin
   rails (= 3.0.5)
   ruby-debug19

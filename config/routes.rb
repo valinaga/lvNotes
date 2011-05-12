@@ -79,6 +79,7 @@ Lovecards::Application.routes.draw do
   match "admin/logout" => "admins#logout", :as => :admin_logout
   match "admin/resetpass" => "admins#password_reset", :as => :admin_reset
   match "admin/resetpassdo" => "admins#password_reset_do", :as => :admin_reset_do
+  match "admin/manage/admins" => "admins#manage_admins", :as => :admin_manage_admins
   
   match "howitworks" => 'senders#works', :as => :works
   match "faq" => 'senders#faq', :as => :faq

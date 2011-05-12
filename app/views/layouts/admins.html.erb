@@ -35,6 +35,9 @@
 			<div>
 				Last login: <%= session[:admin_last_date] %> from: <%= session[:admin_last_ip] %>
 			</div>
+			<div>
+				<%= link_to "Manage Admins", :admin_manage_admins %> &nbsp;
+			</div>
 		<% end %>
 	  </div>
       <%= yield %>

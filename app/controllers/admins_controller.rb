@@ -2,7 +2,6 @@ class AdminsController < ApplicationController
   before_filter :admin?, :except => [:login, :password_reset, :password_reset_do]
   
   active_scaffold :admin do |conf|
-    conf.label = 'Admin Users'
     conf.columns = [:username, :password, :password_confirmation, :email, :last_login_date, :status]
     conf.columns[:password].form_ui = [:password, :password_confirmation]
     conf.list.columns.exclude [:password, :password_confirmation]
@@ -22,7 +21,7 @@ class AdminsController < ApplicationController
   
   def login
     if request.post?
-      user = Admin.authenticate(params[:username], params[:password])
+      user = Admin.authenticate(params[:email], params[:password])
       if user
         session[:admin_user_id] = user.id
         session[:admin_last_ip] = user.last_login_ip
@@ -31,7 +30,7 @@ class AdminsController < ApplicationController
         user.save_ip(request.remote_ip)
         redirect_to admin_dashboard_url, :notice => 'Loged in'
       else
-        flash[:notice] = 'wrong username or pass'
+        flash[:notice] = 'wrong email or password'
       end
     elsif request.get? && session[:admin_user_id] != nil
       redirect_to admin_dashboard_url
@@ -46,7 +45,7 @@ class AdminsController < ApplicationController
         UserMailer.admin_reset_password(user, pass).deliver
         redirect_to signup_url, :notice => 'Check your e-mail address for further instructions'
       else
-        redirect_to signup_url, :notice => 'Wrong args'
+        redirect_to signup_url, :notice => 'Wrong user'
       end
     end
   end
@@ -66,5 +65,9 @@ class AdminsController < ApplicationController
   def logout
     reset_session
     redirect_to admin_dashboard_url, :notice => 'Loged out'
+  end
+  
+  def manage_admins
+    admin?
   end
 end 

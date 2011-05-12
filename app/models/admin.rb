@@ -8,8 +8,8 @@ class Admin < ActiveRecord::Base
   
   before_save :generate_password
   
-  def self.authenticate(username, password)
-    user = find_by_username(username)
+  def self.authenticate(email, password)
+    user = Admin.find_by_email(email)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.salt_hash)
       user.password_reset_hash = nil unless user.password_reset_hash.nil?
       user
