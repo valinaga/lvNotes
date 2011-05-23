@@ -2,14 +2,6 @@ class SendersController < ApplicationController
   
   before_filter :auth, :only => 'home'
 	
-  active_scaffold :sender do |conf|
-    conf.label = 'Senders'
-    conf.columns = [:email, :first_name, :last_name, :password, :status,:recipients]
-    conf.columns[:password].form_ui = :password
-    conf.list.columns.exclude [:password]
-    conf.show.columns.exclude [:password]
-  end
-  
   def signup
     session[:sender] = nil
     @sender = Sender.new

@@ -3,10 +3,6 @@ class ApplicationController < ActionController::Base
   before_filter :prepare_for_mobile
   helper_method :current_admin_user
 
-  ActiveScaffold.set_defaults do |config| 
-    config.ignore_columns.add [:created_at, :updated_at, :lock_version]
-  end
-  
   def call_rake(task, options = {})
     options[:rails_env] ||= Rails.env
     args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }

@@ -1,10 +1,10 @@
 Lovecards::Application.routes.draw do
 
   #resources :admins do as_routes end
-  resources :messages do as_routes end
-  resources :senders do as_routes end
-  resources :recipients do as_routes end
-  resources :letters do as_routes end
+  resources :messages #do as_routes end
+  resources :senders #do as_routes end
+  resources :recipients #do as_routes end
+  resources :letters #do as_routes end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
