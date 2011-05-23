@@ -5,6 +5,7 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'typus'
 gem 'mysql2'
 gem "daemons", "1.1.0" 
 gem "bcrypt-ruby", :require => "bcrypt"

@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
 	has_many :letters
-
+  
 	scope :ro, where(:lang => 'ro')
   scope :en, where(:lang => 'en')
 

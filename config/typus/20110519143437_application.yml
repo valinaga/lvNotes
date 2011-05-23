@@ -1,0 +1,57 @@
+# Typus Models Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+Letter:
+    fields:
+        default: sender, recipient, message, sent, next_date, status
+        form: sender, recipient, sent, next_date, status
+        options:
+            selectors: status
+    order_by: sent
+    relationships: message, recipient, sender
+    filters: created_at
+    search: 
+    application: lovecards
+
+Mapping:
+    fields:
+        default: email, fake_mail, sender_id, sender
+        form: email, fake_mail, sender_id, sender
+    order_by: 
+    relationships: sender
+    filters: created_at
+    search: 
+    application: lovecards
+
+Message:
+    fields:
+        default: content, lang
+        form: content, lang
+    order_by: 
+    relationships:
+    filters: created_at
+    search: 
+    application: lovecards
+
+Recipient:
+    fields:
+        default: first_name, last_name, email, relation, sender
+        form: first_name, last_name, email, relation, sender
+    order_by: last_name
+    filters: created_at
+    search: 
+    application: lovecards
+
+Sender:
+    fields:
+        default: first_name, last_name, email, status
+        form: first_name, last_name, email, password, status
+        options:
+            selectors: status
+    order_by: last_name
+    relationships: letters, mapping, recipients
+    filters: created_at
+    search: 
+    application: lovecards
+

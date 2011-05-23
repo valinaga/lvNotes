@@ -38,4 +38,12 @@ private
       false
     end
   end
+  
+  def seesion_update
+    if session[:admin_user_id] && session[:last_seen] < 30.minutes.ago
+        reset_session
+      else
+        session[:last_seen] = Time.now
+      end
+    end
 end

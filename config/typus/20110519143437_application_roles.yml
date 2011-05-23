@@ -1,0 +1,10 @@
+# Typus Roles Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+admin:
+  Letter: create, read, update, delete
+  Mapping: create, read, update, delete
+  Message: create, read, update, delete
+  Recipient: create, read, update, delete
+  Sender: create, read, update, delete

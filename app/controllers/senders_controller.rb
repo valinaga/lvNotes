@@ -4,6 +4,10 @@ class SendersController < ApplicationController
 	
   active_scaffold :sender do |conf|
     conf.label = 'Senders'
+    conf.columns = [:email, :first_name, :last_name, :password, :status,:recipients]
+    conf.columns[:password].form_ui = :password
+    conf.list.columns.exclude [:password]
+    conf.show.columns.exclude [:password]
   end
   
   def signup
@@ -137,4 +141,5 @@ private
     @sender = session[:sender]
     redirect_to signup_path, :alert => "Please login or SignUp!" unless @sender && @sender.active?
   end
+  
 end

@@ -8,6 +8,9 @@ class Letter < ActiveRecord::Base
   scope :waiting, lambda { where(:status => 'READY') }
   scope :since, lambda {|time| where("sent < ?", time) }
   
+  STATUS = %w(NEW WAIT SENT READY PEND)
+  validates_inclusion_of :status, :in => STATUS
+  
   def ready
     return unless status == 'NEW'
     self.status = 'WAIT'

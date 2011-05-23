@@ -1,6 +1,6 @@
 Lovecards::Application.routes.draw do
 
-  resources :admins do as_routes end
+  #resources :admins do as_routes end
   resources :messages do as_routes end
   resources :senders do as_routes end
   resources :recipients do as_routes end
@@ -73,13 +73,6 @@ Lovecards::Application.routes.draw do
   match "resend" => "senders#resend", :as => :resend 
   
   match "notify" => "senders#notify", :as => :notify
-  
-  match "admin" => "admins#dashboard", :as => :admin_dashboard
-  match "admin/login" => "admins#login", :as => :admin_login
-  match "admin/logout" => "admins#logout", :as => :admin_logout
-  match "admin/resetpass" => "admins#password_reset", :as => :admin_reset
-  match "admin/resetpassdo" => "admins#password_reset_do", :as => :admin_reset_do
-  match "admin/manage/admins" => "admins#manage_admins", :as => :admin_manage_admins
   
   match "howitworks" => 'senders#works', :as => :works
   match "faq" => 'senders#faq', :as => :faq

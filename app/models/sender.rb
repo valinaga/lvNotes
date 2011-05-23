@@ -14,6 +14,9 @@ class Sender < ActiveRecord::Base
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
 	validates :email, :presence => true, :uniqueness => true, :email_format => true
+  
+  STATUS = %w(NEW ACTIVE)
+  validates_inclusion_of :status, :in => STATUS
 
   def three_messages
     # TODO get the lang from sender or recipient

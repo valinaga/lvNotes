@@ -10,16 +10,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110307153649) do
+ActiveRecord::Schema.define(:version => 20110519143807) do
+
+  create_table "admin_users", :force => true do |t|
+    t.string   "first_name",       :default => "",    :null => false
+    t.string   "last_name",        :default => "",    :null => false
+    t.string   "role",                                :null => false
+    t.string   "email",                               :null => false
+    t.boolean  "status",           :default => false
+    t.string   "token",                               :null => false
+    t.string   "salt",                                :null => false
+    t.string   "crypted_password",                    :null => false
+    t.string   "preferences"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
 
   create_table "admins", :force => true do |t|
     t.string   "username"
     t.string   "email"
     t.string   "password_hash"
     t.string   "salt_hash"
-    t.string   "status",          :default => "ACTIVE"
-    t.string   "session_hash"
-    t.date     "last_login_date"
+    t.string   "status",              :default => "ACTIVE"
+    t.string   "password_reset_hash"
+    t.datetime "last_login_date"
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,6 +51,14 @@ ActiveRecord::Schema.define(:version => 20110307153649) do
     t.datetime "next_date"
     t.string   "status",       :default => "NEW"
     t.string   "hashed"
+  end
+
+  create_table "mappings", :force => true do |t|
+    t.string   "email"
+    t.string   "fake_mail"
+    t.integer  "sender_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", :force => true do |t|
