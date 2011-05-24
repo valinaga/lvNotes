@@ -13,10 +13,32 @@ class Sender < ActiveRecord::Base
 	
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
-	validates :email, :presence => true, :uniqueness => true, :email_format => true
+	validates :email, :presence => true, :uniqueness => true, :email_format => true, :if => :no_provider?
   
   STATUS = %w(NEW ACTIVE)
   validates_inclusion_of :status, :in => STATUS
+
+  attr_accessible :provider, :uid, :first_name, :last_name, :email
+
+
+  def self.create_with_omniauth(auth)
+    begin
+      create! do |user|
+        user.provider = auth['provider']
+        user.uid = auth['uid']
+        if auth['user_info']
+          user.first_name, user.last_name = auth['user_info']['name'].split if auth['user_info']['name'] # Twitter, Google, Yahoo, GitHub
+          user.email = auth['user_info']['email'] if auth['user_info']['email'] # Google, Yahoo, GitHub
+        end
+        if auth['extra']['user_hash']
+          user.first_name, user.last_name  = auth['extra']['user_hash']['name'].split if auth['extra']['user_hash']['name'] # Facebook
+          user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
+        end
+      end
+    rescue Exception
+      raise Exception, "cannot create user record"
+    end
+  end
 
   def three_messages
     # TODO get the lang from sender or recipient
@@ -77,5 +99,9 @@ private
   
   def gen_mapping
     self.create_mapping(:email => email, :fake_mail => fake_email)
+  end
+  
+  def no_provider?
+    self.provider.nil?
   end
 end

@@ -1,4 +1,5 @@
 Lovecards::Application.routes.draw do
+  root :to => "senders#signup"
 
   #resources :admins do as_routes end
   resources :messages #do as_routes end
@@ -80,8 +81,11 @@ Lovecards::Application.routes.draw do
   match "contact" => 'senders#contact', :as => :contact
   match "about" => 'senders#about', :as => :about
   
-  # root :to => "senders#index"
-  
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/auth/failure' => 'sessions#failure'
+  match '/signout' => 'sessions#destroy', :as => :signout
+  match '/signin/:provider' => 'sessions#new', :as => :signin
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

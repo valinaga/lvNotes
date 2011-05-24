@@ -13,6 +13,7 @@ gem "nifty-generators", :group => :development
 gem "ruby-debug19", :group => :development
 gem "oauth"
 gem "oauth-plugin"
+gem 'omniauth', '>= 0.2.4'
 # Cucumber + Rspec
 
 #gem 'capybara'

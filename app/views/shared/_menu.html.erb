@@ -1,14 +1,29 @@
 <ul id="navbar">
   <li><%= link_to_unless_current("Home", home_url ) %></li>
+<!--
   <li><%= link_to_unless_current("How it Works", works_url) %></li>
   <li><%= link_to_unless_current("FAQ", faq_url) %></li>
   <li><%= link_to_unless_current("Tell a Friend", taf_url) %></li>
   <li><%= link_to_unless_current("Contact Us", contact_url) %></li>
   <li><%= link_to_unless_current("About Us", about_url) %></li>
+-->
   <li><%=
         link_to_if(mobile_device?, "Full Site", :mobile => 0 ) do
           link_to "Mobile Site", :mobile => 1
         end
       %>
   </li>
+<% if user_signed_in? %>
+  <li>
+  Logged in as <%= current_user.first_name %>
+  </li>
+  <li>
+  <%= link_to('Logout', signout_path) %>        
+  </li>
+<% else %>
+  <li>
+  Login with <%= link_to('facebook', signin_path('facebook'))  %>
+  or <%= link_to('twitter', signin_path('twitter'))  %>  
+  </li>
+<% end %>
 </ul>
