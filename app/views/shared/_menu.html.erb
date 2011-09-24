@@ -15,15 +15,15 @@
   </li>
 <% if user_signed_in? %>
   <li>
-  Logged in as <%= current_user.first_name %>
-  </li>
-  <li>
-  <%= link_to('Logout', signout_path) %>        
+  Logged in as <%= current_user.name %> <%= link_to('Logout', signout_path) %>        
   </li>
 <% else %>
-  <li>
-  Login with <%= link_to('facebook', signin_path('facebook'))  %>
-  or <%= link_to('twitter', signin_path('twitter'))  %>  
+	<li>
+	<%=link_to 'Login', login_path%>
+  	or signin with <%= link_to('facebook', signin_path('facebook'))  %>
+  	, <%= link_to('twitter', signin_path('twitter'))  %>  
+  	, <%= link_to('yahoo', signin_path('yahoo'))  %>  
+  	, <%= link_to('google', signin_path('google'))  %>  
   </li>
 <% end %>
 </ul>

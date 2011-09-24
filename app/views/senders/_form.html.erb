@@ -1,5 +1,5 @@
-<%= form_for @sender, :url => sign_path do |f| %>
-  <legend>Your</legend>
+<%= form_for current_user, :url => sign_path do |f| %>
+  <div>Your</div>
   <label class="input first">
     <span>First Name</span>
     <%= f.text_field :first_name %>
@@ -15,7 +15,7 @@
   <div style="clear:both;"></div>
   <hr />
   <%= f.fields_for :recipients do |fr| %>
-    <legend>Your Lovely's</legend>
+    <div>Your Lovely's</div>
     <label class="input first">
       <span>First Name</span>
       <%= fr.text_field :first_name %>
@@ -32,4 +32,5 @@
   <div style="clear:both;"></div>
   <%= f.submit%>
 <% end %>
-<%= render "shared/error_messages", :target => @sender %>
+
+<%= render "shared/error_messages", :target => current_user %>

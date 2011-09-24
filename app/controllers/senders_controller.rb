@@ -129,7 +129,7 @@ class SendersController < ApplicationController
   end
 
 private
-  def auth
+  def auth1
     @sender = session[:sender]
     redirect_to signup_path, :alert => "Please login or SignUp!" unless @sender && @sender.active?
   end

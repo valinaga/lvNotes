@@ -1,18 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :prepare_for_mobile
-  helper_method :current_admin_user
-
-  helper_method :current_user
-  helper_method :user_signed_in?
-  helper_method :correct_user?
+  # before_filter :auth
 
   def call_rake(task, options = {})
     options[:rails_env] ||= Rails.env
     args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }
     system "start rake #{task} #{args.join(' ')} --trace 2>&1 >> #{Rails.root}/log/rake.log"
   end
-  
+
+  def auth
+    @sender = current_user
+    redirect_to signup_path, :alert => "Please login or SignUp!" unless @sender && @sender.active?
+  end
+
 private
   def mobile_device?
     if session[:mobile_param]
@@ -31,6 +32,7 @@ private
   def current_admin_user
     Admin.find_by_id(session[:admin_user_id]) if session[:admin_user_id]
   end
+  helper_method :current_admin_user
 
   def admin?
     if !current_admin_user
@@ -57,10 +59,12 @@ private
       nil
     end
   end
+  helper_method :current_user
 
   def user_signed_in?
     return true if current_user
   end
+  helper_method :user_signed_in?
   
   def correct_user?
     @user = Sender.find(params[:id])
@@ -68,11 +72,6 @@ private
       redirect_to root_url, :alert => "Access denied."
     end
   end
-
-  def authenticate_user!
-    if !current_user
-      redirect_to root_url, :alert => 'You need to sign in for access to this page.'
-    end
-  end
+  helper_method :correct_user?
 
 end

@@ -1,0 +1,7 @@
+<div data-role="header" data-position="fixed">
+<%= link_to "Full Site", {:mobile => 0}, :class => "button", :rel => "external", :'data-icon' => "check" if false%>
+<h2>
+	<%= link_to current_user.name, current_user%> 
+</h2>
+<%= link_to "Signout", signout_path, :class => "ui-btn-right", :'data-icon' => "delete"%>
+</div>

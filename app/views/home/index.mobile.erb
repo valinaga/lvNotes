@@ -1,0 +1,46 @@
+<%if !user_signed_in? %>
+<div data-role="page" id="splash" class="pagecontainer">
+  <div data-role="header" data-position="fixed">
+    <h2>yourLove.ly</h2>
+  </div>
+  <article data-role="content">
+    <h3>The only app to garantee your happyness with your love one !</h3>
+    <p>Please signin with any of the sites below. </p>
+    <%=render 'shared/auth'%>
+    <p>We are using them only for your convenience. We will
+      never post anything there without your explicit permission. That's a prommise!</p>
+  </article>
+</div>
+
+<%elsif !current_user.email || current_user.email.empty?%>
+
+<div data-role="page" id="home" class="pagecontainer">
+  <div data-role="header" data-position="fixed">
+    <h3>Hi <%=current_user.name%></h3>
+    <%= link_to "Signout", signout_path, :class => "ui-btn-right", :'data-icon' => "delete"%>
+  </div>
+  <article data-role="content">
+    <div id="panel"> 
+      <p>We couldn't get your e-mail address from <%=current_user.provider.camelize%>.
+      We need your e-mail address to send you reminders for yourLove.ly one. Please fill
+      it down.
+      </p>
+      <%= render :partial => 'senders/form-mail', :sender => current_user%>
+    </div>
+  </article>
+</div>
+
+<%else%>
+
+<div data-role="page" id="sigin" class="pagecontainer">
+  <%= render 'shared/title'%>
+  <article data-role="content">
+    <div id="panel"> 
+      SignedIn <%=current_user.email%>!
+    </div>
+  </article>
+  <%=render :partial => 'shared/footer', :object => "a" %>
+</div>
+
+
+<%end%>

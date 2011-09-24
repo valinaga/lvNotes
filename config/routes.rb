@@ -1,11 +1,44 @@
 Lovecards::Application.routes.draw do
-  root :to => "senders#signup"
+  root :to => "home#index"
 
-  #resources :admins do as_routes end
-  resources :messages #do as_routes end
-  resources :senders #do as_routes end
-  resources :recipients #do as_routes end
-  resources :letters #do as_routes end
+  resources :messages 
+  resources :senders 
+  resources :recipients 
+  resources :letters 
+
+  # Oauth
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/auth/failure' => 'sessions#failure'
+  match '/signout' => 'sessions#destroy', :as => :signout
+
+  match "savemail" => "home#savemail", :as => :savemail
+
+  match "signup" => "senders#signup", :as => :signup, :via => 'get'
+  match "signup" => "senders#register", :as => :sign, :via => 'post'
+  match "subscribe" => "senders#subscribe", :as => :subscribe
+  match "pending" => "senders#pending", :as => :pending
+  match "activate" => "senders#activate", :as => :activate
+  match "activated" => "senders#activated", :as => :activated
+  match "deliver" => "senders#deliver", :as => :deliver
+  match "delivered" => "senders#delivered", :as => :delivered
+  match "unsubscribe" => "senders#unsubscribe", :as => :unsubscribe
+
+  match "login" => "senders#login_form", :as => :login, :via => 'get'
+  match "login" => "senders#login", :via => 'post'
+  match "logout" => "senders#logout", :as => :logout
+
+  match "resend" => "senders#resend", :as => :resend 
+  match "notify" => "senders#notify", :as => :notify
+
+  match "home" => "senders#home", :as => :home
+
+  match "howitworks" => 'home#works', :as => :works
+  match "faq" => 'home#faq', :as => :faq
+  match "tellafriend" => 'home#taf', :as => :taf
+  match "contact" => 'home#contact', :as => :contact
+  match "about" => 'home#about', :as => :about
+  
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -57,35 +90,6 @@ Lovecards::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   
-  match "/" => "senders#signup", :as => :signup, :via => 'get'
-  match "/" => "senders#register", :as => :sign, :via => 'post'
-  match "subscribe" => "senders#subscribe", :as => :subscribe
-  match "pending" => "senders#pending", :as => :pending
-  match "activate" => "senders#activate", :as => :activate
-  match "activated" => "senders#activated", :as => :activated
-  match "deliver" => "senders#deliver", :as => :deliver
-  match "delivered" => "senders#delivered", :as => :delivered
-  match "unsubscribe" => "senders#unsubscribe", :as => :unsubscribe
-
-  match "login" => "senders#login_form", :as => :login, :via => 'get'
-  match "login" => "senders#login", :via => 'post'
-  match "home" => "senders#home", :as => :home
-  match "logout" => "senders#logout", :as => :logout
-  match "resend" => "senders#resend", :as => :resend 
-  
-  match "notify" => "senders#notify", :as => :notify
-  
-  match "howitworks" => 'senders#works', :as => :works
-  match "faq" => 'senders#faq', :as => :faq
-  match "tellafriend" => 'senders#taf', :as => :taf
-  match "contact" => 'senders#contact', :as => :contact
-  match "about" => 'senders#about', :as => :about
-  
-  match '/auth/:provider/callback' => 'sessions#create'
-  match '/auth/failure' => 'sessions#failure'
-  match '/signout' => 'sessions#destroy', :as => :signout
-  match '/signin/:provider' => 'sessions#new', :as => :signin
-
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

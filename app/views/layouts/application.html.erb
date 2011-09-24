@@ -2,19 +2,27 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-    <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/ui-lightness/jquery-ui.css" %>
+    <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag :defaults %>
-    <%= stylesheet_link_tag 'application' %>
-    <%= stylesheet_link_tag 'mobile' if mobile_device? %>    
     <%= csrf_meta_tag %>
+    <%= yield(:head) %>
   </head>
   <body>
+    <header id="header">
+      <%= content_tag :h1, yield(:title) if show_title? %>
+      <nav>
+        <ul>
+          <%=render 'shared/navigation'%>
+        </ul>
+      </nav>
+    </header>   
+
     <div id="container">
-      <%= render :partial => '/shared/menu'%>
+      <ul class="hmenu">
+      </ul>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
       <%= yield %>
     </div>
   </body>

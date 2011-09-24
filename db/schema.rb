@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524083507) do
+ActiveRecord::Schema.define(:version => 20110923160507) do
 
 # Could not dump table "admin_users" because of following Mysql2::Error
 #   Invalid date: BTREE

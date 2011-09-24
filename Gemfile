@@ -11,9 +11,10 @@ gem "daemons", "1.1.0"
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "nifty-generators", :group => :development
 gem "ruby-debug19", :group => :development
-gem "oauth"
-gem "oauth-plugin"
-gem 'omniauth', '>= 0.2.4'
+gem "omniauth", ">= 0.2.4"
+#gem "oauth"
+#gem "oauth-plugin"
+
 # Cucumber + Rspec
 
 #gem 'capybara'
