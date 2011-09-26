@@ -18,8 +18,8 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
+      <%=link_to "I really fucked up bad !", root_path, :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "b"%>
       <h2>Lovecards for <%=@sender.recipient.name%></h2>
-      <%=link_to "I f.u.c.k.e.d up badly!", root_path, :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "b"%>
       <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b" data-split-icon="refresh" data-split-theme="b"> 
         <li data-role="list-divider"> <%= Time.now.to_date%> <span class="ui-li-count"><%=@sender.letters.count-1%></span></li>
         <%= render(:partial => "letter", :collection => @sender.letters, :locals => { :sender => @sender}) %>

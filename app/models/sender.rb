@@ -3,7 +3,7 @@ class Sender < ActiveRecord::Base
   has_one :recipient
   has_one :mapping, :dependent => :destroy
 
-	before_create :gen_mapping
+	before_create :init
 	
 	validates :email, :presence => true, :uniqueness => {:scope => :provider}, :email_format => true, :on => :update
   
@@ -69,16 +69,16 @@ class Sender < ActiveRecord::Base
   end
   
   def fake_email
-    "#{name.gsub(/[\s]+/,'.')}@yourlove.ly"
+    "#{(name.downcase+" "+provider[0,1]).gsub(/[\s]+/,'.')}@yourlove.ly"
   end
   
   def appelation
     "My dear "  
   end
   
-  def signature
-    "\nFrom all my heart,\n\n#{first_name.titleize}"
-  end
+  # def signature
+    # "\nFrom all my heart,\n\n#{first_name.titleize}"
+  # end
     
   def no_recipient?
     self.recipient.nil?
@@ -89,9 +89,11 @@ class Sender < ActiveRecord::Base
   end
 
 private
-  def gen_mapping
-    self.create_mapping(:email => email, :fake_mail => fake_email)
-  end
   
+  def init
+    self.nickname = self.first_name
+    self.create_mapping(:email => email, :fake_mail => fake_email)
+    self.signature = "\nFrom all my heart,\n\n#{nickname.titleize}"
+  end 
 
 end

@@ -26,7 +26,7 @@ class SendersController < ApplicationController
     @message = Message.find(params[:m])
     @sender = session[:sender]
     if @sender && @message
-      @letter = @sender.letters.recent(@message) || @sender.letters.create(:recipient => @sender.recipient, :message => @message )
+      @letter = @sender.letters.recent(@message) || @sender.letters.create(:recipient => @sender.recipient(true), :message => @message )
       session[:letter] = @letter
       if @sender.no_email?
         UserMailer.activate_email(@letter).deliver
