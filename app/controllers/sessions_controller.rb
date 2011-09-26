@@ -1,15 +1,21 @@
 class SessionsController < ApplicationController
-  # def new
-    # redirect_to "/auth/#{params[:provider]}"
-  # end
+  skip_before_filter :require_signin, :only => [:create, :failure]
 
   def create
     auth = request.env["omniauth.auth"]
-    user = Sender.where(:provider => auth['provider'], 
+    sender = Sender.where(:provider => auth['provider'], 
                         :uid => auth['uid']).first || Sender.create_with_omniauth(auth)
-    session[:user_id] = user.id
-    session[:sender] = user
-    redirect_to root_url, :notice => 'Signed in!'
+    session[:user_id] = sender.id
+    session[:sender] = sender
+    if !sender.email?
+      redirect_to new_mail_url
+    elsif sender.no_recipient?
+      redirect_to new_recipient_url
+    elsif sender.inactive?
+      redirect_to signup_url
+    else
+      redirect_to root_url
+    end
   end
 
   def destroy

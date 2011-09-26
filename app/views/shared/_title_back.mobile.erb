@@ -1,4 +1,5 @@
   <div data-role="header" data-position="fixed">
+    <%= link_to "Back", root_path, :class => "ui-btn-left", :'data-icon' => "back"%>
     <h3>Hi <%=current_user.name%></h3>
     <%= link_to "Signout", signout_path, :class => "ui-btn-right", :'data-icon' => "delete"%>
   </div>

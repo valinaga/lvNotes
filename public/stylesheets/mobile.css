@@ -67,3 +67,14 @@ ul {list-style: none; margin: 0 0 0 1.5em; padding: 0;}
 .li { background: url(../images/linkedin_32.png) 0 0 no-repeat;}
 
 .buttons .ui-link {text-decoration:none; color: #555; font-weight: normal;}
+
+.ui-content .ui-listview { margin:0;}
+
+blockquote {
+  font-weight: bold;
+  font-style: italic;
+  margin: 1em; }
+blockquote:before {
+  content: '"'; }
+blockquote:after {
+  content: '"'; }

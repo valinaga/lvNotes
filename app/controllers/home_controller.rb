@@ -1,11 +1,3 @@
 class HomeController < ApplicationController
-
-  def savemail
-    current_user.email=params[:sender][:email]
-    current_user.save!
-    respond_to do |format|
-      format.html # show.html.erb
-      format.mobile {render :index}
-    end
-  end
+  skip_before_filter :require_signin, :only => :index
 end

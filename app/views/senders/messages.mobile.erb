@@ -1,12 +1,17 @@
-<% title "Love Messages" %>
-<div class="home">
-  <div id="messages">
-    <h1>Mesaje:</h1>
-    <ul class="rounded">
-      <li>Please choose one of the three messages displayed below, you believe it feels better for you and 
-       <%=@sender.recipients.first.name%>. The message will be sent to <%=@sender.recipients.first.first_name%> 
-       as comming from you and signed by you.</li>
-      <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender}) %>    
-    </ul>
-  </div>
+<div data-role="page" id="sigin" class="pagecontainer">
+  <%= render 'shared/title'%>
+  <article data-role="content">
+    <div id="panel"> 
+    <h2>Mesages:</h2>
+    <p>Please choose one of the three messages displayed below, you believe it feels better for you and 
+     <%=@sender.recipient.name%>. The message will be sent to <%=@sender.recipient.first_name%> 
+     as comming from you and signed by you.</p>
+    <p>
+      <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
+        <li data-role="list-divider"> <%= Time.now.to_date%> <span class="ui-li-count">3</span></li>
+        <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender}) %>
+      </ul>
+    </p>
+    </div>
+  </article>
 </div>

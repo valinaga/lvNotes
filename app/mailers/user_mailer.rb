@@ -6,6 +6,19 @@ class UserMailer < ActionMailer::Base
     @sender = letter.sender
     @recipient = letter.recipient
     @msg = letter.message
+    # @url = activate_url(:h => letter.hashed)
+
+    @uns = unsubscribe_url(:h => letter.hashed)
+    @email = @sender.email
+    mail( :from => "yourlove.ly service <no-reply@yourlove.ly>",
+          :to => "#{@sender.name} <#{@sender.email}>",
+          :subject => "Welcome to yourlove.ly")
+  end
+  
+  def activate_email(letter)
+    @sender = letter.sender
+    @recipient = letter.recipient
+    @msg = letter.message
     @url = activate_url(:h => letter.hashed)
 
     @uns = unsubscribe_url(:h => letter.hashed)

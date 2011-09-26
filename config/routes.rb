@@ -1,8 +1,8 @@
 Lovecards::Application.routes.draw do
   root :to => "home#index"
 
-  resources :messages 
-  resources :senders 
+  # resources :messages 
+  # resources :senders 
   resources :recipients 
   resources :letters 
 
@@ -11,10 +11,12 @@ Lovecards::Application.routes.draw do
   match '/auth/failure' => 'sessions#failure'
   match '/signout' => 'sessions#destroy', :as => :signout
 
-  match "savemail" => "home#savemail", :as => :savemail
-
-  match "signup" => "senders#signup", :as => :signup, :via => 'get'
-  match "signup" => "senders#register", :as => :sign, :via => 'post'
+  match 'newmail' => 'senders#newmail', :as => :new_mail
+  match 'savemail' => 'senders#savemail', :as => :savemail
+  
+  # match "signup" => "senders#signup", :as => :signup, :via => 'get'
+  match "signup" => "senders#register", :as => :signup
+  
   match "subscribe" => "senders#subscribe", :as => :subscribe
   match "pending" => "senders#pending", :as => :pending
   match "activate" => "senders#activate", :as => :activate
@@ -23,14 +25,14 @@ Lovecards::Application.routes.draw do
   match "delivered" => "senders#delivered", :as => :delivered
   match "unsubscribe" => "senders#unsubscribe", :as => :unsubscribe
 
-  match "login" => "senders#login_form", :as => :login, :via => 'get'
-  match "login" => "senders#login", :via => 'post'
-  match "logout" => "senders#logout", :as => :logout
+  # match "login" => "senders#login_form", :as => :login, :via => 'get'
+  # match "login" => "senders#login", :via => 'post'
+  # match "logout" => "senders#logout", :as => :logout
 
   match "resend" => "senders#resend", :as => :resend 
   match "notify" => "senders#notify", :as => :notify
 
-  match "home" => "senders#home", :as => :home
+  # match "home" => "senders#home", :as => :home
 
   match "howitworks" => 'home#works', :as => :works
   match "faq" => 'home#faq', :as => :faq

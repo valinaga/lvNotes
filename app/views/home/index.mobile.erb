@@ -12,31 +12,18 @@
   </article>
 </div>
 
-<%elsif !current_user.email || current_user.email.empty?%>
-
-<div data-role="page" id="home" class="pagecontainer">
-  <div data-role="header" data-position="fixed">
-    <h3>Hi <%=current_user.name%></h3>
-    <%= link_to "Signout", signout_path, :class => "ui-btn-right", :'data-icon' => "delete"%>
-  </div>
-  <article data-role="content">
-    <div id="panel"> 
-      <p>We couldn't get your e-mail address from <%=current_user.provider.camelize%>.
-      We need your e-mail address to send you reminders for yourLove.ly one. Please fill
-      it down.
-      </p>
-      <%= render :partial => 'senders/form-mail', :sender => current_user%>
-    </div>
-  </article>
-</div>
-
 <%else%>
-
+<%@sender = current_user%>
 <div data-role="page" id="sigin" class="pagecontainer">
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
-      SignedIn <%=current_user.email%>!
+      <h2>Lovecards for <%=@sender.recipient.name%></h2>
+      <%=link_to "I f.u.c.k.e.d up badly!", root_path, :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "b"%>
+      <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b" data-split-icon="refresh" data-split-theme="b"> 
+        <li data-role="list-divider"> <%= Time.now.to_date%> <span class="ui-li-count"><%=@sender.letters.count-1%></span></li>
+        <%= render(:partial => "letter", :collection => @sender.letters, :locals => { :sender => @sender}) %>
+      </ul>
     </div>
   </article>
   <%=render :partial => 'shared/footer', :object => "a" %>

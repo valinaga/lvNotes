@@ -1,23 +1,16 @@
 class Sender < ActiveRecord::Base
 	has_many :letters, :order => 'sent DESC'
-  has_many :recipients, :dependent => :destroy, :validate => true
+  has_one :recipient
   has_one :mapping, :dependent => :destroy
 
-	attr_accessor :current_recipient
-  accepts_nested_attributes_for :recipients, :allow_destroy => true
-  
-	#before_create :gen_password, :if => :no_provider?
 	before_create :gen_mapping
 	
-	validates_associated :recipients
-	
-	# validates :first_name, :presence => true
-	# validates :last_name, :presence => true
 	validates :email, :presence => true, :uniqueness => {:scope => :provider}, :email_format => true, :on => :update
   
-  STATUS = %w(NEW ACTIVE)
+  STATUS = %w(NEW NO_MAIL ACTIVE)
   validates_inclusion_of :status, :in => STATUS
 
+  attr_accessor :current_recipient
   attr_accessible :provider, :uid, :first_name, :last_name, :email
 
   def self.create_with_omniauth(auth)
@@ -33,6 +26,7 @@ class Sender < ActiveRecord::Base
           user.first_name, user.last_name  = auth['extra']['user_hash']['name'].split if auth['extra']['user_hash']['name'] # Facebook
           user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
         end
+        user.status = "NO_MAIL" unless user.email
       end
     # rescue Exception
       # raise Exception #, "cannot create user record" 
@@ -49,11 +43,19 @@ class Sender < ActiveRecord::Base
   end
   
   def activate
-    return unless status == 'NEW'
+    return if status == 'ACTIVE'
     self.status = 'ACTIVE'
     self.save
   end
   
+  def new?
+    return status=='NEW'
+  end
+
+  def no_email?
+    return status=='NO_MAIL'
+  end
+    
   def active?
     return status=='ACTIVE'
   end
@@ -70,41 +72,26 @@ class Sender < ActiveRecord::Base
     "#{name.gsub(/[\s]+/,'.')}@yourlove.ly"
   end
   
-  def is_current(recipient)
-    current_recipient == recipient
-  end
-  
   def appelation
     "My dear "  
   end
   
   def signature
-    "\nFrom all my heart,\n\n#{first_name}"
+    "\nFrom all my heart,\n\n#{first_name.titleize}"
   end
     
-  # def self.authenticate(username, password)
-    # sender = where(:email => username, :password => password).first
-    # sender.current_recipient = sender.recipients.last unless sender.nil?
-    # return sender
-  # end
+  def no_recipient?
+    self.recipient.nil?
+  end
   
+  def email?
+    !self.email.nil? && !self.email.empty?
+  end
+
 private
-  
-  # def gen_password
-    # return unless password.nil?
-    # nam = "#{first_name}#{last_name}"
-    # self.password = nam[1,2]+nam[-3,3]
-  # end 
-  
   def gen_mapping
     self.create_mapping(:email => email, :fake_mail => fake_email)
   end
   
-  def no_email?
-    self.provider == 'twitter'
-  end
 
-  def no_provider?
-    self.provider.nil?
-  end
 end

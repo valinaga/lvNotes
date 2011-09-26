@@ -1,0 +1,19 @@
+<h1>Welcome to yourLove.ly, <%= @sender.name %></h1>
+
+<p> 
+  You have successfully signed up to yourLove.ly service.
+</p>
+<p>
+  You chose to send a lovecard to <%=@recipient.name%>
+  at the e-mail addres <%=@recipient.email%> with the
+  following text:
+</p>
+<blockquote>
+  &#8220;<%=@msg.content%>&#8221;
+</blockquote>
+<p>
+  To confirm your subscription and deliver the message
+  please click
+</p>
+<%= link_to "Activate", @url, :class => "button white" %>
+<p>Thanks for joining and have a great day!</p>

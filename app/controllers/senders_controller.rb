@@ -1,48 +1,58 @@
 class SendersController < ApplicationController
-  
-  before_filter :auth, :only => 'home'
+  skip_before_filter :require_signin, :only => [:activate,:deliver]
 	
-  def signup
-    session[:sender] = nil
-    @sender = Sender.new
-    @recipient = @sender.recipients.build
+  def newmail
+    @sender = current_user
+  end
+
+  def savemail
+    begin
+      @sender = current_user
+      @sender.email=params[:sender][:email]
+      @sender.save!
+      redirect_to new_recipient_path
+    rescue Exception
+      render 'newmail' 
+    end
   end
   
   def register
-    @sender = Sender.new(params[:sender])
-    if @sender.save
-      @messages = @sender.three_messages
-      @sender.current_recipient = @sender.recipients.last
-      session[:sender] = @sender
-      render('messages')
-    else
-      render('signup', :anchor => "fail")
-    end
+    @sender = current_user
+    @messages = @sender.three_messages
+    render('messages')
   end
 
   def subscribe
     @message = Message.find(params[:m])
     @sender = session[:sender]
     if @sender && @message
-      @letter = @sender.letters.new(:recipient => @sender.recipients.last, :message => @message )
-      @letter.save!
-      UserMailer.welcome_email(@letter).deliver
+      @letter = @sender.letters.recent(@message) || @sender.letters.create(:recipient => @sender.recipient, :message => @message )
       session[:letter] = @letter
-      redirect_to pending_path, :notice => "You're almost done!"
+      if @sender.no_email?
+        UserMailer.activate_email(@letter).deliver
+        redirect_to pending_path, :notice => "You're almost done!"
+      else
+        UserMailer.welcome_email(@letter).deliver
+        redirect_to activate_path
+      end
     else
       redirect_to signup_path, :alert => "Something went wrong!"
     end
   end
   
-  # called from welcome letter
+  # called from welcome letter or subscribe
   def activate
-    @letter = Letter.where(:hashed => params[:h]).first
+    @letter = Letter.where(:hashed => params[:h]).first || session[:letter]
     if @letter 
       @letter.sender.activate
       @letter.ready
       UserMailer.send_email(@letter).deliver
       @letter.delivered
       session[:letter] = @letter
+      if !user_signed_in? 
+        session[:user_id] = @letter.sender.id
+        session[:sender] = @letter.sender  
+      end
       redirect_to activated_path, :notice=> "Your account was sucessfully activated!"
     else
       redirect_to signup_path, :alert => "Something went wrong!"
@@ -63,9 +73,13 @@ class SendersController < ApplicationController
       end
       @letter.delivered
       session[:letter] = @letter
+      if !user_signed_in? 
+        session[:user_id] = @letter.sender.id
+        session[:sender] = @letter.sender  
+      end
       redirect_to delivered_path
     else
-      redirect_to home_path, :alert => "Something went wrong!"
+      redirect_to root_path, :alert => "Something went wrong!"
     end
   end
   
@@ -90,7 +104,7 @@ class SendersController < ApplicationController
 #        format.html { redirect_to home_path, :notice => "Welcome back!" }
 #        format.mobile { redirect_to home_path }
 #      end
-      redirect_to home_path
+      redirect_to root_path
     else
       flash[:alert] = "Invalid user/password combination"
       render 'login_form'
@@ -108,9 +122,9 @@ class SendersController < ApplicationController
       @letter = @sender.letters.pending
       if @letter
         UserMailer.send_notification(@letter).deliver
-        redirect_to home_path, :notice => "Resend succesfully!"
+        redirect_to root_path, :notice => "Resend succesfully!"
       else
-        redirect_to home_path, :notice => "Nothing to resend"
+        redirect_to root_path, :notice => "Nothing to resend"
       end
     else
       redirect_to signup_url, :alert => "Something went wrong!" 
@@ -125,7 +139,7 @@ class SendersController < ApplicationController
     #call_rake :send_mailing
     @letter = session[:letter]
     UserMailer.welcome_email(@letter).deliver
-    redirect_to home_path
+    redirect_to root_path
   end
 
 private

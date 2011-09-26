@@ -1,0 +1,17 @@
+<div data-role="page" id="sigin" class="pagecontainer" data-theme="b">
+  <div data-role="header" data-position="fixed">
+    <h3><%= l @letter.sent, :format => :short %></h3>
+  </div>
+  <article data-role="content">
+    <div id="panel"> 
+      <%=@letter.sender.appelation%> <%= @letter.recipient.first_name %>,
+      <br />
+      <br />
+      <%=@letter.message.content%>
+      <%=@letter.sender.signature.gsub(/\n/,"<br/>\n").html_safe%>
+      <br />
+      <br />
+      <a href="/" data-role="button" data-icon="back">Close</a>
+    </div>
+  </article>
+</div>

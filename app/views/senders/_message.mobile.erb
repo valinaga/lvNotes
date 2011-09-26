@@ -1,1 +1,6 @@
-<li><%= link_to message.content, subscribe_path(:m => message)%></li>
+<li>
+<a href="<%=subscribe_path(:m => message)%>">
+  <h2>Choice <%=message_counter+1%> </h2>
+  <blockquote style="white-space:normal"><%=message.content%></blockquote>
+</a>
+</li>

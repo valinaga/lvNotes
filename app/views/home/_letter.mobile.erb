@@ -1,0 +1,11 @@
+<li>
+<a href="<%=letter.status!='SENT' ? '#' : letter_path(letter.id)%>" data-rel="dialog" data-transition="pop">
+<%if letter.status!='SENT'%>
+  <h2>Next lovecard on <%= l letter.sent, :format => :short if letter.sent%></h2>
+<%else%>
+  <h2>Sent <%= l letter.sent, :format => :short if letter.sent%></h2>
+  <blockquote style="white-space:normal"><%= letter.message.content%></blockquote>
+<%end%>
+</a>
+<%= link_to "Resend me another 3 choices", resend_url if letter.pending?%>
+</li>

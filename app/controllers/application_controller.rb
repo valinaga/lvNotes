@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :prepare_for_mobile
-  # before_filter :auth
+  before_filter :require_signin
 
   def call_rake(task, options = {})
     options[:rails_env] ||= Rails.env
@@ -9,12 +9,16 @@ class ApplicationController < ActionController::Base
     system "start rake #{task} #{args.join(' ')} --trace 2>&1 >> #{Rails.root}/log/rake.log"
   end
 
-  def auth
-    @sender = current_user
-    redirect_to signup_path, :alert => "Please login or SignUp!" unless @sender && @sender.active?
+  def require_signin
+    redirect_to root_path, :alert => "Please SignUp!" unless user_signed_in?
   end
 
 private
+  def require_signin
+    redirect_to root_path, :alert => "Please SignUp!" unless user_signed_in?
+  end
+  helper_method :require_signin
+  
   def mobile_device?
     if session[:mobile_param]
       session[:mobile_param] == "1"

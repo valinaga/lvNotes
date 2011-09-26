@@ -13,16 +13,17 @@ class Letter < ActiveRecord::Base
   
   def ready
     return unless status == 'NEW'
-    self.status = 'WAIT'
-    self.sent = Time.now()
-    self.save
+    self.update_attributes(
+      :status => 'WAIT',
+      :sent => Time.now()
+    )
   end
   
   def delivered
-    self.status = 'SENT'
-    self.sent = Time.now()
-    self.next_date = gen_next_date
-    self.save
+    self.update_attributes(
+      :status => 'SENT',
+      :sent => Time.now(),
+      :next_date => gen_next_date)
     create_next_letter
   end
   
@@ -31,16 +32,19 @@ class Letter < ActiveRecord::Base
   end
   
   def self.next_for_delivery
-    l = Letter.waiting.since(20.days.from_now).first
-    if l
-      l.status='PEND'
-      l.save
-    end
-    l
+    letter = Letter.waiting.since(40.days.from_now).first
+    letter.update_attributes(:status => 'PEND') if letter
+    letter
   end
   
   def self.pending
     where(:status => 'PEND').first
+  end
+  
+  def self.recent(message = nil)
+    letter = where(:status => 'NEW').first
+    letter.update_attributes(:message => message) if letter && message
+    letter
   end
   
   def label
@@ -65,12 +69,11 @@ class Letter < ActiveRecord::Base
     end
     
     def create_next_letter
-      new_letter = Letter.new(
+      Letter.create(
         :sender => sender, 
         :recipient => recipient, 
         :sent => next_date, 
         :status => 'READY')
-      new_letter.save  
     end
   
 end

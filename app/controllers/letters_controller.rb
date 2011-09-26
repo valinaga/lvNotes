@@ -1,3 +1,5 @@
 class LettersController < ApplicationController
-  before_filter :admin?
+  def show
+    @letter = Letter.find(params[:id])
+  end
 end

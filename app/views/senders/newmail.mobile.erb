@@ -1,0 +1,17 @@
+<div data-role="page" id="home" class="pagecontainer">
+  <%= render 'shared/title'%>
+  <article data-role="content">
+    <div id="panel"> 
+      <p>We couldn't get your e-mail address from <%=@sender.provider.camelize%>.
+      We need your e-mail address to send you reminders for yourLove.ly one. Please fill
+      it down.
+      </p>
+      <%= form_for @sender, :url => savemail_path do |f| %>
+        <div data-role="fieldcontain">
+          <%= f.email_field :email, :placeholder => "e-mail address" %>
+          <button type="submit" name="submit" value="submit-value">Submit</button>
+        </div>  
+      <% end %>
+    </div>
+  </article>
+</div>
