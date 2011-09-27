@@ -2,7 +2,7 @@ Lovecards::Application.routes.draw do
   root :to => "home#index"
 
   # resources :messages 
-  # resources :senders 
+  resources :senders 
   resources :recipients 
   resources :letters 
 

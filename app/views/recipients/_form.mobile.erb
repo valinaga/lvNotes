@@ -1,5 +1,4 @@
 <%= form_for(@recipient) do |f| %>
-  <div>Your Lovely</div>
   <% if @recipient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this device from being saved:</h2>

@@ -75,10 +75,10 @@ class Sender < ActiveRecord::Base
   def appelation
     "My dear "  
   end
-  
-  # def signature
-    # "\nFrom all my heart,\n\n#{first_name.titleize}"
-  # end
+   
+  def expand_sign
+    "\n#{signature}, \n\n#{nickname.titleize}"
+  end
     
   def no_recipient?
     self.recipient.nil?
@@ -93,7 +93,7 @@ private
   def init
     self.nickname = self.first_name
     self.create_mapping(:email => email, :fake_mail => fake_email)
-    self.signature = "\nFrom all my heart,\n\n#{nickname.titleize}"
+    self.signature = "From all my heart"
   end 
 
 end

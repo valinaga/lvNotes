@@ -6,8 +6,7 @@
   </li>
 
 <% if user_signed_in? %>
-<%= link_to current_user.name, current_user%>
-(<%= current_user.email%>) |
+<%= current_user.name%>
 
 <%= link_to('Sign out', signout_path) %>        
 <% else %>
