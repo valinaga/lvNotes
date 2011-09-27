@@ -51,7 +51,6 @@ module Lovecards
       #:enable_starttls_auto => false
     }
     config.action_mailer.perform_deliveries = true
-    # config.action_mailer.default_url_options = { :host => "yourlove.ly" }
   end
 end
 
