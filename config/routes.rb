@@ -25,14 +25,8 @@ Lovecards::Application.routes.draw do
   match "delivered" => "senders#delivered", :as => :delivered
   match "unsubscribe" => "senders#unsubscribe", :as => :unsubscribe
 
-  # match "login" => "senders#login_form", :as => :login, :via => 'get'
-  # match "login" => "senders#login", :via => 'post'
-  # match "logout" => "senders#logout", :as => :logout
-
   match "resend" => "senders#resend", :as => :resend 
   match "notify" => "senders#notify", :as => :notify
-
-  # match "home" => "senders#home", :as => :home
 
   match "howitworks" => 'home#works', :as => :works
   match "faq" => 'home#faq', :as => :faq

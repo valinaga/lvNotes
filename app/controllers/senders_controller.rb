@@ -98,32 +98,6 @@ class SendersController < ApplicationController
     end    
   end
   
-  def home
-    @sender = session[:sender]
-    redirect_to signup_path, :alert => "Something went wrong!" unless @sender
-    @sender.letters(true)
-  end
-  
-  # def login
-    # session[:sender] = nil
-    # if @sender = Sender.authenticate(params[:name], params[:password])
-      # session[:sender] = @sender
-# #      respond_to do |format|
-# #        format.html { redirect_to home_path, :notice => "Welcome back!" }
-# #        format.mobile { redirect_to home_path }
-# #      end
-      # redirect_to root_path
-    # else
-      # flash[:alert] = "Invalid user/password combination"
-      # render 'login_form'
-    # end      
-  # end
-
-  def logout
-    session[:sender] = session[:letter] = nil
-    redirect_to signup_path, :notice => "You're logged out!"
-  end
-  
   def resend
     @sender = session[:sender]
     if @sender 
@@ -150,10 +124,4 @@ class SendersController < ApplicationController
     redirect_to root_path
   end
 
-# private
-  # def auth1
-    # @sender = session[:sender]
-    # redirect_to signup_path, :alert => "Please login or SignUp!" unless @sender && @sender.active?
-  # end
-  
 end

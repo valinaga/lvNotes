@@ -8,7 +8,7 @@
       <br />
       <br />
       <%=@letter.message.content%>
-      <%=@letter.sender.signature.gsub(/\n/,"<br/>\n").html_safe%>
+      <%=@letter.sender.expand_sign.gsub(/\n/,"<br/>\n").html_safe%>
       <br />
       <br />
       <a href="/" data-role="button" data-icon="back">Close</a>

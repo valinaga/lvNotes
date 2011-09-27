@@ -2,4 +2,4 @@
 <br />
 <br />
 <%=@msg.content%>
-<%=@sender.signature.gsub(/\n/,"<br/>\n").html_safe%>
+<%=@sender.expand_sign.gsub(/\n/,"<br/>\n").html_safe%>
