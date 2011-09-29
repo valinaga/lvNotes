@@ -40,13 +40,12 @@ private
   helper_method :current_admin_user
 
   def geoip
-    # return if session[:country]
+    return if session[:country]
     @geoip ||= GeoIP.new("#{RAILS_ROOT}/db/GeoIP.dat")    
     remote_ip = request.remote_ip if remote_ip != "127.0.0.1" 
     #todo: check for other local addresses or set default value
     location_location = @geoip.country(remote_ip)
-    raise location_location.to_json
-    # session[:country] = location_location[2] if location_location
+    session[:country] = location_location[3].downcase if location_location
   end
 
   def admin?

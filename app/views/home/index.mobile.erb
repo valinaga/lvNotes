@@ -18,6 +18,7 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
+      <%= session[:country]%>
       <%=link_to "PANIC !", "#panic", :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "f"%>
       <h2>Lovecards for <%=@sender.recipient.name%></h2>
       <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b" data-split-icon="refresh" data-split-theme="b"> 
