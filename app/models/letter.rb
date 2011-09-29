@@ -4,19 +4,7 @@ class Letter < ActiveRecord::Base
   belongs_to :message
 
   before_create :gen_hashed
-  
-  class << self
-    def waiting
-      where(:status => 'READY')
-    end
     
-    def since(time)
-      where("sent < ?", time)
-    end
-  end  
-  # scope :since, lambda {|time| where("sent < ?", time) }
-  # scope :special, lambda {|spec| where(:special => spec )}
-  
   STATUS = %w(NEW WAIT SENT READY PEND)
   validates_inclusion_of :status, :in => STATUS
   
@@ -40,21 +28,31 @@ class Letter < ActiveRecord::Base
     status == 'PEND'
   end
   
-  def self.next_for_delivery
-    letter = Letter.waiting.since(40.days.from_now).first
-    letter.update_attributes(:status => 'PEND') if letter
-    letter
-  end
-  
-  def self.pending
-    where(:status => 'PEND').first
-  end
-  
-  def self.recent(message = nil)
-    letter = where(:status => 'NEW').first
-    letter.update_attributes(:message => message) if letter && message
-    letter
-  end
+  class << self
+    def waiting
+      where(:status => 'READY')
+    end
+    
+    def since(time)
+      where("sent < ?", time)
+    end
+
+    def next_for_delivery
+      letter = Letter.waiting.since(40.days.from_now).first
+      letter.update_attributes(:status => 'PEND') if letter
+      letter
+    end
+    
+    def pending
+      where(:status => 'PEND').first
+    end
+    
+    def recent(message = nil)
+      letter = where(:status => 'NEW').first
+      letter.update_attributes(:message => message) if letter && message
+      letter
+    end
+  end  
   
   def label
     'Letter ID: ' + id.to_s

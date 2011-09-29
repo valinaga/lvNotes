@@ -37,10 +37,10 @@ class Sender < ActiveRecord::Base
     # TODO get the lang from sender or recipient
     n = number || 3;
     if letters(true).empty?
-      Message.lang(self.lang).limit(n).order('RAND()')
+      Message.lang(self.lang).special(special).limit(n).order('RAND()')
     else
       if self.letters.joins(:message).merge(Message.special(special)).empty?
-        Message.exclude(self.letters.collect(&:message_id).compact).lang(self.lang).limit(n).order('RAND()')
+        Message.exclude(self.letters.collect(&:message_id).compact).lang(self.lang).special(special).limit(n).order('RAND()')
       else
         Message.exclude(letters.joins(:message).merge(Message.special(special)).collect(&:message_id).compact).lang(self.lang).special(special).limit(n).order('RAND()')
       end

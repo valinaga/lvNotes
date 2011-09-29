@@ -1,20 +1,42 @@
 
 <input type="range" name="slider" id="slider" value="1" min="1" max="5" data-theme="f"  />
-<select id="select">
-  <option value="1"></option>
-  <option value="2">She's upset!</option>
-  <option value="3">She's crying!</option>
-  <option value="4">She's throwing things!</option>
-  <option value="5">She'll kill me!</option>
-</select>
 <div id="issue"></div>
 
 <div class="issues" id="issue_1">
   <h2>Not too bad!</h2>
-  <p>Well, let's solve this before it gets too bad! Over the dey we'll prepare 3 letters
-    with mild apologies you're going to send her.</p>
+  <p>Well, let's solve this before it gets too bad! Over the day we'll prepare 3 letters
+     with mild apologies you're going to send her.</p>
   <p>To start pick one from below:</p>
-  <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
-    <li data-role="list-divider"> Apologies <span class="ui-li-count">3</span></li>
-  </ul>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_1'}%>
+</div>
+<div class="issues" id="issue_2">
+  <h2>She's upset!</h2>
+  <p>You messed up pretty bad! Let's see what we can do... Over the day we'll prepare 3 letters
+     with sincere apologies you're going to send her to make it up.</p>
+  <p>To start pick one from below:</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_2'}%>
+</div>
+<div class="issues" id="issue_3">
+  <h2>She's throwing things!</h2>
+  <p>Now you fucked up real bad! Things like this shouldn't happens... Over the day we'll prepare 3 letters
+     with deep apologies you're going to send her. Still, some flowers will really help!</p>
+  <p>To start pick one message from below:</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_3'}%>
+</div>
+<div class="issues" id="issue_4">
+  <h2>She's crying!</h2>
+  <p>You're an asshole, and you don't need me to tell you that!
+     You have to tell her you fucked up badly, and you have to do it right! 
+     Over the day we'll prepare 3 letters with deep apologies you're going to send her.</p>
+  <p>Make sure you buy her some flowers, and don't be cheap!</p>
+  <p>To start pick one message from below:</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_4'}%>
+</div>
+<div class="issues" id="issue_5">
+  <h2>She doesn't want to see me again!</h2>
+  <p>You're in really deep shit! How could you screwed it up so bad?  
+     Nevermind! Over the day we'll prepare 3 letters with deep apologies you're going to send her.</p>
+  <p>You really need to buy her the best roses you can get, and maybe a chocolate box or a bunny!</p>
+  <p>To start pick one message from below:</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_5'}%>
 </div>
