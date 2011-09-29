@@ -33,12 +33,17 @@ class Sender < ActiveRecord::Base
     # end
   end
 
-  def three_messages
+  def random_messages(number = nil, special = nil)
     # TODO get the lang from sender or recipient
+    n = number || 3;
     if letters(true).empty?
-      Message.en.limit(3).order('RAND()')
+      Message.lang(self.lang).limit(n).order('RAND()')
     else
-      Message.exclude(letters.collect(&:message_id).compact).en.limit(3).order('RAND()')
+      if self.letters.joins(:message).merge(Message.special(special)).empty?
+        Message.exclude(self.letters.collect(&:message_id).compact).lang(self.lang).limit(n).order('RAND()')
+      else
+        Message.exclude(letters.joins(:message).merge(Message.special(special)).collect(&:message_id).compact).lang(self.lang).special(special).limit(n).order('RAND()')
+      end
     end
   end
   

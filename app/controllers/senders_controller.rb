@@ -18,7 +18,7 @@ class SendersController < ApplicationController
   
   def register
     @sender = current_user
-    @messages = @sender.three_messages
+    @messages = @sender.random_messages
     render('messages')
   end
 

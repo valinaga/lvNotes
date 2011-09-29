@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
     sender = Sender.where(:provider => auth['provider'], 
                         :uid => auth['uid']).first || Sender.create_with_omniauth(auth)
+    sender.update_attribute(:lang,session[:country]) if sender.lang.nil?
     session[:user_id] = sender.id
     session[:sender] = sender
     if !sender.email?
@@ -21,6 +22,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:sender] = nil
+    session[:country] = nil
     redirect_to root_url, :notice => 'Signed out!'
   end
 

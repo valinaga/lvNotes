@@ -5,8 +5,17 @@ class Letter < ActiveRecord::Base
 
   before_create :gen_hashed
   
-  scope :waiting, lambda { where(:status => 'READY') }
-  scope :since, lambda {|time| where("sent < ?", time) }
+  class << self
+    def waiting
+      where(:status => 'READY')
+    end
+    
+    def since(time)
+      where("sent < ?", time)
+    end
+  end  
+  # scope :since, lambda {|time| where("sent < ?", time) }
+  # scope :special, lambda {|spec| where(:special => spec )}
   
   STATUS = %w(NEW WAIT SENT READY PEND)
   validates_inclusion_of :status, :in => STATUS
