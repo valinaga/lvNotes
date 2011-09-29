@@ -12,6 +12,7 @@ gem "bcrypt-ruby", :require => "bcrypt"
 gem "nifty-generators", :group => :development
 gem "ruby-debug19", :group => :development
 gem "omniauth", ">= 0.2.4"
+gem 'geoip'
 #gem "oauth"
 #gem "oauth-plugin"
 

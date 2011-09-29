@@ -18,6 +18,7 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
+      <%= session[:country]%>
       <%=link_to "PANIC !", "#panic", :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "f"%>
       <h2>Lovecards for <%=@sender.recipient.name%></h2>
       <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b" data-split-icon="refresh" data-split-theme="b"> 
@@ -56,15 +57,7 @@
     <div id="panel">
       <h2>How bad is it?</h2>
       <div data-role="fieldcontain">
-        <input type="range" name="slider" id="slider" value="1" min="1" max="5" data-theme="f"  />
-        <select id="select">
-          <option value="1">Not too bad!</option>
-          <option value="2">She's upset!</option>
-          <option value="3">She's crying!</option>
-          <option value="4">She's throwing things!</option>
-          <option value="5">She'll kill me!</option>
-        </select>
-        <div id="problem">Not too bad!</div>
+        <%= render :partial => 'panic'%>
       </div>
     </div>
   </article>

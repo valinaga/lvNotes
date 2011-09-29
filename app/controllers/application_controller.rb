@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :prepare_for_mobile
   before_filter :require_signin
+  before_filter :geoip
 
   def call_rake(task, options = {})
     options[:rails_env] ||= Rails.env
@@ -37,6 +38,15 @@ private
     Admin.find_by_id(session[:admin_user_id]) if session[:admin_user_id]
   end
   helper_method :current_admin_user
+
+  def geoip
+    return if session[:country]
+    @geoip ||= GeoIP.new("#{RAILS_ROOT}/db/GeoIP.dat")    
+    remote_ip = request.remote_ip if remote_ip != "127.0.0.1" 
+    #todo: check for other local addresses or set default value
+    location_location = @geoip.country(remote_ip)
+    session[:country] = location_location[2] if location_location
+  end
 
   def admin?
     if !current_admin_user
