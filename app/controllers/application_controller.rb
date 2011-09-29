@@ -45,7 +45,8 @@ private
     remote_ip = request.remote_ip if remote_ip != "127.0.0.1" 
     #todo: check for other local addresses or set default value
     location_location = @geoip.country(remote_ip)
-    session[:country] = location_location[2] if location_location
+    raise location_location.to_json
+    # session[:country] = location_location[2] if location_location
   end
 
   def admin?
