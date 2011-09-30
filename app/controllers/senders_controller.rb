@@ -141,4 +141,13 @@ class SendersController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    # @sender = current_user.recipient.find(params[:id])
+    # @recipient.destroy
+    Letter.delete_all
+    Sender.delete_all
+    Recipient.delete_all
+    Mapping.delete_all
+    redirect_to signout_path
+  end
 end

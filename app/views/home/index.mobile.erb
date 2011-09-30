@@ -1,5 +1,5 @@
 <%if !user_signed_in? %>
-<div data-role="page" id="auth" class="pagecontainer">
+<div data-role="page" id="auth" class="pagecontainer" data-url="/">
   <div data-role="header" data-position="fixed">
     <h2>yourLove.ly</h2>
   </div>
@@ -14,7 +14,7 @@
 
 <%else%>
 <%@sender = current_user%>
-<div data-role="page" id="home" class="pagecontainer" data-url="/">
+<div data-role="page" id="home" class="pagecontainer" >
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
@@ -29,13 +29,14 @@
   <%=render :partial => 'shared/footer', :object => "a" %>
 </div>
 
-<div data-role="page" id="settings" class="pagecontainer">
+<div data-role="page" id="settings" class="pagecontainer" >
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel">
       <h2>Setting</h2>
       <%=link_to "Your Own Settings", edit_sender_url(current_user), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
       <%=link_to "Your Love.ly Settings", edit_recipient_url(current_user.recipient), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
+      <%=link_to "Delete All", current_user, :method => 'delete', :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
     </div>
   </article>
   <%=render :partial => 'shared/footer', :object => "b" %>

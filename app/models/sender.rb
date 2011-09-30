@@ -34,7 +34,6 @@ class Sender < ActiveRecord::Base
   end
 
   def random_messages(number = nil, special = nil)
-    # TODO get the lang from sender or recipient
     n = number || 3;
     if letters(true).empty?
       Message.lang(self.lang).special(special).limit(n).order('RAND()')

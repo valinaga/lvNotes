@@ -48,4 +48,4 @@ Lovecards::Application.configure do
   config.active_support.deprecation = :notify
 end
 
-ENV["RAILS_HOST"]="yourlove.ly:3000"
+ENV["RAILS_HOST"]="yourlove.ly"

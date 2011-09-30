@@ -31,7 +31,7 @@ class UserMailer < ActionMailer::Base
   def send_notification(letter)
     @sender = letter.sender
     @recipient = letter.recipient
-    @messages = @sender.Recipientm_messages
+    @messages = @sender.random_messages
     @url = deliver_url(:h => letter.hashed)
 
     @uns = unsubscribe_url(:h => letter.hashed)
