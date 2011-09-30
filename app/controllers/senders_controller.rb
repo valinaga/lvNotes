@@ -26,12 +26,16 @@ class SendersController < ApplicationController
     @message = Message.find(params[:m])
     @sender = session[:sender]
     if @sender && @message
-      @letter = @sender.letters.recent(@message) || @sender.letters.create(:recipient => @sender.recipient(true), :message => @message )
+      @letter = @sender.letters.recent(@message) || 
+                @sender.letters.create(:recipient => @sender.recipient(true), 
+                                       :message => @message)
       session[:letter] = @letter
       if @sender.no_email?
+        # need to confirm mail throug activation
         UserMailer.activate_email(@letter).deliver
         redirect_to pending_path, :notice => "You're almost done!"
       else
+        # just a welcome message no need to confirm email
         UserMailer.welcome_email(@letter).deliver
         redirect_to activate_path
       end
@@ -83,6 +87,19 @@ class SendersController < ApplicationController
     end
   end
   
+  def panic
+    @message = Message.find(params[:m])
+    @sender = session[:sender]
+    if @sender && @message
+      @letter = @sender.letters.create(:recipient => @sender.recipient(true), 
+                           :status => 'SENT',
+                           :sent => Time.now(),
+                           :message => @message)
+      UserMailer.panic_email(@letter).deliver
+    end
+    redirect_to root_url
+  end
+  
   def delivered
     @letter = session[:letter]
     if @letter.nil?
@@ -110,7 +127,7 @@ class SendersController < ApplicationController
       end
     else
       redirect_to signup_url, :alert => "Something went wrong!" 
-    end    
+    end
   end
   
   def unsubscribe

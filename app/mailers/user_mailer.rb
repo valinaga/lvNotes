@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   default_url_options[:host] = ENV["RAILS_HOST"]
-  layout 'welcome', :except => 'send_email'
+  layout 'welcome', :except => ['send_email', 'panic_email']
   
   def welcome_email(letter)
     @sender = letter.sender
@@ -48,6 +48,15 @@ class UserMailer < ActionMailer::Base
     mail( :from => "#{@sender.name} <#{@sender.fake_email}>",
           :to => "#{@recipient.name} <#{@recipient.email}>",
           :subject => "... your lovely")
+  end
+  
+  def panic_email(letter)
+    @sender = letter.sender
+    @recipient = letter.recipient
+    @msg = letter.message
+    mail( :from => "#{@sender.name} <#{@sender.fake_email}>",
+          :to => "#{@recipient.name} <#{@recipient.email}>",
+          :subject => "... I'm verry sorry!")
   end
   
   def admin_reset_password(user, pass)

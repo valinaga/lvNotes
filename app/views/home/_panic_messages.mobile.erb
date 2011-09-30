@@ -1,5 +1,5 @@
 <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
-  <%r_mess = current_user.random_messages(3, nil)%>
+  <%r_mess = current_user.random_messages(3, special)%>
   <li data-role="list-divider"> Apologies <span class="ui-li-count"><%= r_mess.count >=3 ? 3 : r_mess.count%></span></li>
-  <%= render(:partial => "senders/message", :collection => r_mess, :locals => { :sender => current_user}) %>
+  <%= render(:partial => "senders/message", :collection => r_mess) %>
 </ul>

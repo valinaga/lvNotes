@@ -28,6 +28,10 @@ class Message < ActiveRecord::Base
     end
   end
   
+  def is_special?
+    !(self.special.nil? || self.special.empty?)
+  end
+
   def to_label
     'Message ID: ' + id.to_s
   end

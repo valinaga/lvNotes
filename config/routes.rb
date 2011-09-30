@@ -24,6 +24,7 @@ Lovecards::Application.routes.draw do
   match "deliver" => "senders#deliver", :as => :deliver
   match "delivered" => "senders#delivered", :as => :delivered
   match "unsubscribe" => "senders#unsubscribe", :as => :unsubscribe
+  match "panic" => "senders#panic", :as => :panic
 
   match "resend" => "senders#resend", :as => :resend 
   match "notify" => "senders#notify", :as => :notify
