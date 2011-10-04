@@ -1,28 +1,25 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_signin, :only => [:create, :failure]
+  skip_before_filter :require_signin, :only => [:create, :failure, :destroy]
 
   def create
     auth = request.env["omniauth.auth"]
-    sender = Sender.where(:provider => auth['provider'], 
-                        :uid => auth['uid']).first || Sender.create_with_omniauth(auth)
-    sender.update_attribute(:lang,session[:country]) if sender.lang.nil?
-    session[:user_id] = sender.id
-    session[:sender] = sender
-    if !sender.email?
-      redirect_to new_mail_url
-    elsif sender.no_recipient?
-      redirect_to new_recipient_url
-    elsif sender.inactive?
-      redirect_to signup_url
-    else
-      redirect_to root_url
+    sender = Sender.where(:provider => auth['provider'], :uid => auth['uid']).first 
+    if sender.nil?
+      sender = Sender.create_with_omniauth(auth)
+      current_invitation.dec
     end
+    sender.update_attribute(:lang, session[:country]) if sender.lang.nil?
+    cookies.permanent[:auth_token] = sender.auth_token
+    session[:sender] = sender
+    redirect_to root_url
   end
 
   def destroy
-    session[:user_id] = nil
     session[:sender] = nil
     session[:country] = nil
+    cookies.delete(:auth_token)
+    # session[:invitation] = nil
+    # cookies.delete(:invite_token)
     redirect_to root_url, :notice => 'Signed out!'
   end
 

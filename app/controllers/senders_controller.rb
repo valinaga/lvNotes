@@ -1,5 +1,6 @@
 class SendersController < ApplicationController
   skip_before_filter :require_signin, :only => [:activate,:deliver]
+  skip_before_filter :require_invite, :only => [:activate,:deliver]
 	
   def newmail
     @sender = current_user
@@ -10,6 +11,7 @@ class SendersController < ApplicationController
       @sender = current_user
       @sender.email=params[:sender][:email]
       @sender.save!
+      @sender.update_mapping
       redirect_to new_recipient_path
     rescue Exception
       render 'newmail' 
@@ -49,14 +51,15 @@ class SendersController < ApplicationController
     @letter = Letter.where(:hashed => params[:h]).first || session[:letter]
     if @letter 
       @letter.sender.activate
+      @current_user = session[:sender] = @letter.sender  
       @letter.ready
       UserMailer.send_email(@letter).deliver
       @letter.delivered
       session[:letter] = @letter
-      if !user_signed_in? 
-        session[:user_id] = @letter.sender.id
-        session[:sender] = @letter.sender  
-      end
+      # if !user_signed_in? 
+        # # cookies.permanent[:auth_token] = @letter.sender.auth_token
+        # session[:sender] = @letter.sender  
+      # end
       redirect_to activated_path, :notice=> "Your account was sucessfully activated!"
     else
       redirect_to signup_path, :alert => "Something went wrong!"

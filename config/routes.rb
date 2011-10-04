@@ -4,7 +4,11 @@ Lovecards::Application.routes.draw do
   # resources :messages 
   resources :senders 
   resources :recipients 
-  resources :letters 
+  resources :letters
+  # Invites
+  match '/invite' => 'invitations#invite', :as => :invite
+  match '/thanks_to' => 'invitations#invited', :as => :invited
+  match '/thanks_to/:name' => 'invitations#invited', :as => :invited_by
 
   # Oauth
   match '/auth/:provider/callback' => 'sessions#create'

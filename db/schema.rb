@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110929094736) do
+ActiveRecord::Schema.define(:version => 20111004082338) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "first_name",       :default => "",    :null => false
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20110929094736) do
     t.string   "email"
     t.string   "status",       :default => "ACTIVE"
     t.string   "session_hash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invitation_pools", :force => true do |t|
+    t.string   "name"
+    t.integer  "sender_id"
+    t.integer  "total"
+    t.string   "invite_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20110929094736) do
     t.string   "nickname"
     t.string   "signature"
     t.string   "lang"
+    t.string   "auth_token"
   end
 
   create_table "sessions", :force => true do |t|

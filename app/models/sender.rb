@@ -2,8 +2,11 @@ class Sender < ActiveRecord::Base
 	has_many :letters, :order => 'sent DESC'
   has_one :recipient
   has_one :mapping, :dependent => :destroy
+  has_one :invitation_pool
 
 	before_create :init
+	before_create {generate_token(:auth_token)}
+	after_create :generate_invitations
 	
 	validates :email, :presence => true, :uniqueness => {:scope => :provider}, :email_format => true, :on => :update
   
@@ -46,6 +49,12 @@ class Sender < ActiveRecord::Base
     end
   end
   
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while Sender.exists?(column => self[column])
+  end
+  
   def activate
     return if status == 'ACTIVE'
     self.status = 'ACTIVE'
@@ -76,6 +85,10 @@ class Sender < ActiveRecord::Base
     "#{(name.downcase+" "+provider[0,1]).gsub(/[\s]+/,'.')}@yourlove.ly"
   end
   
+  def update_mapping
+    mapping.update_attribute(:email, self.email)
+  end
+  
   def appelation
     "My dear "  
   end
@@ -98,6 +111,10 @@ private
     self.nickname = self.first_name
     self.create_mapping(:email => email, :fake_mail => fake_email)
     self.signature = "From all my heart"
+  end
+  
+  def generate_invitations
+    self.create_invitation_pool(:name => self.name.gsub(" ",""), :total => 15, :invite_token => SecureRandom.urlsafe_base64)
   end 
 
 end

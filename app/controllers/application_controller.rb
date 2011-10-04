@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :prepare_for_mobile
   before_filter :require_signin
+  before_filter :require_invite
   before_filter :geoip
 
   def call_rake(task, options = {})
@@ -10,11 +11,12 @@ class ApplicationController < ActionController::Base
     system "start rake #{task} #{args.join(' ')} --trace 2>&1 >> #{Rails.root}/log/rake.log"
   end
 
-  def require_signin
-    redirect_to root_path, :alert => "Please SignUp!" unless user_signed_in?
-  end
-
 private
+  def require_invite
+    redirect_to invite_path, :alert => "You need an invitation to access beta" unless valid_invitation?
+  end
+  helper_method :require_invite
+  
   def require_signin
     redirect_to root_path, :alert => "Please SignUp!" unless user_signed_in?
   end
@@ -41,7 +43,7 @@ private
 
   def geoip
     return if session[:country]
-    @geoip ||= GeoIP.new("#{RAILS_ROOT}/db/GeoIP.dat")    
+    @geoip ||= GeoIP.new("#{Rails.root}/db/GeoIP.dat")    
     remote_ip = request.remote_ip if remote_ip != "127.0.0.1" 
     #todo: check for other local addresses or set default value
     location_location = @geoip.country(remote_ip)
@@ -69,7 +71,7 @@ private
   
   def current_user
     begin
-      @current_user ||= Sender.find(session[:user_id]) if session[:user_id]
+      @current_user ||= session[:sender] || Sender.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
     rescue ActiveRecord::RecordNotFound
       nil
     end
@@ -81,12 +83,26 @@ private
   end
   helper_method :user_signed_in?
   
-  def correct_user?
-    @user = Sender.find(params[:id])
-    unless current_user == @user
-      redirect_to root_url, :alert => "Access denied."
+  # def correct_user?
+    # @user = Sender.find(params[:id])
+    # unless current_user == @user
+      # redirect_to root_url, :alert => "Access denied."
+    # end
+  # end
+  # helper_method :correct_user?
+  
+  def valid_invitation?
+    return true if current_invitation
+  end
+  helper_method :user_signed_in?
+
+  def current_invitation
+    begin
+      session[:invitation] || (InvitationPool.find_by_invite_token(cookies[:invite_token]) if cookies[:invite_token])
+    rescue ActiveRecord::RecordNotFound
+      nil
     end
   end
-  helper_method :correct_user?
+  helper_method :current_invitation
 
 end

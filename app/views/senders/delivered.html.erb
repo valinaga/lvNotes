@@ -6,7 +6,7 @@
           :subject => "... you're lovely",
           :body => "#{@letter.sender.appelation}#{@letter.recipient.first_name},\n\n#{@letter.message.content}#{@letter.sender.signature}",
           :class => "mailto"%>.
-You sent i? Then start expecting miracles! </p>
+You sent it? Then start expecting miracles! </p>
 <%else%>
 <p>Your message to <%=@letter.recipient.first_name%> was just delivered. Expect miracles! </p>
 <%end%>
