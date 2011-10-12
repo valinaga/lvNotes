@@ -1,17 +1,17 @@
-<div data-role="page" id="sigin" class="pagecontainer" data-theme="b" data-url="/">
+<div data-role="page" id="invite" class="pagecontainer" data-theme="b" data-url="/">
   <div data-role="header" data-position="fixed">
     <h3>yourLove.ly</h3>
   </div>
   <article data-role="content">
-    <h3>Welcome!</h3>
+    <h3> <%=t "welcome" %> !</h3>
     <p>
-      <strong>yourLove.ly</strong> service in currently in beta and you need an invitation to subscribe.
+      <strong><%=t "service"%> yourLove.ly</strong> <%=t "beta"%>
     </p>
-    <p>Please enter your invitation code below:</p>
+    <p><%= t "enter_code"%> :</p>
     <div id="panel"> 
       <%= form_tag invited_url, :method => :get do %>
-        <%= text_field_tag 'name', nil, :placeholder => "Enter invitation code" %>
-        <button type="submit" name="submit" value="submit-value">Submit</button>
+        <%= text_field_tag 'name', nil, :placeholder => t("enter_code") %>
+        <button type="submit" name="submit" value="submit-value"><%=t "submit" %></button>
       <% end %>
     </div>
   </article>

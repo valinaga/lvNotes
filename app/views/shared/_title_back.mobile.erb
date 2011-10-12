@@ -1,5 +1,5 @@
   <div data-role="header" data-position="fixed">
-    <a href="/" class="ui-btn-left" data-icon="back" rel="external">Back</a>
-    <h3>Hi <%=current_user.name%></h3>
-    <%= link_to "Signout", signout_path, :class => "ui-btn-right", :'data-icon' => "delete"%>
+    <a href="/" class="ui-btn-left" data-icon="back" rel="external"><%=t "back"%></a>
+    <h3><%=t "hi"%> <%=current_user.nickname%></h3>
+    <%= link_to t("signout"), signout_url, :class => "ui-btn-right", :'data-icon' => "delete"%>
   </div>

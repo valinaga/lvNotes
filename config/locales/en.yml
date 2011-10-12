@@ -2,27 +2,41 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  welcome: "Welcome"
+  service: ""
+  beta: "service in currently in beta and you need an invitation to subscribe."
+  please_code: "Please enter your invitation code below"
+  enter_code: "Enter invitation code"
+  submit: "Submit"
+  sign_in: "Sign in with"
+  almost_done: "We're almost done! Please fill in the details of your Love.ly one"
+  settings: "Settings"
+  please_fill: "Please update the details of your Love.ly one"  
+  close: "Close"
+  first_name: "First Name"
+  last_name: "Last Name"
+  e-mail: "e-mail address"
+  home: "Home"
+  about: "Abut Us"
+  hi: "Hi"
+  signout: "Signout"
+  back: "Back"
+  edit_sender: "Change your nickname and signature"  
+  your_sign: "Your Signature"
+  choice: "Choice"
+  mesages: "Mesages"
+  choose_msg: "Please choose one of the three messages displayed below, you believe it feels better for you and %{name}. The message will be sent to %{first_name} as comming from you and signed by you."
+  next_msg: "Next lovecard on"
+  sent: "Sent"
+  resend: "Resend me another 3 choices"
+  apologies: "Apologies"
+  my_dear: "My Dear "
+  my_heart: "From all my heart"
+
   errors:
     format: "%{attribute} %{message}"
     messages:
       invalid: "data is invalid"
-  activerecord:
-    models:
-    #  sender: "You"
-    #  recipient: "Your Love"
-    attributes:
-      sender:
-#        recipients: "Your Love"
-    errors:
-      models:
-        sender:
-          attributes:
-            first_name:
-              invalid: "is invalid"
-  helpers:
-    submit:
-      sender:
-        create: "Sign Up"
   date:
     formats:
       default: "%d/%m/%Y"

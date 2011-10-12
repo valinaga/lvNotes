@@ -8,7 +8,17 @@ class SessionsController < ApplicationController
       sender = Sender.create_with_omniauth(auth)
       current_invitation.dec
     end
-    sender.update_attribute(:lang, session[:country]) if sender.lang.nil?
+    session[:token] = (auth['credentials']['token'] rescue nil)
+    # if session[:token]
+      # me = FbGraph::User.me(session[:token])
+      # me.feed!(
+        # :message => 'Updating via yourLove.ly',
+        # :name => 'yourLove.ly',
+        # :link => 'http://yourlove.ly',
+        # :description => 'A nice webapp for your happyness'
+      # )      
+    # end
+    sender.update_attribute(:lang, session[:lang]) if session[:lang] if sender.lang.nil?
     cookies.permanent[:auth_token] = sender.auth_token
     session[:sender] = sender
     redirect_to root_url
@@ -16,7 +26,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:sender] = nil
-    session[:country] = nil
     cookies.delete(:auth_token)
     # session[:invitation] = nil
     # cookies.delete(:invite_token)

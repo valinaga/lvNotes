@@ -1,4 +1,4 @@
-<div data-role="page" id="sigin" class="pagecontainer" data-theme="b" data-url="/">
+<div data-role="page" id="showletter" class="pagecontainer" data-theme="b" data-url="/">
   <div data-role="header" data-position="fixed">
     <h3><%= l @letter.sent, :format => :short %></h3>
   </div>
@@ -11,7 +11,7 @@
       <%=@letter.sender.expand_sign.gsub(/\n/,"<br/>\n").html_safe%>
       <br />
       <br />
-      <a href="/" data-role="button" data-icon="back" data-rel="back">Close</a>
+      <a href="#" data-role="button" data-icon="back" data-rel="back"><%=t "close"%></a>
     </div>
   </article>
 </div>

@@ -4,11 +4,11 @@
     <h2>yourLove.ly</h2>
   </div>
   <article data-role="content">
-    <h3>The only app to garantee your happyness with your love one !</h3>
-    <p>Please signin with any of the sites below. </p>
+    <h3>Singura aplicaţie care îţi garantează fericirea alături de minunata ta pereche!</h3>
+    <p>Te rog semnează cu una din metodele de mai jos. </p>
     <%=render 'shared/auth'%>
-    <p>We are using them only for your convenience. We will
-      never post anything there without your explicit permission. That's a prommise!</p>
+    <p>Folosim aceste metode doar pentru comoditatea ta. Nu vom publica nicioadată nimic în numele 
+      tău fără permisiunea ta explicită. Pe cuvant de onoare!</p>
   </article>
 </div>
 
@@ -18,8 +18,8 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
-      <%=link_to "PANIC !", "#panic", :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "f"%>
-      <h2>Lovecards for <%=@sender.recipient.name%></h2>
+      <%=link_to "PANICĂ !", "#panic", :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "f"%>
+      <h2>Scrisori pentru <%=@sender.recipient.name%></h2>
       <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b" data-split-icon="refresh" data-split-theme="b"> 
         <li data-role="list-divider"> <%= Time.now.to_date%> <span class="ui-li-count"><%=@sender.letters.count-1%></span></li>
         <%= render(:partial => "letter", :collection => @sender.letters(true), :locals => { :sender => @sender}) %>
@@ -33,10 +33,10 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel">
-      <h2>Setting</h2>
-      <%=link_to "Your Own Settings", edit_sender_url(current_user), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
-      <%=link_to "Your Love.ly Settings", edit_recipient_url(current_user.recipient), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
-      <%=link_to "Delete All", current_user, :method => 'delete', :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
+      <h2>Setări</h2>
+      <%=link_to "Setările tale", edit_sender_url(current_user), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
+      <%=link_to "Setările Partenerei", edit_recipient_url(current_user.recipient), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
+      <%=link_to "Sterge Cont", current_user, :method => 'delete', :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
     </div>
   </article>
   <%=render :partial => 'shared/footer', :object => "b" %>
@@ -46,7 +46,7 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel">
-      <h2>About Us</h2>
+      <h2>Despre noi</h2>
     </div>
   </article>
   <%=render :partial => 'shared/footer', :object => "c" %>
@@ -56,7 +56,7 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel">
-      <h2>How bad is it?</h2>
+      <h2>Cât e de rău?</h2>
       <%= render :partial => 'panic'%>
     </div>
   </article>

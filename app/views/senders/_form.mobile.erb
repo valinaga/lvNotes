@@ -1,15 +1,14 @@
 <%= form_for(@sender) do |f| %>
-  <p>Change your nickname and signature:</p>
-  <% if @sender.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sender.errors.count, "error") %> prohibited this from being saved:</h2>
-      <ul><% @sender.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.text_field :nickname, :placeholder => "First Name" %>
-  <%= f.text_field :signature, :placeholder => "Your Signature" %>
-  <button type="submit" name="submit" value="submit-value">Submit</button>
+  <p><%=t "edit_sender"%>:</p>
+  <%= f.text_field :nickname, :placeholder => t("first_name") %>
+  <%= f.text_field :signature, :placeholder => t("your_sign") %>
+<div data-role="fieldcontain">
+  <fieldset data-role="controlgroup" data-type="horizontal">
+  <%= f.radio_button :lang, 'en' %>
+  <%= f.label :lang_en, 'En' %>
+  <%= f.radio_button :lang, 'ro' %>
+  <%= f.label :lang_ro, 'Ro' %>
+  </fieldset>
+</div>
+  <button type="submit" name="submit" value="submit-value"><%= t "submit"%></button>
 <% end %>

@@ -1,12 +1,12 @@
-<div data-role="page" id="sigin" class="pagecontainer" data-theme="b" data-url="/">
+<div data-role="page" id="editletter" class="pagecontainer" data-theme="b" data-url="/">
   <div data-role="header" data-position="fixed">
-    <h3>Settings</h3>
+    <h3><%= t "settings"%></h3>
   </div>
   <article data-role="content">
     <div id="panel"> 
-      <p>Please update the details of your Love.ly one!</p>
+      <p><%= t "please_fill"%> !</p>
       <%= render 'form' %>
-      <a href="/#settings" data-role="button" data-icon="back" data-rel="back">Close</a>
+      <a href="/#settings" data-role="button" data-icon="back" data-rel="back"><%=t "close"%></a>
     </div>
   </article>
 </div>

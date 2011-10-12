@@ -1,12 +1,8 @@
-<div data-role="page" id="sigin" class="pagecontainer">
+<div data-role="page" id="delivered" class="pagecontainer">
   <%= render 'shared/title_back'%>
   <article data-role="content">
     <div id="panel"> 
-      <p>Your message to <%=@letter.recipient.first_name%> was just delivered. Expect miracles! </p>
-      <p>The miracle will last 2-3 weeks, and then we will send you again a reminder with some more 
-        love words you can peak from to send to <%=@letter.recipient.first_name%>. Thus, the miracle 
-        will continue indefinitely.</p> 
-      <h4>Until then enjoy your happy life!</h4>
+      <%= render 'shared/delivered'%>
     </div>
   </article>
 </div>

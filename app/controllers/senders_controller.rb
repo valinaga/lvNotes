@@ -112,10 +112,15 @@ class SendersController < ApplicationController
   
   def update
     if current_user.update_attributes(params[:sender])
-      redirect_to root_url 
+      I18n.locale = session[:lang] = current_user.lang
+      redirect_to root_url(:anchor => 'settings')
     else
       render :action => "edit" 
     end    
+  end
+  
+  def show
+    redirect_to root_url(:anchor => 'settings')
   end
   
   def resend

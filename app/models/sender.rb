@@ -14,7 +14,7 @@ class Sender < ActiveRecord::Base
   validates_inclusion_of :status, :in => STATUS
 
   attr_accessor :current_recipient
-  attr_accessible :provider, :uid, :first_name, :last_name, :email
+  attr_accessible :provider, :uid, :first_name, :last_name, :email, :nickname, :signature, :lang
 
   def self.create_with_omniauth(auth)
     # begin
@@ -90,7 +90,7 @@ class Sender < ActiveRecord::Base
   end
   
   def appelation
-    "My dear "  
+    I18n.t("my_dear")
   end
    
   def expand_sign
@@ -110,7 +110,7 @@ private
   def init
     self.nickname = self.first_name
     self.create_mapping(:email => email, :fake_mail => fake_email)
-    self.signature = "From all my heart"
+    self.signature = I18n.t("my_heart")
   end
   
   def generate_invitations

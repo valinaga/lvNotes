@@ -1,6 +1,6 @@
 <li>
-<a href="<%=message.is_special? ? panic_path(:m => message) : subscribe_path(:m => message)%>">
-  <h2>Choice <%=message_counter+1%> </h2>
+<a href="<%=message.is_special? ? panic_url(:m => message) : subscribe_url(:m => message)%>">
+  <h2><%=t "choice"%> <%=message_counter+1%> </h2>
   <blockquote style="white-space:normal">
     <%=message.content%></blockquote>
 </a>

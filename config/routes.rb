@@ -1,10 +1,11 @@
 Lovecards::Application.routes.draw do
   root :to => "home#index"
 
-  # resources :messages 
-  resources :senders 
+  resources :senders, :only => [ :edit, :update, :show, :destroy ]
   resources :recipients 
   resources :letters
+
+  # resources :messages 
   # Invites
   match '/invite' => 'invitations#invite', :as => :invite
   match '/thanks_to' => 'invitations#invited', :as => :invited

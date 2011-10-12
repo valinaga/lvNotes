@@ -2,6 +2,37 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 ro:
+  welcome: "Bine ai venit"
+  service: "Serviciul"
+  beta: "este în prezent în stadiul beta şi ai nevoie de invitaţie pentru a subscrie."
+  please_code: "Te rog introdu codul invitaţiei mai jos"
+  enter_code: "Introdu codul invitaţiei"
+  submit: "Trimite"
+  sign_in: "Semnează cu"
+  almost_done: "Aproape am terminat! Te rog completează detaliile partenerei tale"
+  settings: "Setări"
+  please_fill: "Te rog actualizează detaliile partenerei tale"  
+  close: "Închide"
+  first_name: "Prenume"
+  last_name: "Nume"
+  e-mail: "Adresa de E-mail"
+  home: "Acasă"
+  about: "Despre Noi"
+  hi: "Salut"
+  signout: "Ieşire"
+  back: "Înapoi"
+  edit_sender: "Actualizează-ţi numele şi semnătura"  
+  your_sign: "Semnătura ta"
+  choice: "Opţiunea"
+  mesages: "Mesaje"
+  choose_msg: "Alege unul dintre cele 3 mesaje de mai jos, care crezi că sună mai potrivit pentru tine şi %{name}. Mesajul va fi trimis către %{first_name} ca venind de la tine, purtând semnătura ta."
+  next_msg: "Urmatorul mesaj pe"
+  sent: "Trimis"
+  resend: "Retrimite alte 3 variante"
+  apologies: "Scuze"
+  my_dear: "Draga mea "
+  my_heart: "Cu toata dragostea"
+
   date:
     formats:
       default: "%d-%m-%Y"

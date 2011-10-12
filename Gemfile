@@ -13,6 +13,10 @@ gem "nifty-generators", :group => :development
 gem "ruby-debug19", :group => :development
 gem "omniauth", ">= 0.2.4"
 gem 'geoip'
+gem 'fb_graph'
+gem 'twitter'
+# gem 'multi_json', '~> 0.0.5'
+
 #gem "oauth"
 #gem "oauth-plugin"
 

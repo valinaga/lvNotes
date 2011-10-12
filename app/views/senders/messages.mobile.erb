@@ -1,11 +1,9 @@
-<div data-role="page" id="sigin" class="pagecontainer">
+<div data-role="page" id="messages" class="pagecontainer">
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
-    <h2>Mesages:</h2>
-    <p>Please choose one of the three messages displayed below, you believe it feels better for you and 
-     <%=@sender.recipient.name%>. The message will be sent to <%=@sender.recipient.first_name%> 
-     as comming from you and signed by you.</p>
+    <h2><%=t "mesages"%>:</h2>
+    <p><%= t "choose_msg", :name => @sender.recipient.name, :first_name => @sender.recipient.first_name%></p>
     <p>
       <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
         <li data-role="list-divider"> <%= Time.now.to_date%> <span class="ui-li-count">3</span></li>

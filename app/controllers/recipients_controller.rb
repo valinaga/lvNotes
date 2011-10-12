@@ -29,15 +29,14 @@ class RecipientsController < ApplicationController
   def update
     @recipient = current_user.recipient
     if @recipient.update_attributes(params[:recipient])
-      redirect_to signup_url 
+      redirect_to root_url(:anchor => "settings") 
     else
       render :action => "edit" 
     end
   end
   
   def show
-    @recipient = current_user.recipient
-    render :action => 'edit'
+    redirect_to root_url(:anchor => "settings") 
   end
 
   # DELETE /recipients/1

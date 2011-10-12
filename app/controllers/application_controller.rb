@@ -5,11 +5,16 @@ class ApplicationController < ActionController::Base
   before_filter :require_invite
   before_filter :geoip
 
-  def call_rake(task, options = {})
-    options[:rails_env] ||= Rails.env
-    args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }
-    system "start rake #{task} #{args.join(' ')} --trace 2>&1 >> #{Rails.root}/log/rake.log"
-  end
+  # def call_rake(task, options = {})
+    # options[:rails_env] ||= Rails.env
+    # args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }
+    # system "start rake #{task} #{args.join(' ')} --trace 2>&1 >> #{Rails.root}/log/rake.log"
+  # end
+
+# protected
+  # def default_url_options(options = {})
+    # options.merge!({ :locale => I18n.locale })
+  # end
 
 private
   def require_invite
@@ -42,15 +47,15 @@ private
   helper_method :current_admin_user
 
   def geoip
-    return if session[:country]
+    return if session[:lang]
     @geoip ||= GeoIP.new("#{Rails.root}/db/GeoIP.dat")    
-    remote_ip = request.remote_ip if remote_ip != "127.0.0.1" 
-    #todo: check for other local addresses or set default value
-    location_location = @geoip.country(remote_ip)
-    session[:country] = "en"
-    session[:country] ||= location_location[3].downcase if location_location
+    location_location = @geoip.country(request.remote_ip)
+    logger.error location_location[3].downcase
+    session[:lang] = location_location[3].downcase rescue "en"
+    session[:lang] = "en" unless session[:lang] == "ro" 
+    I18n.locale = session[:lang]
   end
-
+  
   def admin?
     if !current_admin_user
       redirect_to :signup

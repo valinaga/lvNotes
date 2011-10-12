@@ -1,15 +1,6 @@
 <%= form_for(@recipient) do |f| %>
-  <% if @recipient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this device from being saved:</h2>
-      <ul><% @recipient.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.text_field :first_name, :placeholder => "First Name" %>
-  <%= f.text_field :last_name, :placeholder => "Last Name" %>
-  <%= f.email_field :email, :placeholder => "e-mail address" %>
-  <button type="submit" name="submit" value="submit-value">Submit</button>
+  <%= f.text_field :first_name, :placeholder => t("first_name") %>
+  <%= f.text_field :last_name, :placeholder => t("last_name") %>
+  <%= f.email_field :email, :placeholder => t("e-mail") %>
+  <button type="submit" name="submit" value="submit-value"><%=t "submit"%> </button>
 <% end %>

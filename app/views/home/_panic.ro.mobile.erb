@@ -1,0 +1,38 @@
+<input type="range" name="slider" id="slider" value="1" min="1" max="5" data-theme="f"  />
+<div id="issue"></div>
+
+<div class="issues" id="issue_1">
+  <h2>Nu prea rău!</h2>
+  <p>Hai să rezolvăm problema asta înainte să se agraveze! Alege una dintre scuzele moderate de mai jos
+    şi să sperăm că se va încheia totul cu bine.</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_1'}%>
+</div>
+<div class="issues" id="issue_2">
+  <h2>E suparata!</h2>
+  <p>Ai încurcat-o destul de rău! Hai sa vedem ce putem face... Alege una dintre scuzele sincere 
+    de mai jos pe care o vei trimite ca să vă împăcaţi.</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_2'}%>
+</div>
+<div class="issues" id="issue_3">
+  <h2>Aruncă cu lucruri!</h2>
+  <p>Acum ai incurcat-o rău de tot! Lucruri de genul ăsta nu ar fi trebuit să se întâmple... Alege una 
+    dintre scuzele profunde de mai jos pe care să i-o trimiţi. Totuşi, nişte flori te vor ajuta şi mai 
+    mult!</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_3'}%>
+</div>
+<div class="issues" id="issue_4">
+  <h2>Plânge!</h2>
+  <p>Eşti un mitocan si nu trebuie să-ţi spunem noi asta!
+     Trebuie să-i spui că ai greşit rău de tot, şi trebuie s-o faci cum trebuie! 
+     Între timp, alege una dintre scuzele profunde de mai jos pe care i-o vei trimite.</p>
+  <p>Asigură-te că-i cumperi un buchet de flori, şi nu fii zgârcit!</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_4'}%>
+</div>
+<div class="issues" id="issue_5">
+  <h2>Nu vrea să mă mai vadă niciodată!</h2>
+  <p>Eşti într-o mare belea! Cum ai putut s-o încurci atât de tare?  
+     În fine! Încearcă una dintre scuzele profunde de mai jos pe care să i-o trimiţi.</p>
+  <p>Trebuie neapărat să-i cumperi cei mai frumoşi trandafiri pe care îi găseşti, şi poate şi 
+    o cutie de bomboane sau un ursuleţ!</p>
+  <%= render :partial => 'panic_messages', :locals => { :special => 'issue_5'}%>
+</div>
