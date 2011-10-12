@@ -156,6 +156,11 @@ class SendersController < ApplicationController
     Sender.delete_all
     Recipient.delete_all
     Mapping.delete_all
+    session[:lang] = nil
+    session[:sender] = nil
+    cookies.delete(:auth_token)
+    session[:invitation] = nil
+    cookies.delete(:invite_token)
     redirect_to signout_path
   end
 end

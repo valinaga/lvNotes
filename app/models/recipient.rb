@@ -9,4 +9,8 @@ class Recipient < ActiveRecord::Base
 	def name
 	  "#{first_name} #{last_name}"
 	end
+
+  def appelation
+    I18n.t("my_dear")
+  end
 end

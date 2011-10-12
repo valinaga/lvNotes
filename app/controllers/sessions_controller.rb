@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_signin, :only => [:create, :failure, :destroy]
+  skip_before_filter :require_signin, :only => [:create, :failure, :destroy, :locale]
 
   def create
     auth = request.env["omniauth.auth"]
     sender = Sender.where(:provider => auth['provider'], :uid => auth['uid']).first 
     if sender.nil?
-      sender = Sender.create_with_omniauth(auth)
+      sender = Sender.create_with_omniauth(auth, session[:lang])
       current_invitation.dec
     end
     session[:token] = (auth['credentials']['token'] rescue nil)
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         # :description => 'A nice webapp for your happyness'
       # )      
     # end
-    sender.update_attribute(:lang, session[:lang]) if session[:lang] if sender.lang.nil?
+    I18n.locale = session[:lang] = sender.lang      
     cookies.permanent[:auth_token] = sender.auth_token
     session[:sender] = sender
     redirect_to root_url
@@ -27,12 +27,15 @@ class SessionsController < ApplicationController
   def destroy
     session[:sender] = nil
     cookies.delete(:auth_token)
-    # session[:invitation] = nil
-    # cookies.delete(:invite_token)
     redirect_to root_url, :notice => 'Signed out!'
   end
 
   def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
+  end
+  
+  def locale
+    I18n.locale = session[:lang] = params[:lang]
+    redirect_to root_url, :notice => 'Language changed!'
   end
 end

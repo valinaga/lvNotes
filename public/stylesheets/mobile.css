@@ -124,3 +124,6 @@ blockquote:after {
 }
 
 #slider, .issues { display: none;}
+
+.ui-radio .ui-btn-text { font-size: 12px !important;}
+.ui-radio .ui-btn-inner { padding: .27em 8px .31em !important; }

@@ -16,6 +16,8 @@ Lovecards::Application.routes.draw do
   match '/auth/failure' => 'sessions#failure'
   match '/signout' => 'sessions#destroy', :as => :signout
 
+  match '/locale/:lang' => 'sessions#locale', :as => :locale
+
   match 'newmail' => 'senders#newmail', :as => :new_mail
   match 'savemail' => 'senders#savemail', :as => :savemail
   

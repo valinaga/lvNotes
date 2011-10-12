@@ -16,7 +16,7 @@ class Sender < ActiveRecord::Base
   attr_accessor :current_recipient
   attr_accessible :provider, :uid, :first_name, :last_name, :email, :nickname, :signature, :lang
 
-  def self.create_with_omniauth(auth)
+  def self.create_with_omniauth(auth, lang)
     # begin
       create! do |user|
         user.provider = auth['provider']
@@ -30,6 +30,7 @@ class Sender < ActiveRecord::Base
           user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
         end
         user.status = "NO_MAIL" unless user.email
+        user.lang = lang
       end
     # rescue Exception
       # raise Exception #, "cannot create user record" 
@@ -89,10 +90,6 @@ class Sender < ActiveRecord::Base
     mapping.update_attribute(:email, self.email)
   end
   
-  def appelation
-    I18n.t("my_dear")
-  end
-   
   def expand_sign
     "\n#{signature}, \n\n#{nickname.titleize}"
   end

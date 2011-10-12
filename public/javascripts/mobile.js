@@ -12,3 +12,12 @@ $('#panic').live('pagebeforecreate',function(event){
     $('#issue').html(txt);
   } 
 });
+
+$('#auth').live('pagebeforecreate',function(event){
+  $("input[type='radio']").bind( "change", function(event, ui) {
+    if(this.checked) {
+      location.href = '/locale/'+this.value;
+    }
+  });
+});
+;

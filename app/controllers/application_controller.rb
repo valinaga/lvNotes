@@ -50,7 +50,6 @@ private
     return if session[:lang]
     @geoip ||= GeoIP.new("#{Rails.root}/db/GeoIP.dat")    
     location_location = @geoip.country(request.remote_ip)
-    logger.error location_location[3].downcase
     session[:lang] = location_location[3].downcase rescue "en"
     session[:lang] = "en" unless session[:lang] == "ro" 
     I18n.locale = session[:lang]
@@ -73,7 +72,6 @@ private
 
 
   # OmniAuth
-  
   def current_user
     begin
       @current_user ||= session[:sender] || Sender.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]

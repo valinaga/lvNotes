@@ -1,0 +1,8 @@
+<div data-role="fieldcontain" style="width:200px; float: left; margin:0;">
+  <fieldset data-role="controlgroup" data-type="horizontal" style="margin:.2em .5em;">
+    <input type="radio" name="lang" id="lang-en" value="en" <%= session[:lang] == 'en' ? "checked" : ""%> />
+    <label for="lang-en">En</label>
+    <input type="radio" name="lang" id="lang-ro" value="ro" <%= session[:lang] == 'ro' ? "checked" : ""%> />
+    <label for="lang-ro">Ro</label>
+  </fieldset>
+</div>  
