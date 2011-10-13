@@ -127,3 +127,12 @@ blockquote:after {
 
 .ui-radio .ui-btn-text { font-size: 12px !important;}
 .ui-radio .ui-btn-inner { padding: .27em 8px .31em !important; }
+
+#bar-switch {
+  display: inline-block; 
+  position: absolute; 
+  top:.4em; 
+  left:7px;
+  margin:0;
+  padding: 0;
+}
