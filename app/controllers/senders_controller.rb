@@ -163,4 +163,33 @@ class SendersController < ApplicationController
     cookies.delete(:invite_token)
     redirect_to signout_path
   end
+  
+  def promote_on
+    @fields = {}
+    case current_user.provider 
+      when 'twitter'
+        @fields[:description] = 'Check out this nice webapp for #yourlovely at http://yourlove.ly !'
+      when 'facebook'
+        @fields[:message] = 'Check this out!'
+        @fields[:description] = 'A really nice webapp for your true happyness.'
+    end
+  end
+  
+  def promote
+    return unless session[:token]
+    case current_user.provider 
+      when 'twitter'
+        Twitter.update(params[:description])
+        render :text => Twitter.options.to_json 
+      when 'facebook'
+        me = FbGraph::User.me(session[:token])
+        me.feed!(
+          :message => params[:message],
+          :name => 'yourLove.ly',
+          :link => 'http://yourlove.ly',
+          :description => params[:description]
+        )      
+        render :text => 'iuhuuu'
+    end
+  end
 end

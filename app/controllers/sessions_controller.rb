@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_signin, :only => [:create, :failure, :destroy, :locale]
+  skip_before_filter :require_signin #, :only => [:new, :create, :failure, :destroy, :locale]
+  
+  def new
+    redirect_to "/auth/#{params[:provider]}"
+  end
 
   def create
     auth = request.env["omniauth.auth"]
@@ -8,16 +12,15 @@ class SessionsController < ApplicationController
       sender = Sender.create_with_omniauth(auth, session[:lang])
       current_invitation.dec
     end
-    session[:token] = (auth['credentials']['token'] rescue nil)
-    # if session[:token]
-      # me = FbGraph::User.me(session[:token])
-      # me.feed!(
-        # :message => 'Updating via yourLove.ly',
-        # :name => 'yourLove.ly',
-        # :link => 'http://yourlove.ly',
-        # :description => 'A nice webapp for your happyness'
-      # )      
-    # end
+    if auth['provider'] == 'twitter'
+      Twitter.configure do |config|
+        config.consumer_key = APP_CONFIG[:twitter][:consumer_key]
+        config.consumer_secret = APP_CONFIG[:twitter][:consumer_secret]
+        config.oauth_token = (auth['credentials']['token'] rescue nil)  
+        config.oauth_token_secret = (auth['credentials']['secret'] rescue nil)
+      end
+    end
+    session[:token] = (auth['credentials']['token'] rescue nil) 
     I18n.locale = session[:lang] = sender.lang      
     cookies.permanent[:auth_token] = sender.auth_token
     session[:sender] = sender
@@ -31,7 +34,8 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
+    render :text => params[:message]
+    # redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
   
   def locale

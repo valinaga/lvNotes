@@ -6,11 +6,10 @@
     <%= link_to t("signout"), signout_url, :class => "ui-btn-right", :'data-icon' => "delete"%>
   </div>
   <article data-role="content">
-    <h3>The only app to garantee your happyness with your love one !</h3>
-    <p>Please signin with any of the sites below. </p>
-    <%=render 'shared/auth'%>
-    <p>We are using them only for your convenience. We will
-      never post anything there without your explicit permission. That's a prommise!</p>
+    <h3><%= t 'the_only_app'%></h3>
+    <p><%= t 'please_sign'%></p>
+    <%= auth_buttons 'sign_in', {:rel => "external"}, "twitter", "facebook", "google", "yahoo", "linked_in"%>
+    <p><%= t 'promisse'%></p>
   </article>
 </div>
 
@@ -20,8 +19,8 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
-      <%=link_to "PANIC !", "#panic", :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "f"%>
-      <h2>Lovecards for <%=@sender.recipient.name%></h2>
+      <%=link_to t('panic'), "#panic", :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "f"%>
+      <h2><%= t 'lovecards'%> <%=@sender.recipient.name%></h2>
       <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b" data-split-icon="refresh" data-split-theme="b"> 
         <li data-role="list-divider"> <%= Time.now.to_date%> <span class="ui-li-count"><%=@sender.letters.count-1%></span></li>
         <%= render(:partial => "letter", :collection => @sender.letters(true), :locals => { :sender => @sender}) %>
@@ -35,10 +34,10 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel">
-      <h2>Setting</h2>
-      <%=link_to "Your Own Settings", edit_sender_url(current_user), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
-      <%=link_to "Your Love.ly Settings", edit_recipient_url(current_user.recipient), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
-      <%=link_to "Delete All", current_user, :method => 'delete', :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
+      <h2><%= t 'settings'%></h2>
+      <%=link_to t('your_settings'), edit_sender_url(current_user), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
+      <%=link_to t('her_settings'), edit_recipient_url(current_user.recipient), :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
+      <%=link_to t('destroy_all'), current_user, :method => 'delete', :'data-role' => "button", :'data-rel'=>"dialog", :'data-icon' => "gear"%>
     </div>
   </article>
   <%=render :partial => 'shared/footer', :object => "b" %>
@@ -48,7 +47,12 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel">
-      <h2>About Us</h2>
+      <h2><%= t 'about'%></h2>
+      <% if "twitter facebook".include? current_user.provider%>
+        <%= auth_buttons('promote_on', {:'data-rel'=>"dialog"}, current_user.provider)%>
+      <%else%>
+        <%=current_user.provider%>
+      <%end%>
     </div>
   </article>
   <%=render :partial => 'shared/footer', :object => "c" %>
@@ -58,7 +62,7 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel">
-      <h2>How bad is it?</h2>
+      <h2><%= t 'how_bad'%></h2>
       <%= render :partial => 'panic'%>
     </div>
   </article>

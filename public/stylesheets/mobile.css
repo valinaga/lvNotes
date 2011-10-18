@@ -59,12 +59,12 @@ ul {list-style: none; margin: 0 0 0 1.5em; padding: 0;}
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
 }
 
-.tw, .fb, .gg, .yh, .li { display: block; padding:8px 0 7px 40px; }
-.tw { background: url(../images/twitter_32.png) 0 0 no-repeat;}
-.fb { background: url(../images/facebook_32.png) 0 0 no-repeat;}
-.gg { background: url(../images/google_32.png) 0 0 no-repeat;}
-.yh { background: url(../images/yahoo_32.png) 0 0 no-repeat;}
-.li { background: url(../images/linkedin_32.png) 0 0 no-repeat;}
+.twitter, .facebook, .google, .yahoo, .linked_in { display: block; padding:8px 0 7px 40px; }
+.twitter { background: url(../images/twitter_32.png) 0 0 no-repeat;}
+.facebook { background: url(../images/facebook_32.png) 0 0 no-repeat;}
+.google { background: url(../images/google_32.png) 0 0 no-repeat;}
+.yahoo { background: url(../images/yahoo_32.png) 0 0 no-repeat;}
+.linked_in { background: url(../images/linkedin_32.png) 0 0 no-repeat;}
 
 .buttons .ui-link {text-decoration:none; color: #555; font-weight: normal;}
 

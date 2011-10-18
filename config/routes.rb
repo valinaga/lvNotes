@@ -15,6 +15,7 @@ Lovecards::Application.routes.draw do
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'
   match '/signout' => 'sessions#destroy', :as => :signout
+  match '/sign_in/:provider' => 'sessions#new', :as => :signin
 
   match '/locale/:lang' => 'sessions#locale', :as => :locale
 
@@ -32,6 +33,8 @@ Lovecards::Application.routes.draw do
   match "delivered" => "senders#delivered", :as => :delivered
   match "unsubscribe" => "senders#unsubscribe", :as => :unsubscribe
   match "panic" => "senders#panic", :as => :panic
+  match "/promote_on/:provider" => "senders#promote_on", :as => :promote_on
+  match "promote" => "senders#promote", :as => :promote
 
   match "resend" => "senders#resend", :as => :resend 
   match "notify" => "senders#notify", :as => :notify

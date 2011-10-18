@@ -1,0 +1,17 @@
+<div data-role="page" id="editsender" class="pagecontainer" data-theme="b" data-url="/">
+  <div data-role="header" data-position="fixed">
+    <h3><%= t "promote"%></h3>
+  </div>
+  <article data-role="content">
+    <div id="panel"> 
+      <%= form_tag(promote_url) do -%>
+      <%if current_user.provider == 'facebook' -%>
+      <%= text_field_tag 'message', @fields[:message], :placeholder => t('promote_msg_place')%>
+      <%end -%>
+      <%= text_area_tag 'description', @fields[:description], :placeholder => t('promote_desc_place')%>
+      <%= submit_tag t('submit') %>
+      <% end -%>
+      <a href="/#settings" data-role="button" data-icon="back" data-rel="back"><%=t "close"%></a>
+    </div>
+  </article>
+</div>

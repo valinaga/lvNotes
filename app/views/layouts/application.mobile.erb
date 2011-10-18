@@ -5,7 +5,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0,user-scalable=no,width=device-width">
-  <title><%= session[:lang]%>|yourLove.ly</title>
+  <title>yourLove.ly</title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
   <%= stylesheet_link_tag "mobile" %>
   <%= javascript_include_tag :defaults, 'mobile' %>
@@ -14,6 +14,5 @@
   </head>
   <body>
     <%= yield %>
-    <div>|<%= session[:lang]%>|</div>
   </body>
 </html>

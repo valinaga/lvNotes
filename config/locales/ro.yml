@@ -32,10 +32,26 @@ ro:
   apologies: "Scuze"
   my_dear: "Draga mea "
   my_heart: "Cu toata dragostea"
+  promote_on : "Promoveaza pe"
+
+  the_only_app: "Singura aplicaţie care îţi garantează fericirea alături de minunata ta pereche!"
+  please_sign: "Te rog semnează cu una din metodele de mai jos."
+  promisse: "Folosim aceste metode doar pentru comoditatea ta. Nu vom publica nicioadată nimic în numele tău fără permisiunea ta explicită. Pe cuvant de onoare!"
+  panic: "PANICĂ !"
+  lovecards: "Scrisori pentru "
+
+  your_settings: "Setările tale"
+  her_settings: "Setările Partenerei"
+  destroy_all: "Şterge Cont"
+  how_bad: "Cât e de rău?"
+
+  promote: "Promovează-ne!"
+  promote_msg_place: "Introdu mesajul aici .. "
+  promote_desc_place: "Introdu descrierea aici .."
 
   date:
     formats:
-      default: "%d-%m-%Y"
+      default: "%d-%m-%Y" 
       short: "%d %b"
       long: "%d %B %Y"
 #      only_day: "%e"
