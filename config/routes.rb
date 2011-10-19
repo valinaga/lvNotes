@@ -1,4 +1,5 @@
 Lovecards::Application.routes.draw do
+
   root :to => "home#index"
 
   resources :senders, :only => [ :edit, :update, :show, :destroy ]
@@ -35,6 +36,8 @@ Lovecards::Application.routes.draw do
   match "panic" => "senders#panic", :as => :panic
   match "/promote_on/:provider" => "senders#promote_on", :as => :promote_on
   match "promote" => "senders#promote", :as => :promote
+  match "/activate/:feature" => "senders#activate_feature", :as => :activate_feature
+  match "/deactivate/:feature" => "senders#deactivate_feature", :as => :deactivate_feature
 
   match "resend" => "senders#resend", :as => :resend 
   match "notify" => "senders#notify", :as => :notify

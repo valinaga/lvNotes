@@ -192,4 +192,14 @@ class SendersController < ApplicationController
         render :text => 'iuhuuu'
     end
   end
+  
+  def activate_feature
+    current_user.features.create(:name => params[:feature])
+    redirect_to root_path
+  end
+
+  def deactivate_feature
+    current_user.features.where(:name => params[:feature]).delete_all
+    redirect_to root_path
+  end
 end

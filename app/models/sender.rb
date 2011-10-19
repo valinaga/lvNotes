@@ -1,8 +1,9 @@
 class Sender < ActiveRecord::Base
 	has_many :letters, :order => 'sent DESC'
-  has_one :recipient
+  has_one :recipient, :dependent => :destroy
   has_one :mapping, :dependent => :destroy
-  has_one :invitation_pool
+  has_one :invitation_pool, :dependent => :destroy
+  has_many :features, :dependent => :destroy
 
 	before_create :init
 	before_create {generate_token(:auth_token)}

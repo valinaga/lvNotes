@@ -19,7 +19,8 @@
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel"> 
-      <%=link_to t('panic'), "#panic", :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "f"%>
+      <%=link_to_if( current_user.features.exists?('panic'), t('panic'), "#panic", :'data-role' => "button", :'data-icon' => "alert", :'data-theme' => "f") {|l| ""} %>
+      <%=link_to_if( current_user.features.exists?('next_step'), t('next_step'), "#next_step", :'data-role' => "button", :'data-icon' => "forward", :'data-theme' => "b") {|l| ""} %>
       <h2><%= t 'lovecards'%> <%=@sender.recipient.name%></h2>
       <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b" data-split-icon="refresh" data-split-theme="b"> 
         <li data-role="list-divider"> <%= Time.now.to_date%> <span class="ui-li-count"><%=@sender.letters.count-1%></span></li>
@@ -53,6 +54,7 @@
       <%else%>
         <%=current_user.provider%>
       <%end%>
+      <%=current_user.invitation_pool.name%>
     </div>
   </article>
   <%=render :partial => 'shared/footer', :object => "c" %>
