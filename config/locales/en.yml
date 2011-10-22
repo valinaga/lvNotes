@@ -3,6 +3,7 @@
 
 en:
   welcome: "Welcome"
+  tanks: "Thank you"
   service: ""
   beta: "service in currently in beta and you need an invitation to subscribe."
   please_code: "Please enter your invitation code below"
@@ -13,6 +14,9 @@ en:
   settings: "Settings"
   please_fill: "Please update the details of your Love.ly one"  
   close: "Close"
+  
+  mail_not_found: "We couldn't get your e-mail address from %{provider}. We need your e-mail address to send you reminders for yourLove.ly one. Please fill it down."
+        
   first_name: "First Name"
   last_name: "Last Name"
   e-mail: "e-mail address"
@@ -48,6 +52,13 @@ en:
   promote: "Promote us!"
   promote_msg_place: "Enter the message here .. "
   promote_desc_place: "Enter the description here .."
+
+
+  yservice: "yourLove.ly service"
+  mwelcome: "Welcome to yourlove.ly"
+  mreminder: "yourLove.ly gentle reminder"
+  myourlovely: "... your lovely"
+  msorry: "... I'm verry sorry!"
 
   errors:
     format: "%{attribute} %{message}"

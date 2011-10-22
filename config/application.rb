@@ -33,7 +33,8 @@ module Lovecards
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
     # config.action_view.javascript_expansions[:defaults] = ['jquery', 'jquery-ujs/src/rails']
-    config.action_view.javascript_expansions[:defaults] = ['https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js','rails']
+    # config.action_view.javascript_expansions[:defaults] = ['https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js','rails']
+    config.action_view.javascript_expansions[:defaults] = ['http://code.jquery.com/jquery-1.6.4.min.js','rails']
       
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

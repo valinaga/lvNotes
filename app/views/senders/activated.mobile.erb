@@ -1,11 +1,11 @@
 <% @letter = session[:letter]%>
 <%unless @letter.nil?%>
-
+<% I18n.locale = @letter.sender.lang  %>
 <div data-role="page" id="activated" class="pagecontainer">
   <%= render 'shared/title_back'%>
   <article data-role="content">
     <div id="panel"> 
-      <%= render 'shared/activated'%>
+      <%=render 'shared/activated'%>
     </div>
   </article>
 </div>

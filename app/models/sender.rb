@@ -59,8 +59,7 @@ class Sender < ActiveRecord::Base
   
   def activate
     return if status == 'ACTIVE'
-    self.status = 'ACTIVE'
-    self.save
+    self.update_attribute(:status, "ACTIVE")
   end
   
   def new?

@@ -1,6 +1,7 @@
 class SendersController < ApplicationController
-  skip_before_filter :require_signin, :only => [:activate,:deliver]
-  skip_before_filter :require_invite, :only => [:activate,:deliver]
+  skip_before_filter :require_signin, :only => [:activate, :activated, :deliver]
+  skip_before_filter :require_invite, :only => [:activate, :activated, :deliver]
+  before_filter :set_locale
 	
   def newmail
     @sender = current_user
@@ -12,7 +13,7 @@ class SendersController < ApplicationController
       @sender.email=params[:sender][:email]
       @sender.save!
       @sender.update_mapping
-      redirect_to new_recipient_path
+      redirect_to new_recipient_url
     rescue Exception
       render 'newmail' 
     end
@@ -26,7 +27,7 @@ class SendersController < ApplicationController
 
   def subscribe
     @message = Message.find(params[:m])
-    @sender = session[:sender]
+    @sender = current_user
     if @sender && @message
       @letter = @sender.letters.recent(@message) || 
                 @sender.letters.create(:recipient => @sender.recipient(true), 
@@ -35,14 +36,14 @@ class SendersController < ApplicationController
       if @sender.no_email?
         # need to confirm mail throug activation
         UserMailer.activate_email(@letter).deliver
-        redirect_to pending_path, :notice => "You're almost done!"
+        redirect_to pending_url, :notice => "You're almost done!"
       else
         # just a welcome message no need to confirm email
         UserMailer.welcome_email(@letter).deliver
-        redirect_to activate_path
+        redirect_to activate_url
       end
     else
-      redirect_to signup_path, :alert => "Something went wrong!"
+      redirect_to signup_url, :alert => "Something went wrong!"
     end
   end
   
@@ -50,22 +51,25 @@ class SendersController < ApplicationController
   def activate
     @letter = Letter.where(:hashed => params[:h]).first || session[:letter]
     if @letter 
-      @letter.sender.activate
-      @current_user = session[:sender] = @letter.sender  
-      @letter.ready
-      UserMailer.send_email(@letter).deliver
-      @letter.delivered
-      session[:letter] = @letter
-      # if !user_signed_in? 
-        # # cookies.permanent[:auth_token] = @letter.sender.auth_token
-        # session[:sender] = @letter.sender  
-      # end
-      redirect_to activated_path, :notice=> "Your account was sucessfully activated!"
+      if !user_signed_in? 
+        cookies.permanent[:auth_token] = @letter.sender.auth_token
+        session[:sender] = @letter.sender  
+      end
+      if current_user.active?
+        redirect_to root_url
+      else
+        current_user.activate
+        @letter.ready
+        UserMailer.send_email(@letter).deliver
+        @letter.delivered
+        session[:letter] = @letter
+        redirect_to activated_url, :notice=> "Your account was sucessfully activated!"        
+      end
     else
-      redirect_to signup_path, :alert => "Something went wrong!"
+      redirect_to signup_url, :alert => "Something went wrong!"
     end
   end
-  
+    
   # called from notification letter from daemon
   def deliver
     session[:d] = nil
@@ -202,4 +206,12 @@ class SendersController < ApplicationController
     current_user.features.where(:name => params[:feature]).delete_all
     redirect_to root_path
   end
+
+protected
+
+  def set_locale
+    I18n.locale = session[:lang] = current_user.lang if current_user    
+  end
+  
+
 end

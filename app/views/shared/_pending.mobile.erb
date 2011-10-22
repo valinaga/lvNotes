@@ -1,10 +1,4 @@
-<% @letter = session[:letter]%>
-<%unless @letter.nil?%>
-<% I18n.locale = @letter.sender.lang  %>
-<%= render 'shared/pending'%>
-
-<h2><%= t 'thanks'%>!</h2>
-<p>Thank you for choosing to subscribe to LoveCards service!</p>
+<p>You just subscribed to yourLove.ly service!</p>
 <p>An e-mail was sent to your e-mail address <%=@letter.sender.email%> which
    contains an activation link for this service. We need this to confirm your
    e-mail address.</p>
@@ -14,6 +8,5 @@
    Then, we'll send you an email with other love messages you can choose from, and 
    so on, forever!</p>
 <p>The life can't be better than this, that's promissed!</p>
-<p>Enjoy the LoveCard service, but most important, the happy life with 
+<p>Enjoy the yourLove.ly service, but most important, the happy life with 
    <%=@letter.recipient.first_name%>!</p>
-<%end%>

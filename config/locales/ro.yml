@@ -3,6 +3,7 @@
 
 ro:
   welcome: "Bine ai venit"
+  thanks: "Multumim"
   service: "Serviciul"
   beta: "este în prezent în stadiul beta şi ai nevoie de invitaţie pentru a subscrie."
   please_code: "Te rog introdu codul invitaţiei mai jos"
@@ -13,6 +14,9 @@ ro:
   settings: "Setări"
   please_fill: "Te rog actualizează detaliile partenerei tale"  
   close: "Închide"
+
+  mail_not_found: "Nu am putut obţine adresa ta de mail de la %{provider}. Adresa de mail este necesară pentru a-ţi reaminti din timp în timp să-i scrii partenerei. Te rugăm introdu-o mai jos."
+
   first_name: "Prenume"
   last_name: "Nume"
   e-mail: "Adresa de E-mail"
@@ -26,7 +30,7 @@ ro:
   choice: "Opţiunea"
   mesages: "Mesaje"
   choose_msg: "Alege unul dintre cele 3 mesaje de mai jos, care crezi că sună mai potrivit pentru tine şi %{name}. Mesajul va fi trimis către %{first_name} ca venind de la tine, purtând semnătura ta."
-  next_msg: "Urmatorul mesaj pe"
+  next_msg: "Următorul mesaj pe"
   sent: "Trimis"
   resend: "Retrimite alte 3 variante"
   apologies: "Scuze"
@@ -49,6 +53,13 @@ ro:
   promote: "Promovează-ne!"
   promote_msg_place: "Introdu mesajul aici .. "
   promote_desc_place: "Introdu descrierea aici .."
+
+  yservice: "Serviciul yourLove.ly"
+  mwelcome: "Bine ai venit la yourLove.ly"
+  mreminder: "memento yourLove.ly"
+  myourlovely: "... iubirea ta"
+  msorry: "... Îmi pare foarte rău!"
+
 
   date:
     formats:

@@ -30,6 +30,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:sender] = nil
     cookies.delete(:auth_token)
+    session[:lang] = nil
     redirect_to root_url, :notice => 'Signed out!'
   end
 
