@@ -6,3 +6,5 @@ Lovecards::Application.initialize!
 
 #APP_URL = "http://localhost:3000"
 #APP_URL = "localhost:3000"
+
+ENV['SSL_CERT_FILE'] = '/etc/ssl/certs/cacert.pem'
