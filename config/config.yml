@@ -1,6 +1,6 @@
 production:
   :facebook:
-    :app_id: 'be2ad4bb809aa5768ee82da32dad9d26'
+    :app_id: '189879571063723'
     :app_secret: '4d86565c2e66cfb66d8abded500cc4f8'
   :twitter:
     :consumer_key: 'yABWbIRA0s0s1Jc81B8Dg'
