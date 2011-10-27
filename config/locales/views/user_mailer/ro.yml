@@ -1,0 +1,24 @@
+ro:
+  yservice: "Serviciul yourLove.ly"
+  mwelcome: "Bine ai venit la yourLove.ly"
+  mreminder: "memento yourLove.ly"
+  myourlovely: "... iubirea mea"
+  msorry: "... Îmi pare foarte rău!" 
+
+  headline: "pentru dragostea ta"
+  disclaimer: "Acest mesaj a fost trimis către %{email}. Ai primit aces mesaj pentru că te-ai înregistrat la serviciul gratuit yourLove.ly"
+  unsubscribe: "Dezabonare"
+  contact_mail: "Ne poţi contacta pe mail la"
+  
+  success_sign: "Te-ai înregistrat cu success la serviciul yourLove.ly."
+  msg_text: "Ai ales să trimiţi un mesaj de dragoste către %{name} pe adresa %{email} cu următorul text:"
+
+  msg_confirm: "Pentru a confirma înregistrarea şi a trimite efectiv mesajul, apasă"
+  activate_btn: "Activare"
+  msg_thanks: "Mulţumim pentru că te-ai înregistrat şi îţi dorim o zi fantastică!"
+  msg_end: "De acum încolo, până vei decide contrariul, îţi vom trimite din când în când alerte cu propuneri de mesaje de dragoste pentru %{name}."
+
+  msg_hey: "Hei %{name}, a sosit din nou timpul!"
+  msg_time: "Da, a sosit din nou timpul să-i spui partenerei tale cât de mult înseamnă pentu tine!"
+  msg_pick: "Aşa că te rugăm să alegi una dintre cele trei sugestii de mai jos şi apoi doar aşteaptă miracolul să se producă!"
+  msg_hear: "De abia asteptăm să primim veşti de la tine despre cât de minunat a fost de data asta!"

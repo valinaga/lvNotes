@@ -1,0 +1,35 @@
+en:
+  welcome: "Welcome"
+  thanks: "Thank you"
+  service: ""
+  submit: "Submit"
+
+  signout: "Signout"
+  sign_in: "Sign in with"
+  the_only_app: "The only app to garantee your happyness with your love one !"
+  please_sign: "Please signin with any of the sites below. "
+  promisse: "We are using them only for your convenience. We will never post anything there without your explicit permission. That's a prommise!"
+
+  close: "Close"
+
+  next_msg: "Next lovecard on"
+  sent: "Sent"
+  resend: "Resend me another 3 choices"
+
+  apologies: "Apologies"
+
+  panic: "PANIC !"
+  next_step: "Next Step"
+  lovecards: "Lovecards for "
+  
+  your_settings: "Your Own Settings"
+  her_settings: "Your Love.ly Settings"
+  destroy_all: "Delete All"
+  
+  how_bad: "How bad is it?"
+  
+  promote_on : "Promote on"
+  
+  promote: "Promote us!"
+  promote_msg_place: "Enter the message here .. "
+  promote_desc_place: "Enter the description here .."

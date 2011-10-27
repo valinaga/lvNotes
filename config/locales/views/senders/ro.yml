@@ -1,0 +1,9 @@
+ro:
+  mail_not_found: "Nu am putut obţine adresa ta de mail de la %{provider}. Adresa de mail este necesară pentru a-ţi reaminti din timp în timp să-i scrii partenerei. Te rugăm introdu-o mai jos."
+  e-mail: "Adresa de E-mail"
+  edit_sender: "Actualizează-ţi numele şi semnătura"  
+  your_sign: "Semnătura ta"
+  choice: "Opţiunea"
+  mesages: "Mesaje"
+  choose_msg: "Alege unul dintre cele 3 mesaje de mai jos, care crezi că sună mai potrivit pentru tine şi %{name}. Mesajul va fi trimis către %{first_name} ca venind de la tine, purtând semnătura ta."
+  my_heart: "Cu toata dragostea"

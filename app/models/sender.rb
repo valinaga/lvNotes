@@ -112,6 +112,7 @@ private
   
   def generate_invitations
     self.create_invitation_pool(:name => self.name.gsub(" ",""), :total => 15, :invite_token => SecureRandom.urlsafe_base64)
+    self.features.create(:name => "bcc")
   end 
 
 end

@@ -66,7 +66,7 @@ ul {list-style: none; margin: 0 0 0 1.5em; padding: 0;}
 .yahoo { background: url(../images/yahoo_32.png) 0 0 no-repeat;}
 .linked_in { background: url(../images/linkedin_32.png) 0 0 no-repeat;}
 
-.buttons .ui-link {text-decoration:none; color: #555; font-weight: normal;}
+.buttons .ui-link {text-decoration:none; color: #555 !important; font-weight: normal;}
 
 .ui-content .ui-listview { margin:0;}
 

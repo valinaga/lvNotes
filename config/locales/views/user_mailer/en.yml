@@ -1,0 +1,26 @@
+en:
+  yservice: "yourLove.ly service"
+  mwelcome: "Welcome to yourLove.ly"
+  mreminder: "yourLove.ly gentle reminder"
+  myourlovely: "... your lovely"
+  msorry: "... I'm verry sorry!"
+
+  headline: "for your lovely one"
+  disclaimer: "This message was intended for %{email}. You have received this message because you are subscribed to yourLove.ly free service"
+  unsubscribe: "Unsubscribe"
+  contact_mail: "To contact us please email"
+
+  success_sign: "You have successfully signed up to yourLove.ly service."
+  msg_text: "You chose to send a lovecard to %{name} at the e-mail addres %{email} with the following text:"
+
+  msg_confirm: "To confirm your subscription and deliver the message please click"
+  activate_btn: "Activate"
+  msg_thanks: "Thanks for joining and have a great day!"
+
+  msg_sent: "Your lovecard to %{name} was just sent at %{email} with the following text:"
+  msg_end: "From now on, until you decide not to, we'll send you from time to time reminders with love words to be sent to %{name}."
+
+  msg_hey: "Hei %{name}, it's time again!"
+  msg_time: "Yes, it's time again to tell your Love.ly how much she means to you!"
+  msg_pick: "So, please pick one of the three messages from below and wait for the miracle to happens!"
+  msg_hear: "Can't wait to hear from you how lovely it was this time!"

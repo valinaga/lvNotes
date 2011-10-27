@@ -1,0 +1,34 @@
+ro:
+  welcome: "Bine ai venit"
+  thanks: "Multumim"
+  service: "Serviciul"
+  submit: "Trimite"
+
+  signout: "Ieşire"  
+  sign_in: "Semnează cu"  
+  the_only_app: "Singura aplicaţie care îţi garantează fericirea alături de minunata ta pereche!"
+  please_sign: "Te rog semnează cu una din metodele de mai jos."
+  promisse: "Folosim aceste metode doar pentru comoditatea ta. Nu vom publica nicioadată nimic în numele tău fără permisiunea ta explicită. Pe cuvant de onoare!"
+  close: "Închide"
+
+  next_msg: "Următorul mesaj pe"
+  sent: "Trimis"
+  resend: "Retrimite alte 3 variante"
+
+  apologies: "Scuze"
+
+  panic: "PANICĂ !"
+  next_step: "Pasul Următor"
+  lovecards: "Scrisori pentru "
+
+  your_settings: "Setările tale"
+  her_settings: "Setările Partenerei"
+  destroy_all: "Şterge Cont"  
+  
+  how_bad: "Cât e de rău?"
+
+  promote_on : "Promoveaza pe"
+
+  promote: "Promovează-ne!"
+  promote_msg_place: "Introdu mesajul aici .. "
+  promote_desc_place: "Introdu descrierea aici .."

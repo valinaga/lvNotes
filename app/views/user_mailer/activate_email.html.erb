@@ -1,19 +1,16 @@
-<h1>Welcome to yourLove.ly, <%= @sender.name %></h1>
+<h1><%= t 'mwelcome'%>, <%= @sender.name %></h1>
 
-<p> 
-  You have successfully signed up to yourLove.ly service.
+<p>
+  <%= t 'success_sign'%>
 </p>
 <p>
-  You chose to send a lovecard to <%=@recipient.name%>
-  at the e-mail addres <%=@recipient.email%> with the
-  following text:
+  <%= t('msg_text', :name => @recipient.name , :email => @recipient.email)%>
 </p>
 <blockquote>
   &#8220;<%=@msg.content%>&#8221;
 </blockquote>
 <p>
-  To confirm your subscription and deliver the message
-  please click
+  <%= t 'msg_confirm'%>
 </p>
-<%= link_to "Activate", @url, :class => "button white" %>
-<p>Thanks for joining and have a great day!</p>
+<%= link_to t('activate_btn'), @url, :class => "button white" %>
+<p><%= t 'msg_thanks'%></p>

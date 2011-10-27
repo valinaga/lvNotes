@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
+      I18n.locale = session[:lang] = current_user.lang
       if !current_user.email?
         redirect_to new_mail_url
       elsif current_user.no_recipient?

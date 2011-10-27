@@ -1,87 +1,18 @@
-# encoding: utf-8
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 ro:
-  welcome: "Bine ai venit"
-  thanks: "Multumim"
-  service: "Serviciul"
-  beta: "este în prezent în stadiul beta şi ai nevoie de invitaţie pentru a subscrie."
-  please_code: "Te rog introdu codul invitaţiei mai jos"
-  enter_code: "Introdu codul invitaţiei"
-  submit: "Trimite"
-  sign_in: "Semnează cu"
-  almost_done: "Aproape am terminat! Te rog completează detaliile partenerei tale"
-  settings: "Setări"
-  please_fill: "Te rog actualizează detaliile partenerei tale"  
-  close: "Închide"
-
-  mail_not_found: "Nu am putut obţine adresa ta de mail de la %{provider}. Adresa de mail este necesară pentru a-ţi reaminti din timp în timp să-i scrii partenerei. Te rugăm introdu-o mai jos."
-
-  first_name: "Prenume"
-  last_name: "Nume"
-  e-mail: "Adresa de E-mail"
-  home: "Acasă"
-  about: "Despre Noi"
-  hi: "Salut"
-  signout: "Ieşire"
-  back: "Înapoi"
-  edit_sender: "Actualizează-ţi numele şi semnătura"  
-  your_sign: "Semnătura ta"
-  choice: "Opţiunea"
-  mesages: "Mesaje"
-  choose_msg: "Alege unul dintre cele 3 mesaje de mai jos, care crezi că sună mai potrivit pentru tine şi %{name}. Mesajul va fi trimis către %{first_name} ca venind de la tine, purtând semnătura ta."
-  next_msg: "Următorul mesaj pe"
-  sent: "Trimis"
-  resend: "Retrimite alte 3 variante"
-  apologies: "Scuze"
-  my_dear: "Draga mea "
-  my_heart: "Cu toata dragostea"
-  promote_on : "Promoveaza pe"
-
-  the_only_app: "Singura aplicaţie care îţi garantează fericirea alături de minunata ta pereche!"
-  please_sign: "Te rog semnează cu una din metodele de mai jos."
-  promisse: "Folosim aceste metode doar pentru comoditatea ta. Nu vom publica nicioadată nimic în numele tău fără permisiunea ta explicită. Pe cuvant de onoare!"
-  panic: "PANICĂ !"
-  next_step: "Pasul Următor"
-  lovecards: "Scrisori pentru "
-
-  your_settings: "Setările tale"
-  her_settings: "Setările Partenerei"
-  destroy_all: "Şterge Cont"
-  how_bad: "Cât e de rău?"
-
-  promote: "Promovează-ne!"
-  promote_msg_place: "Introdu mesajul aici .. "
-  promote_desc_place: "Introdu descrierea aici .."
-
-  yservice: "Serviciul yourLove.ly"
-  mwelcome: "Bine ai venit la yourLove.ly"
-  mreminder: "memento yourLove.ly"
-  myourlovely: "... iubirea ta"
-  msorry: "... Îmi pare foarte rău!"
-
-
   date:
     formats:
       default: "%d-%m-%Y" 
       short: "%d %b"
       long: "%d %B %Y"
-#      only_day: "%e"
     day_names: [Duminică, Luni, Marți, Miercuri, Joi, Vineri, Sâmbată]
     abbr_day_names: [Dum, Lun, Mar, Mie, Joi, Vin, Sâm]
     month_names: [~, Ianuarie, Februarie, Martie, Aprilie, Mai, Iunie, Iulie, August, Septembrie, Octombrie, Noiembrie, Decembrie]
     abbr_month_names: [~, Ian, Feb, Mar, Apr, Mai, Iun, Iul, Aug, Sep, Oct, Noi, Dec]
-#    order: [:day,:month,:year ]
   time:
     formats:
       default: "%a %d %b %Y, %H:%M:%S %z"
-#      time: "%H:%M"
       short: "%d %b %H:%M"
       long: "%d %B %Y %H:%M"
-#      only_second: "%S"
-#      datetime:
-#        formats:
-#          default: "%d-%m-%YT%H:%M:%S%Z"
     am: ''
     pm: ''
   datetime:
@@ -141,17 +72,12 @@ ro:
         format: '%n %u'
     percentage:
       format:
-        # separator:
         delimiter: ","
-#        precision: 2
     precision:
       format:
-        # separator:
         delimiter: ""
-        # precision:
     human:
       format:
-#        separator: "."
         delimiter: ","
         precision: 1
       storage_units:
@@ -204,13 +130,8 @@ ro:
       two_words_connector: " şi "
       last_word_connector: " şi "
     select:
-      # default value for :prompt => true in FormOptionsHelper
       prompt: "Alegeţi"
   helpers:
     submit:
       create: "Creaza %{model}"
       update: "Actualizeaza %{model}"
-    label:
-      sender:
-        first_name: "Prenume"
-        last_name: "Nume"

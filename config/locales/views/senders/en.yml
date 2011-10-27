@@ -1,0 +1,9 @@
+en:
+  mail_not_found: "We couldn't get your e-mail address from %{provider}. We need your e-mail address to send you reminders for yourLove.ly one. Please fill it down."
+  e-mail: "e-mail address"
+  edit_sender: "Change your nickname and signature"  
+  your_sign: "Your Signature"
+  choice: "Choice"
+  mesages: "Mesages"
+  choose_msg: "Please choose one of the three messages displayed below, you believe it feels better for you and %{name}. The message will be sent to %{first_name} as comming from you and signed by you."
+  my_heart: "From all my heart"

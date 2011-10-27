@@ -51,7 +51,7 @@ class UserMailer < ActionMailer::Base
     I18n.locale = @sender.lang
     mail( :from => "#{@sender.name} <#{@sender.fake_email}>",
           :to => "#{@recipient.name} <#{@recipient.email}>",
-          :bcc => @sender.features.exists?('bcc') ? @sender.email : '',
+          :bcc => [@sender.features.exists?('bcc') ? @sender.email : ''],
           :subject => t('myourlovely'))
   end
   

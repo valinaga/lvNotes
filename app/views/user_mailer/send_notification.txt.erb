@@ -1,4 +1,10 @@
-Messages
-========
+<%= t 'msg_hey', :name => @sender.first_name%>
+==========================
+
+<%= t 'msg_time'%>
+
+<%= t 'msg_pick'%>
 
 <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender, :recipient => @recipient}) %>
+
+<%= t 'msg_hear'%>

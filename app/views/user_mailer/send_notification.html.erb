@@ -1,5 +1,6 @@
-<h1>Hey <%=@sender.first_name%>, it's time again!</h1>
-<p>Yes, it's time again to tell your lovely how much she means to you!</p>
-<p>So please pick one of the three suggestions we have for you and just wait for the miracle to happens!</p>
+<h1><%= t 'msg_hey', :name => @sender.first_name%></h1>
+
+<p><%= t 'msg_time'%></p>
+<p><%= t 'msg_pick'%></p>
 <%= render(:partial => "message", :collection => @messages, :locals => { :sender => @sender, :recipient => @recipient}) %>
-<p>Can't wait to hear from you how lovely it was this time! </p>
+<p><%= t 'msg_hear'%> </p>

@@ -1,15 +1,12 @@
-Welcome to yourLove.ly, <%= @sender.name %>
+<%= t 'mwelcome'%>, <%= @sender.name %>
 ===============================================
  
-You have successfully signed up to yourLove.ly service.
+<%= t 'success_sign'%>
 
-You chose to send a lovecard to <%=@recipient.name%>
-at the e-mail addres <%=@recipient.email%> with the
-following text:
+<%= t('msg_text', :name => @recipient.name , :email => @recipient.email)%>
 
 " <%=@msg.content%> "
  
-To confirm your subscription and deliver the message
-please click: <%= link_to "Activate", @url %>.
+<%= t 'msg_confirm'%> <%= link_to t('activate_btn'), @url %>
  
-Thanks for joining and have a great day!
+<%= t 'msg_thanks'%>
