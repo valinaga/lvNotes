@@ -1,4 +1,5 @@
 class RecipientsController < ApplicationController
+  before_filter :set_locale
   
   def index
     @recipient = current_user.recipient
@@ -46,4 +47,11 @@ class RecipientsController < ApplicationController
     @recipient.destroy
     redirect_to root_url
   end
+
+protected
+
+  def set_locale
+    I18n.locale = session[:lang] = current_user.lang if current_user    
+  end
+  
 end
