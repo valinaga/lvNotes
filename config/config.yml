@@ -2,6 +2,7 @@ production:
   :facebook:
     :app_id: '189879571063723'
     :app_secret: '4d86565c2e66cfb66d8abded500cc4f8'
+    :ca_path: '/etc/ssl/certs'
   :twitter:
     :consumer_key: 'yABWbIRA0s0s1Jc81B8Dg'
     :consumer_secret: 'IuboXnkpR7HFXm4S60WBYCxQyvr41KWE0DNYFQmGU5s'
@@ -12,6 +13,7 @@ development:
   :facebook:
     :app_id: '627711beba2da431d2266bfe40c41618'
     :app_secret: 'e042af88df1ec657121d3609e353740a'
+    :ca_file: 'cert/ca-bundle.crt'
   :twitter:
     :consumer_key: 'ECY3RkpRtk7sNIa9OtELQ'
     :consumer_secret: 'X9oIRrQ9GSfQxKre7MmOM8gpoEx8dDOfZkX5paAQ'
