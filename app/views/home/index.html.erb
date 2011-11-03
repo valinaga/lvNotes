@@ -1,0 +1,12 @@
+<%if !user_signed_in? %>
+<div class="signup">
+	<h1>yourLove.ly!</h1>
+  <h3><%= t 'the_only_app'%></h3>
+  <p><%= t 'please_sign'%></p>
+  <%= auth_buttons 'sign_in', {:rel => "external"}, "twitter", "facebook", "google", "yahoo", "linked_in"%>
+  <p><%= t 'promisse'%></p>
+</div>
+<%else%>
+<%@sender = current_user%>
+<p>iupii</p>
+<%end%>

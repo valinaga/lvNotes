@@ -1,5 +1,5 @@
 <li>
-<a href="<%=letter.status!='SENT' ? '#' : letter_url(letter.id)%>" data-rel="dialog" data-transition="pop">
+<a href="<%=letter.status!='SENT' ? '#' : letter_url(letter.id)%>" data-rel="dialog">
 <%if letter.status!='SENT'%>
   <h2><%= t "next_msg"%> <%= l letter.sent, :format => :short if letter.sent%></h2>
 <%else%>

@@ -1,4 +1,5 @@
 <% @letter = session[:letter]%>
 <%unless @letter.nil?%>
+<% self.formats = [:mobile, :html] %>
 <%= render 'shared/activated'%>
 <%end%>

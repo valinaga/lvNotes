@@ -1,0 +1,6 @@
+<%= form_for(@recipient) do |f| %>
+  <%= f.text_field :first_name, :placeholder => t("first_name") %>
+  <%= f.text_field :last_name, :placeholder => t("last_name") %>
+  <%= f.email_field :email, :placeholder => t("e-mail") %>
+  <button type="submit" name="submit" value="submit-value"><%=t "submit"%> </button>
+<% end %>

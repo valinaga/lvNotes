@@ -208,10 +208,8 @@ class SendersController < ApplicationController
   end
 
 protected
-
   def set_locale
     I18n.locale = session[:lang] = current_user.lang if current_user    
   end
-  
 
 end

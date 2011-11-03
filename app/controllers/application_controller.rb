@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
 private
   def require_invite
-    redirect_to invite_path, :alert => "You need an invitation to access beta" unless valid_invitation?
+    redirect_to invite_path, :alert => t('require_invite') unless valid_invitation?
   end
   helper_method :require_invite
   
@@ -45,6 +45,11 @@ private
     Admin.find_by_id(session[:admin_user_id]) if session[:admin_user_id]
   end
   helper_method :current_admin_user
+  
+  def en?
+    I18n.locale == :en
+  end
+  helper_method :en?
 
   def geoip
     return if session[:lang]

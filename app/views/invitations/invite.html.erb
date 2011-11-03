@@ -1,2 +1,11 @@
-<h1>Invitation#invite</h1>
-<p>Find me in app/views/invitation/invite.html.erb</p>
+<h3> <%=t "welcome" %> !</h3>
+<p>
+  <strong><%=t "service"%> yourLove.ly</strong> <%=t "beta"%>
+</p>
+<p><%= t "enter_code"%> :</p>
+<div id="panel"> 
+  <%= form_tag invited_url, :method => :get do %>
+    <%= text_field_tag 'name', nil, :placeholder => t("enter_code") %>
+    <button type="submit" name="submit" value="submit-value"><%=t "submit" %></button>
+  <% end %>
+</div>

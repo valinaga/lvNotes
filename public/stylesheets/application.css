@@ -9,7 +9,7 @@ a img {
 }
 
 a {
-  color: #0000FF;
+  color: #0000ff;
 }
 
 .clear {
@@ -151,7 +151,11 @@ a {
 
 hr {clear:both; margin:10px 0;}
 
-.signup { width: 258px; }
+signup { width: 258px; }
 
 hr {margin-right:6px;}
 
+.buttons a {
+  color: #333 !important;
+  text-decoration: none;
+}

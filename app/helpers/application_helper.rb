@@ -7,4 +7,15 @@ module ApplicationHelper
       }.html_safe
     }    
   end
+  
+  def with_format(format, &block)
+    old_formats = formats
+    begin
+      self.formats = [format]
+      block.call
+    ensure
+      self.formats = old_formats
+    end
+    nil
+  end  
 end

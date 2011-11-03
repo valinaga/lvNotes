@@ -1,0 +1,9 @@
+<article data-role="content">
+  <div id="panel"> 
+    <p><%= t 'mail_not_found', :provider => @sender.provider.camelize %></p>
+    <%= form_for @sender, :url => savemail_url do |f| %>
+        <%= f.email_field :email, :placeholder => t("e-mail") %>
+        <button type="submit" name="submit" value="submit-value"> <%= t("submit")%> </button>
+    <% end %>
+  </div>
+</article>

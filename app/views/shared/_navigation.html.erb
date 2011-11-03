@@ -1,29 +1,11 @@
-  <li><%=
-        link_to_if(mobile_device?, "Full Site", :mobile => 0 ) do
-          link_to "Mobile Site", :mobile => 1
-        end
-      %>
-  </li>
-
-<% if user_signed_in? %>
-<%= current_user.name%>
-
-<%= link_to('Sign out', signout_path) %>        
-<% else %>
-<li>
-  <%= link_to('twitter', '/auth/twitter', :id => "tw-connect", :class => "login-btn")  %>
+<li><%=
+      link_to_if(en?, "În Româna", '/locale/ro' ) do
+        link_to "In English", '/locale/en'
+      end
+    %>
 </li>
-<li>
-  <%= link_to('facebook', '/auth/facebook', :id => "fb-connect", :class => "login-btn")  %>  
-</li>
-<li>
-  <%= link_to('linked_in', '/auth/linked_in', :id => "li-connect", :class => "login-btn")  %>  
-</li>
-<li>
-  <%= link_to('yahoo', '/auth/yahoo', :id => "yh-connect", :class => "login-btn")  %>  
-</li>
-<li>
-  <%= link_to('google', '/auth/google', :id => "gg-connect", :class => "login-btn")  %>  
-</li>
-<% end %>
+<li><%=link_to "Mobile Site", :mobile => 1%></li>
+<%if user_signed_in?%>
+<li><%= link_to t("signout"), signout_url%></li>
+<%end%>
 

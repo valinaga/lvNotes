@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :require_signin #, :only => [:new, :create, :failure, :destroy, :locale]
+  skip_before_filter :require_invite, :only => [:locale]
   
   def new
     redirect_to "/auth/#{params[:provider]}"

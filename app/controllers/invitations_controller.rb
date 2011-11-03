@@ -1,8 +1,13 @@
 class InvitationsController < ApplicationController
   skip_before_filter :require_invite, :only => [:invite, :invited]
   skip_before_filter :require_signin, :only => [:invite, :invited]
-
+  
   def invite
+    I18n.locale = session[:lang]
+    respond_to do |format|
+      format.mobile
+      format.html { render :layout => 'splash' }
+    end
   end
 
   def invited
@@ -12,7 +17,10 @@ class InvitationsController < ApplicationController
       session[:invitation] = @invitation
       redirect_to root_url
     else
-      render :action => 'invite'
+      respond_to do |format|  
+        format.mobile {render :action => 'invite'}
+        format.html { render :action => 'invite', :layout => 'splash' }
+      end
     end
   end
 end

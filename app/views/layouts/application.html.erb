@@ -1,12 +1,10 @@
-# encoding: utf-8
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-    <%= stylesheet_link_tag "application" %>
+    <title>yourLove.ly</title>
+    <%= stylesheet_link_tag "common", "application" %>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
-    <%= yield(:head) %>
   </head>
   <body>
     <header id="header">
