@@ -1,7 +1,9 @@
 class SessionsController < ApplicationController
   skip_before_filter :require_signin #, :only => [:new, :create, :failure, :destroy, :locale]
   skip_before_filter :require_invite, :only => [:locale]
-  
+  skip_before_filter :verify_authenticity_token
+  protect_from_forgery :except => :create
+
   def new
     redirect_to "/auth/#{params[:provider]}"
   end
@@ -44,4 +46,9 @@ class SessionsController < ApplicationController
     I18n.locale = session[:lang] = params[:lang]
     redirect_to root_url, :notice => 'Language changed!'
   end
+
+  def handle_unverified_request
+    true
+  end
+  
 end

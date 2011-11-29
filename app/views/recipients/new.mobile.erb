@@ -1,4 +1,7 @@
-<div data-role="page" id="newletter" class="pagecontainer" data-url="/">
+<% if session[:sender].provider == 'facebook'%>
+<script>if (window.location.hash == "#_=_") window.location.hash = "";</script>
+<%end%>
+<div data-role="page" id="newrecipient" class="pagecontainer">
   <%= render 'shared/title'%>
   <article data-role="content">
     <div id="panel">
